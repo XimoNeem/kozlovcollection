@@ -1,20 +1,20 @@
 databases:
-  - name: mysitedb
+  - name: kozlovdb
     plan: free
-    databaseName: mysite
-    user: mysite
+    databaseName: collection
+    user: kozlovcollection
 
 services:
   - type: web
     plan: free
-    name: mysite
+    name: kozlovcollection
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn mysite.asgi:application -k uvicorn.workers.UvicornWorker"
+    startCommand: "python -m gunicorn kozlovcollection.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysitedb
+          name: kozlovdb
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
