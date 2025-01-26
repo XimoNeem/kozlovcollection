@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Коллекция Антона Козлова{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'common/css/containers.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/layouts.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/base-items.css' %}">
+</head>
+<body>
+    <div class="kc-container-window-">
+        <header class="kc-header">
+            <p class="kc-header-text kc-text-dark">header</p>
+        </header>
+
+        <main class="kc-container-page">
+            {% block content %}
+            <!-- Тут контент страницы -->
+            {% endblock %}
+        </main>
+
+        <footer class="kc-footer">
+            <p class="kc-footer-text kc-text-dark">footer</p>
+        </footer>
+    </div>
+</body>
+</html>

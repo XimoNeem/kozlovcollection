@@ -1,0 +1,57 @@
+/* Контейнеры */
+.kc-container-window {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px 15px;
+}
+
+.kc-container-page {
+    flex: 1;
+    background-color: aqua;
+    min-height: 800px;
+}
+
+.kc-container-fluid {
+    width: 100%;
+    padding: 0px 0px;
+}
+
+.kc-image-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.kc-image-container img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+.kc-image-caption {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/*
+    ============================================================================
+    ======================== ипользование ======================================
+    ============================================================================
+*/
+
+/*
+
+ - Подключение в шаблон:
+<link rel="stylesheet" href="{% static 'css/containers.css' %}">
+
+ - Использование:
+
+ - Контейнер с отступами:
+
+<div class="container mt-1 mb-1">
+    Контент с отступами
+</div>
+
+*/

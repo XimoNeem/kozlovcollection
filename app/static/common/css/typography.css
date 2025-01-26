@@ -1,0 +1,168 @@
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px; /* Базовый размер шрифта */
+    line-height: 1.6; /* Межстрочный интервал */
+    color: #333; /* Основной цвет текста */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: #222;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Утилиты (управление текстом) */
+
+/* Выравнивание */
+.kc-text-left {
+    text-align: left;
+}
+
+.kc-text-center {
+    text-align: center;
+}
+
+.kc-text-right {
+    text-align: right;
+}
+
+.kc-text-justify {
+    text-align: justify;
+}
+
+/* Размеры*/
+.kc-text-small {
+    font-size: 0.875rem;
+}
+
+.kc-text-large {
+    font-size: 1.25rem;
+}
+
+.kc-text-xlarge {
+    font-size: 1.5rem;
+}
+
+/* Толщина*/
+.kc-text-light {
+    font-weight: 300;
+}
+
+.kc-text-normal {
+    font-weight: 400;
+}
+
+.kc-text-bold {
+    font-weight: 700;
+}
+
+/* Цвет*/
+.kc-text-muted {
+    color: #6c757d;
+}
+
+.kc-text-primary {
+    color: #007bff;
+}
+
+.kc-text-secondary {
+    color: #6c757d;
+}
+
+.kc-text-success {
+    color: #28a745;
+}
+
+.kc-text-danger {
+    color: #dc3545;
+}
+
+.kc-text-warning {
+    color: #ffc107;
+}
+
+.kc-text-info {
+    color: #17a2b8;
+}
+
+.kc-text-dark {
+    color: #343a40;
+}
+
+.kc-text-white {
+    color: #fff;
+}
+
+/* Заглавные буквы */
+.kc-text-uppercase {
+    text-transform: uppercase;
+}
+
+.kc-text-lowercase {
+    text-transform: lowercase;
+}
+
+.kc-text-capitalize {
+    text-transform: capitalize;
+}
+
+/* Межстрочный интервал */
+.kc-line-height-sm {
+    line-height: 1.2;
+}
+
+.kc-line-height-lg {
+    line-height: 2;
+}
+
+
+/*
+    ============================================================================
+    ======================== ипользование ======================================
+    ============================================================================
+*/
+
+/*
+
+ - Подключение в шаблон:
+<link rel="stylesheet" href="{% static 'css/typography.css' %}">

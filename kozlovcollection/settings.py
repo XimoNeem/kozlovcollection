@@ -38,7 +38,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 # Application definition
 
 INSTALLED_APPS = [
-    'homepage.apps.HomepageConfig',
+    'app.apps.AppConfig',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
@@ -62,7 +62,9 @@ ROOT_URLCONF = 'kozlovcollection.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'app' / 'templates',  # путь к папке с шаблонами
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,11 +87,21 @@ WSGI_APPLICATION = 'kozlovcollection.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(        
     # Replace this value with your local database's connection string.        
-    default='postgresql://postgres:postgres@localhost:5432/mysite',        
+    default='postgresql://kozlovcollection:zJYHxV9AGNOr09jfLIJ8AqtDFTVYUF5r@dpg-cu799gin91rc73d1tskg-a.oregon-postgres.render.com/collection_djdh',        
     conn_max_age=600
     )
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'collection_djdh',
+#         'USER': 'kozlovcollection',
+#         'PASSWORD': 'zJYHxV9AGNOr09jfLIJ8AqtDFTVYUF5r',
+#         'HOST': 'localhost',  # или IP-адрес вашего локального сервера PostgreSQL
+#         'PORT': '5432',  # стандартный порт PostgreSQL
+#     }
+# }
 
 
 # Password validation
