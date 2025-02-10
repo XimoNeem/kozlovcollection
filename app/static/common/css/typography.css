@@ -1,5 +1,6 @@
 body {
-    font-family: 'Arial', sans-serif;
+    /* font-family: 'Arial', sans-serif; */
+    font-family: FranklinGothicBookITC, sans-serif;
     font-size: 16px; /* Базовый размер шрифта */
     line-height: 1.6; /* Межстрочный интервал */
     color: #333; /* Основной цвет текста */
@@ -7,13 +8,13 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
-    color: #222;
-    line-height: 1.4;
-    margin-bottom: 1rem;
+    color: #000000;
+    /* line-height: 1.4;
+    margin-bottom: 1rem; */
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 53px;
 }
 
 h2 {
@@ -37,8 +38,9 @@ h6 {
 }
 
 p {
-    margin-bottom: 1.5rem;
-    color: #555;
+    /* margin-bottom: 1.5rem; */
+    color: #000000;
+    font-size: 21px;
 }
 
 a {
@@ -54,6 +56,12 @@ a:hover {
 /* Утилиты (управление текстом) */
 
 /* Выравнивание */
+.kc-text-wrapper{
+    margin: 0 !important;
+    padding: 0 !important;
+    
+    line-height: 0.8 !important;
+}
 .kc-text-left {
     text-align: left;
 }
@@ -72,11 +80,15 @@ a:hover {
 
 /* Размеры*/
 .kc-text-small {
-    font-size: 0.875rem;
+    font-size: 10px;
+}
+
+.kc-text-regular {
+    font-size: 21px;
 }
 
 .kc-text-large {
-    font-size: 1.25rem;
+    font-size: 53px;
 }
 
 .kc-text-xlarge {
@@ -85,7 +97,8 @@ a:hover {
 
 /* Толщина*/
 .kc-text-light {
-    font-weight: 300;
+    color: #888;
+    font-weight: 400;
 }
 
 .kc-text-normal {

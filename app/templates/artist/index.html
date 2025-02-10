@@ -1,104 +1,27 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Андрей Абрамов</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+{% extends "base.html" %}
 
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            color: #333;
-        }
+{% block title %}{{ data.name }}{% endblock %}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-        }
+{% block content %}
 
-        .header {
-            text-align: left;
-            margin-bottom: 20px;
-        }
+<!-- 🛇 ↑↑↑ выше ничего не трогать -->
 
-        .header h1 {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .header p {
-            font-size: 18px;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        .image-container {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ccc;
-        }
-
-        .image-caption {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        .text {
-            font-size: 16px;
-            line-height: 1.8;
-            text-align: justify;
-        }
-
-        /* Адаптивность */
-        @media (min-width: 768px) {
-            .container {
-                flex-direction: row;
-                gap: 20px;
-            }
-
-            .image-container {
-                flex: 1;
-                margin-bottom: 0;
-                text-align: left;
-            }
-
-            .text {
-                flex: 2;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Андрей Абрамов</h1>
-            <p>1951—2022</p>
+    <spacer class="kc-align-full kc-spacer-main"></spacer>
+    <block class="kc-align-half">
+        <div class="kc-text-wrapper kc-text-regular kc-text-large kc-text-uppercase">{{ data.name }}</div>
+        <p class="kc-text-normal kc-text-regular">  {{ data.description }}  </p>
+    </block>
+    <block class="kc-align-half">
+        <div class="kc-photo-wrapper">
+            <img class="fit-picture" src="{{ data.photo.url }}" alt="Artist photo">
+            <div class="kc-text-regular kc-text-light">Фото: {{data.photoAuthor}}</div>
+            <div class="kc-text-regular kc-text-light">Текст: {{data.textAuthor}}</div>
         </div>
-        <div class="image-container">
-            <img src="/path/to/image.png" alt="Андрей Абрамов">
-            <p class="image-caption">Фото: архив Музей «Гараж»<br>Текст: Галина Шубина</p>
-        </div>
-        <div class="text">
-            <p>
-                С 1966 по 1972 год учился в Московском художественном училище «Памяти 1905 года» на отделении реставрации станковой живописи. С 1976 по 1980 год был членом Горкома графиков. В это же время начал участвовать в квартирных выставках, а также в важных для неофициального искусства событиях, среди которых — 2-й осенний просмотр картин «На открытой атмосфере» в лесопарке «Измайлово» (1974), Выставка московских художников в Доме культуры ВДНХ (1975), «Ретроспектива творчества московских художников. 1975-1987», выставка объединения «Эрмитаж» (1987). Был частью круга московских концептуалистов, участвовал в акциях группы «Коллективные действия», среди которых — «Лозунг-1977» (1977), «Шар» (1977), «Время действия» (1978).
-            </p>
-        </div>
-    </div>
-</body>
-</html>
+    </block>
+    <spacer class="kc-align-full kc-spacer-main"></spacer>
+    <div class="kc-text-wrapper kc-text-regular kc-text-large kc-text-uppercase kc-align-full">Работы в коллекции</div>
+    <spacer class="kc-align-full kc-spacer-main"></spacer>
+
+<!-- 🛇 ↓↓↓ выше ничего не трогать -->
+
+{% endblock %}

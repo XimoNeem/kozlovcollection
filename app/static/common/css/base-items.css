@@ -1,21 +1,118 @@
-.kc-footer {
-    background-color: #ff0000;
-    color: #ffffff;
-    height: 90px;
-    text-align: center;
-    padding: 1rem 0;
-    position: relative;
-    bottom: 0;
+.kc-separator {
+    width: 100%;
+    height: 1px;
+    background-color: #000; /* Цвет линии */
 }
 
 .kc-header {
-    background-color: #1e00ff;
-    padding: 1rem 0;
-    height: 80px;
+    padding: 0% 60px;
+    height: 150px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kc-header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kc-header-menu {
+    height: 50px;
+    width: 50px;
+    justify-content: left;
+}
+
+.kc-header-menu-button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.kc-header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kc-logo {
+    height: 40px;
+    margin-right: 10px;
 }
 
 .kc-header-text {
-    margin: 0;
-    font-size: 1rem;
+    color: #000;
+    font-size: 28.901px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%; /* 31.791px */
+}
+
+.kc-header-lang {
+    height: 50px;
+    width: 50px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.kc-lang {
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.kc-lang.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.kc-footer {
+    padding: 0 60px;
+    text-align: left;
+}
+
+.kc-footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+
+}
+
+.kc-footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kc-footer-logo img {
+    width: 60px;
+    height: auto;
+}
+
+.kc-footer-logo p {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.kc-footer-info {
+    font-size: 27px;
+    text-align: left;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.kc-footer-info p {
+    margin: 5px 0;
+}
+
+.kc-footer-info strong {
+    color: #000;
+    text-decoration: none;
 }

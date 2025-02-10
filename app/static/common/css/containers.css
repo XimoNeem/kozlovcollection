@@ -1,57 +1,124 @@
-/* Контейнеры */
 .kc-container-window {
-    display: flex;
     width: 100%;
-    margin: 0 auto;
-    padding: 0px 15px;
 }
 
+/* Контейнер-сетка (12 колонок) */
 .kc-container-page {
-    flex: 1;
-    background-color: aqua;
-    min-height: 800px;
+    width: 100%;
+    padding: 0% 60px;
+    margin: 0 auto; /* Центрируем */
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* 12 равных колонок */
+    gap: 20px; /* Отступы между колонками (gutter) */
 }
 
-.kc-container-fluid {
-    width: 100%;
-    padding: 0px 0px;
+.kc-photo-wrapper img {
+    max-width: 100%; /* Максимальная ширина, чтобы изображение не выходило за пределы контейнера */
+    height: auto; /* Сохраняет пропорции изображения */
+    display: block; 
 }
 
-.kc-image-container {
-    width: 100%;
+/* Элемент, занимающий 6 колонок (половину) */
+.kc-align-half {
+    grid-column: span 6;
+}
+
+/* Элемент, занимающий всю ширину */
+.kc-align-full {
+    grid-column: span 12;
+}
+
+/* Элемент, занимающий 4 колонки (1/3 ширины) */
+.kc-align-third {
+    grid-column: span 4;
+}
+
+/* Элемент, занимающий 8 колонок (2/3 ширины) */
+.kc-align-two-thirds {
+    grid-column: span 8;
+}
+
+/* Элемент, занимающий 3 колонки (1/4 ширины) */
+.kc-align-quarter {
+    grid-column: span 3;
+}
+
+/* Элемент, занимающий 9 колонок (3/4 ширины) */
+.kc-align-three-quarters {
+    grid-column: span 9;
+}
+
+/* Центрирование элемента по горизонтали */
+.kc-align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-.kc-image-container img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #ccc;
+/* Элемент, занимающий определённую колонку (начинается с 3-й и занимает 6 колонок) */
+.kc-align-start-3 {
+    grid-column: 3 / span 6;
 }
 
-.kc-image-caption {
-    font-size: 14px;
-    color: #666;
-    margin-top: 5px;
+/* Элемент, занимающий последние 6 колонок */
+.kc-align-end-6 {
+    grid-column: -7 / -1;
 }
 
-/*
-    ============================================================================
-    ======================== ипользование ======================================
-    ============================================================================
-*/
+/* Элемент, занимающий 6 колонок и выровненный по правому краю */
+.kc-align-right {
+    grid-column: span 6;
+    justify-self: end;
+}
 
-/*
+/* Элемент, занимающий 6 колонок и выровненный по левому краю */
+.kc-align-left {
+    grid-column: span 6;
+    justify-self: start;
+}
 
- - Подключение в шаблон:
-<link rel="stylesheet" href="{% static 'css/containers.css' %}">
+/* Адаптация под мобильные устройства */
+@media (max-width: 768px) {
+    .kc-align-half,
+    .kc-align-full,
+    .kc-align-third,
+    .kc-align-two-thirds,
+    .kc-align-quarter,
+    .kc-align-three-quarters,
+    .kc-align-start-3,
+    .kc-align-end-6,
+    .kc-align-right,
+    .kc-align-left {
+        grid-column: span 12; /* На мобилках элементы растягиваются на всю ширину */
+    }
+}
 
- - Использование:
+/* Фоллбек на Flexbox (если Grid не поддерживается) */
+@supports not (display: grid) {
+    .kc-container-page {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 
- - Контейнер с отступами:
+    .kc-container-item {
+        width: 50%; /* Половина */
+    }
 
-<div class="container mt-1 mb-1">
-    Контент с отступами
-</div>
+    .kc-container-full {
+        width: 100%;
+    }
+}
 
-*/
+/* Адаптация под мобильные устройства */
+@media (max-width: 768px) {
+    .kc-container-page {
+        grid-template-columns: 1fr; /* 1 колонка */
+    }
+    
+    .kc-container-item,
+    .kc-container-full {
+        grid-column: span 1; /* Полная ширина */
+    }
+}
