@@ -1,0 +1,119 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* Сетка */
+.kc-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px; /* Убираем внешние отступы между колонками */
+}
+
+.kc-col {
+    padding: 10px; /* Внутренние отступы для колонок */
+    flex: 1 1 0%; /* Гибкость колонок */
+}
+
+.kc-col-1 { flex: 0 0 8.33%; max-width: 8.33%; }
+.kc-col-2 { flex: 0 0 16.66%; max-width: 16.66%; }
+.kc-col-3 { flex: 0 0 25%; max-width: 25%; }
+.kc-col-4 { flex: 0 0 33.33%; max-width: 33.33%; }
+.kc-col-5 { flex: 0 0 41.66%; max-width: 41.66%; }
+.kc-col-6 { flex: 0 0 50%; max-width: 50%; }
+.kc-col-7 { flex: 0 0 58.33%; max-width: 58.33%; }
+.kc-col-8 { flex: 0 0 66.66%; max-width: 66.66%; }
+.kc-col-9 { flex: 0 0 75%; max-width: 75%; }
+.kc-col-10 { flex: 0 0 83.33%; max-width: 83.33%; }
+.kc-col-11 { flex: 0 0 91.66%; max-width: 91.66%; }
+.kc-col-12 { flex: 0 0 100%; max-width: 100%; }
+
+/* Выравнивание в сетке */
+.kc-align-items-start {
+    align-items: flex-start;
+}
+
+.kc-align-items-center {
+    align-items: center;
+}
+
+.kc-align-items-end {
+    align-items: flex-end;
+}
+
+.kc-justify-content-start {
+    justify-content: flex-start;
+}
+
+.kc-justify-content-center {
+    justify-content: center;
+}
+
+.kc-justify-content-end {
+    justify-content: flex-end;
+}
+
+.kc-justify-content-between {
+    justify-content: space-between;
+}
+
+.kc-justify-content-around {
+    justify-content: space-around;
+}
+
+/* Утилиты для отступов */
+.kc-mt-1 { margin-top: 1rem; }
+.kc-mb-1 { margin-bottom: 1rem; }
+.kc-ml-1 { margin-left: 1rem; }
+.kc-mr-1 { margin-right: 1rem; }
+
+.kc-pt-1 { padding-top: 1rem; }
+.kc-pb-1 { padding-bottom: 1rem; }
+.kc-pl-1 { padding-left: 1rem; }
+.kc-pr-1 { padding-right: 1rem; }
+
+/* Карточка */
+.kc-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+
+/*
+    ============================================================================
+    ======================== ипользование ======================================
+    ============================================================================
+*/
+
+/*
+
+ - Подключение в шаблон:
+<link rel="stylesheet" href="{% static 'css/layouts.css' %}">
+
+ - Использование:
+ - Контейнер и сетка:
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">Левая колонка</div>
+        <div class="col-6">Правая колонка</div>
+    </div>
+</div>
+
+ - Карточка:
+
+<div class="card">
+    <h3>Заголовок карточки</h3>
+    <p>Содержимое карточки</p>
+</div>
+
+*/

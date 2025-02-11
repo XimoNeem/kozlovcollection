@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Artist, Artwork, PressMention, Route, Translation
 from django.utils.html import format_html
+from django.contrib.admin import AdminSite
 
 
 class ArtistAdmin(admin.ModelAdmin):
@@ -42,21 +43,31 @@ class PressMentionAdmin(admin.ModelAdmin):
 
 
 class RouteAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description', 'preview_image', 'created_at', 'updated_at']
-    readonly_fields = ['preview_image']
-    search_fields = ['name']
+    list_display = ("name", "preview_image", "color_display")
+    filter_horizontal = ("artworks",)
 
-    def preview_image(self, obj):
-        if obj.image:
-            return format_html('<img src="{}" style="max-height: 100px;"/>', obj.image.url)
-        return "Нет изображения"
-    preview_image.short_description = 'Превью'
+    def color_display(self, obj):
+        return format_html(
+            '<div style="width: 20px; height: 20px; background-color:{}; border: 1px solid #000;"></div>',
+            obj.color
+        )
+
+    color_display.short_description = "Цвет"
 
 
 class TranslationInline(admin.TabularInline):
     model = Translation
     extra = 1
 
+# Кастомизация стилей
+class MyAdminSite(AdminSite):
+    def each_context(self, request):
+        context = super().each_context(request)
+        context['admin_css'] = 'admin/css/admin.css'  # Укажите правильный путь
+        return context
+
+admin_site = MyAdminSite(name='myadmin')
+admin.site = admin_site
 
 # Регистрация моделей
 admin.site.register(Artist, ArtistAdmin)

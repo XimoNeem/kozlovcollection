@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+{% load static %}
+<!-- 🛇 ↑↑↑ выше ничего не трогать -->
+
+    <spacer class="kc-align-full kc-spacer-main"></spacer>
+
+    <div class="kc-text-wrapper kc-text-regular kc-text-large kc-text-uppercase kc-align-full">пресса</div>
+
+    <spacer class="kc-align-full kc-spacer-regular"></spacer>
+
+    <img src="{% static 'common/assets/press-item.svg' %}" alt="Logo" class="kc-image-wrapper kc-align-full">
+    <img src="{% static 'common/assets/press-item.svg' %}" alt="Logo" class="kc-image-wrapper kc-align-full">
+    <img src="{% static 'common/assets/press-item.svg' %}" alt="Logo" class="kc-image-wrapper kc-align-full">
+
+    <spacer class="kc-align-full kc-spacer-main"></spacer>
+
+<!-- 🛇 ↓↓↓ выше ничего не трогать -->
+
+{% endblock %}

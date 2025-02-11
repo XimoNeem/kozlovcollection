@@ -1,28 +1,22 @@
 {% extends "base.html" %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %}{{ data.title }}{% endblock %}
 
 {% block content %}
 
 <!-- 🛇 ↑↑↑ выше ничего не трогать -->
 
-    <h1 class="kc-text-center kc-text-primary">Добро пожаловать!</h1>
-    <p class="kc-text-center kc-text-muted">Это пример страницы, которая использует базовый шаблон и стили. Стили искать по поиску ("kc-......."). Пример офрмления см в этом html </p>
-
-    <div class="kc-row kc-mt-4">
-        <div class="kc-col-6">
-            <div class="kc-card">
-                <h2 class="kc-text-center kc-text-dark">Пример</h2>
-                <p class="kc-text-center">Template</p>
-            </div>
+    <spacer class="kc-align-full kc-spacer-main"></spacer>
+    <block class="kc-align-half">
+        <div class="kc-photo-wrapper">
+            <!-- <img class="fit-picture" src="{{ data.photo.url }}" alt="Artist photo"> -->
         </div>
-        <div class="kc-col-6">
-            <div class="kc-card">
-                <h2 class="kc-text-center kc-text-dark">Пример</h2>
-                <p class="kc-text-center">Template</p>
-            </div>
-        </div>
-    </div>
+    </block>
+    <block class="kc-align-half">
+        <div class="kc-text-wrapper kc-text-regular kc-text-large kc-text-uppercase">{{ data.title }}</div>
+        <p class="kc-text-normal kc-text-regular">  {{ data.description }}  </p>
+    </block>
+    <spacer class="kc-align-full kc-spacer-main"></spacer>
 
 <!-- 🛇 ↓↓↓ выше ничего не трогать -->
 

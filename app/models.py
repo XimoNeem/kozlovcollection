@@ -15,6 +15,10 @@ class Artist(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # Этот метод возвращает список работ художника
+    def get_artworks(self):
+        return self.artworks.all()
+
     def preview_image(self):
         if self.photo:
             return format_html('<img src="{}" style="max-height: 100px;"/>', self.photo.url)
@@ -28,9 +32,17 @@ class Artist(models.Model):
 
 class Artwork(models.Model):
     title = models.CharField("Название", max_length=255)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="artworks")
+    description = models.TextField("Описание")
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="artworks")  # Ссылка на модель Artist
     year = models.IntegerField("Год создания", blank=True, null=True)
-    images = models.JSONField("Изображения", blank=True, null=True)  # Хранит список URL-ов изображений
+    technique = models.TextField("Техника", blank=True, null=True)  # Описание техники работы
+    size = models.TextField("Размер", blank=True, null=True)  # Размер работы
+    cipher = models.TextField("Шифр", blank=True, null=True)  # Шифр работы
+    provenance = models.TextField("Провенанс", blank=True, null=True)  # История произведения
+    exhibitions = models.TextField("Список выставок", blank=True, null=True)  # Список выставок
+    publications = models.TextField("Публикации", blank=True, null=True)  # Публикации
+    main_image = models.ImageField("Главная картинка", upload_to='artworks/main_images/', blank=True, null=True)  # Главная картинка
+    images = models.JSONField("Изображения", blank=True, null=True)  # Список изображений, сохраненных на сервере
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -65,8 +77,11 @@ class PressMention(models.Model):
 
 class Route(models.Model):
     name = models.CharField("Название маршрута", max_length=255, default="Маршрут")
-    description = models.TextField("Описание", blank=True, null=True)
+    short_description = models.CharField("Краткое описание", max_length=500, blank=True, null=True)
+    full_description = models.TextField("Полное описание", blank=True, null=True)
     image = models.ImageField("Превью маршрута", upload_to="routes/", blank=True, null=True)
+    color = models.CharField("Цвет", max_length=7, default="#FFFFFF")  # HEX-код цвета
+    artworks = models.ManyToManyField("Artwork", verbose_name="Список работ", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -79,6 +94,7 @@ class Route(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 class Translation(models.Model):

@@ -1,0 +1,62 @@
+.kc-route-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    height: 750px;
+    min-height: 750px;
+}
+
+.kc-route-item {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kc-route-content {
+    grid-column: 1/2;
+    padding: 15px;
+}
+
+.kc-route-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.kc-route-description {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.kc-route-line {
+    width: 10px;
+    height: 100%;
+}
+
+.kc-route-image {
+    width: 120px; /* Можно изменить */
+    height: 100%;
+    grid-column: 0 / 1;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.kc-route-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.kc-no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    font-size: 12px;
+    color: #888;
+}
