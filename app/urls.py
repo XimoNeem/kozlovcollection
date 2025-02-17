@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.get_collection, name='collection'),  # КОЛЛЕКЦИЯ
     path('artist/<int:artist_id>/', views.get_artist, name='artist_detail'),  # Детали художника
-    path('artitem/', views.get_artitem, name='artitem'),  # Отдельный объект искусства
+    path('artwork/<int:artwork_id>/', views.get_artwork, name='artwork'),  # Отдельный объект искусства
     path('news/', views.get_news, name='news'),  # Новости (если они были)
     path('artistlist/', views.get_artist_list, name='collection_a_z'),  # A - Я (список художников)
 

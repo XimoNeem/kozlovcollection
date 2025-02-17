@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+
+<!-- 🛇 ↑↑↑ выше ничего не трогать -->
+
+    <spacer class="kc-align-full id-artwork-spacer-150"></spacer>
+    
+    {% if is_mobile %}
+        {% include "mobile_versions/artwork_mobile.html"%}
+    {% else %}
+        <!-- Основной контент для десктопа -->
+
+    <div class="kc-align-5">
+        <div class="kc-photo-wrapper">
+            <img src="{{ data.main_image.url }}" alt="{{ data.title }}" class="td-artwork-main-image">
+        </div>
+
+        <div class="kc-spacer-tiny"></div>
+
+        <div class="td-gallery-wrapper">
+            <div class="td-image-gallery">
+                {% for image in data.artwork_images.all %}
+                <div class="td-image-preview">
+                    <img src="{{ image.image.url }}" alt="Дополнительное изображение" class="thumbnail">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="kc-align-6">
+        <div class="kc-text-wrapper kc-text-xlarge"><i>{{ data.title }}</i></div>
+        <div class="kc-text-wrapper kc-text-xlarge">{{ data.series }}</div>
+
+        <div class="kc-spacer-regular"></div>
+
+        <div class="kc-text-regular">{{ data.description }}</div>
+
+        <div class="kc-spacer-regular"></div><div class="kc-spacer-regular"></div>
+    
+        <div class="td-artwork-info">
+            <div class="td-artwork-info-name kc-text-regular"><strong>АВТОР:</strong></div> 
+            <div class="td-artwork-info-value kc-text-regular">
+                <a href="{% url 'artist_detail' data.artist.id %}">{{ data.artist.name }}</a>
+            </div>
+
+            <div class="id-artwork-spacer-25"></div>
+
+            <div class="td-artwork-info-name kc-text-regular"><strong>ГОД:</strong></div>
+            <div class="td-artwork-info-value kc-text-regular">{{ data.year }}</div>
+
+            <div class="id-artwork-spacer-25"></div>
+
+            
+            <div class="td-artwork-info-name kc-text-regular"><strong>ТЕХНИКА:</strong></div>
+            <div class="td-artwork-info-value kc-text-regular">{{ data.technique }}</div>
+
+            <div class="id-artwork-spacer-25"></div>
+
+            
+            <div class="td-artwork-info-name kc-text-regular"><strong>РАЗМЕР:</strong></div>
+            <div class="td-artwork-info-value kc-text-regular">{{ data.size }}</div>
+
+            <div class="id-artwork-spacer-25"></div>
+
+            
+            <div class="td-artwork-info-name kc-text-regular"><strong>ШИФР:</strong></div>
+            <div class="td-artwork-info-value kc-text-regular">{{ data.cipher }}</div>
+
+            <div class="id-artwork-spacer-25"></div>
+
+            
+            <div class="td-artwork-info-name kc-text-regular"><strong>ПРОВЕНАНС:</strong></div>
+            <div class="td-artwork-info-value kc-text-regular">{{ data.provenance }}</div>
+
+            <div class="id-artwork-spacer-25"></div>
+
+            
+            <div class="td-artwork-info-name kc-text-regular"><strong>ВЫСТАВКИ:</strong></div>
+            <div class="td-artwork-info-value kc-text-regular">{{ data.exhibitions }}</div>
+
+            <div class="id-artwork-spacer-25"></div>
+
+            
+            <div class="td-artwork-info-name kc-text-regular"><strong>ПУБЛИКАЦИИ:</strong></div>
+            <div class="td-artwork-info-value kc-text-regular">{{ data.publications }}</div>
+
+            <div class="id-artwork-spacer-500"></div>
+
+        </div>
+    </div>
+
+    <spacer class="kc-align-full kc-spacer-main"></spacer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mainImage = document.querySelector(".td-artwork-main-image");
+            const thumbnails = document.querySelectorAll(".thumbnail");
+        
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener("click", function () {
+                    mainImage.style.opacity = "0"; // Сначала скрываем изображение
+                    
+                    setTimeout(() => {
+                        mainImage.src = this.src;
+                        mainImage.alt = this.alt;
+                        mainImage.style.opacity = "1"; // Потом показываем плавно
+                    }, 200); // Даем время на исчезновение перед заменой
+                });
+            });
+        });
+        </script>
+
+    {% endif %}
+
+<!-- 🛇 ↓↓↓ выше ничего не трогать -->
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% load static %}
+{% load i18n %}
+{% if is_mobile %}
+
+<footer class="kc-footer kc-spacing-padding-main">
+    <div class="kc-spacer-regular"> </div>
+    <div class="kc-footer-container">
+        <div class="kc-footer-logo">
+            <img src="{% static 'common/assets/logo-with-text.svg' %}" alt="Коллекция Антона Козлова">
+        </div>
+        <div class="kc-footer-info">
+            <div>© АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ<br>«КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА», 2024</div>
+            <div>+7 926 660-25-53</div>
+            <div>INFO@KOZLOVCOLLECTION.COM</div>
+            <div><strong>TELEGRAM</strong> / <strong>YOUTUBE</strong> / <strong>VK</strong> / <strong>INST</strong></div>
+            <div>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</div>
+        </div>
+    </div>
+    <div class="kc-spacer-main"> </div>
+</footer>
+
+{% else %}
+
+<footer class="kc-footer kc-spacing-padding-main">
+
+
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <select name="language">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            
+            {% for lang in languages %}
+                <option value="{{ lang.code }}" {% if lang.code == LANGUAGE_CODE %}selected{% endif %}>
+                    {{ lang.name_local }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Change language</button>
+    </form>
+
+    <div class="kc-spacer-regular"> </div>
+    <div class="kc-footer-container">
+        <div class="kc-footer-logo">
+            <img src="{% static 'common/assets/logo-with-text.svg' %}" alt="Коллекция Антона Козлова">
+        </div>
+        <div class="kc-footer-info">
+            <div>© АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ<br>«КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА», 2024</div>
+            <div>+7 926 660-25-53</div>
+            <div>INFO@KOZLOVCOLLECTION.COM</div>
+            <div><strong>TELEGRAM</strong> / <strong>YOUTUBE</strong> / <strong>VK</strong> / <strong>INST</strong></div>
+            <div>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</div>
+        </div>
+    </div>
+    <div class="kc-spacer-main"> </div>
+</footer>
+
+{% endif %}

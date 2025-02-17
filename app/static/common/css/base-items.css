@@ -4,6 +4,14 @@
     background-color: #000; /* Цвет линии */
 }
 
+.kc-separator-wide {
+    width: 120%; /* Ширина больше 100% */
+    height: 1px;
+    background-color: #000; /* Цвет линии */
+    margin-left: -10%; /* Сдвиг влево для компенсации */
+    margin-right: -10%; /* Сдвиг вправо для компенсации */
+}
+
 .kc-image-wrapper{
     width: 100%; /* Растягивает изображение по ширине родителя */
     height: auto; /* Сохраняет пропорции */
@@ -46,84 +54,154 @@
 }
 
 .kc-logo {
-    height: 40px;
-    margin-right: 10px;
+    height: 50px;
+    margin-right: 30px;
 }
 
 .kc-header-text {
     color: #000;
-    font-size: 28.901px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 110%; /* 31.791px */
+    font-size: 27.901px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 110% !important; /* 31.791px */
 }
 
 .kc-header-lang {
     height: 50px;
     width: 50px;
-    text-align: right;
     display: flex;
     flex-direction: column;
+    font-size: 14px !important;
+    align-items: center; /* Центрирование по горизонтали */
+    justify-content: center; /* Центрирование по вертикали */
+    border: 1px solid rgba(243, 243, 243, 1);
+
+    padding-top: 4px;
 }
 
 .kc-lang {
-    margin-left: 10px;
     text-decoration: none;
+    text-align: center;
+    flex-grow: 1;
 }
 
 .kc-lang.active {
     font-weight: bold;
     text-decoration: underline;
+    color: #1E8DD3;;
 }
+
+.kc-logo-decor-left {
+    width: auto;
+    height: 150px;
+
+    overflow: hidden;
+}
+
+.kc-logo-decor-right {
+    width: auto;
+    height: 150px;
+
+    overflow: hidden;
+    
+}
+
+.kc-logo-decor-left img {
+    width: 100%;
+    height: 100%;
+    
+    object-fit: contain;
+}
+
+.kc-logo-decor-right img {
+    width: 100%;
+    height: 100%;
+    
+    object-fit: contain;
+}
+
+.kc-header-padding-mobile{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.kc-header-button-mobile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 29px !important;
+    width: 29px !important;
+}
+
+
+.kc-header-button-image{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    
+    width: 100%;
+    height: auto;
+}
+
+.kc-header-button-logo {
+    width: 100%;
+    height: auto;
+}
+
+
+
+
 
 .kc-footer {
     text-align: left;
 }
 
 .kc-footer-container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 12 равных колонок */
+    gap: 0px 10px; /* Отступы между колонками (gutter) */
     align-items: center;
-    margin: 0 auto;
-
+    font-size: 27px !important;
+    line-height: 120% !important; /* 32.4px */
 }
 
 .kc-footer-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    grid-column: span 1;
 }
 
 .kc-footer-logo img {
-    width: 60px;
-    height: auto;
-}
-
-.kc-footer-logo p {
-    margin-top: 5px;
-    text-align: center;
+    width: 101px;
+    height: 164px;
 }
 
 .kc-footer-info {
-    font-size: 27px;
-    text-align: left;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
+    grid-column: span 1;
+
+    font-size: 26px !important;
+    text-align: left !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 120% !important;
+
+    color: #888 !important;
+
+    margin: 10px 0 !important;
 }
 
-.kc-footer-info p {
-    margin: 5px 0;
-}
 
 .kc-footer-info strong {
     color: #000;
     text-decoration: none;
+    font-weight: 400;
 }
 
 /* боковое меню */
 
 .kc-sidebar {
+    overflow-y: auto;
+    overflow-x: hidden;
     position: fixed;
     top: 0;
     left: -960px; /* Начальное скрытое положение */
@@ -142,6 +220,8 @@
     grid-column: span 6;
     color: #000;
 
+    line-height: 90%; /* 53px */
+
     font-style: normal !important;
 }
 
@@ -156,6 +236,85 @@
     cursor: pointer;
     grid-column: span 6;
 }
+
+.kc-sidebar-spacing-140{
+    height: 110px !important;
+    min-height: 110px !important;
+    max-height: 110px !important;
+
+    grid-column: span 6;
+}
+
+.kc-sidebar-spacing-100{
+    height: 90px !important;
+    min-height: 90px !important;
+    max-height: 90px !important;
+
+    grid-column: span 6;
+}
+
+.kc-sidebar-spacing-90{
+    height: 80px !important;
+    min-height: 80px !important;
+    max-height: 80px !important;
+
+    grid-column: span 6;
+}
+
+
+.kc-sidebar-spacing-28{
+
+    height: 23px !important;
+    min-height: 23px !important;
+    max-height: 23px !important;
+
+    grid-column: span 6;
+}
+
+.kc-sidebar-spacing-20{
+
+    height: 19px !important;
+    min-height: 19px !important;
+    max-height: 19px !important;
+
+    grid-column: span 6;
+}
+
+.kc-sidebar-spacing-40{
+
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+
+    grid-column: span 6;
+}
+
+
+.kc-sidebar-decor-container {
+    position: absolute;
+    overflow-y: hidden;
+    bottom: -450px; /* Отступ от нижнего края */
+    right: -80px; /* Отступ от правого края */
+    width: 547.911px;
+    height: 428.367px;
+    pointer-events: none; /* Чтобы клики проходили сквозь */
+}
+
+.kc-sidebar-decor{
+    overflow: hidden;
+    pointer-events: none; 
+
+
+    height: 120%;
+    width: 120%;
+}
+
+.kc-sidebar-decor img {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
 
 /* Затемнение фона при открытии меню */
 .kc-overlay {
@@ -189,9 +348,91 @@
     }
     .kc-sidebar-item-small {
         grid-column: 2 / 4; /* Полная ширина */
+        font-size: 15px !important;
+        height: auto !important;
     }
 
     .kc-close-btn {
         grid-column: span 4;
+    }
+
+    .kc-header {
+        height: 50px !important;
+    }
+
+    .kc-logo-decor-left{
+        width: 29px;
+        height: 29px;
+    }
+
+
+    .kc-header-logo img {
+        height: 29px;
+        width: 29px;
+    }
+
+    .kc-footer-container {
+        grid-template-columns: repeat(4, 1fr); /* 12 равных колонок */
+        gap: 0px 10px; /* Отступы между колонками (gutter) */
+        align-items: center !important;
+        font-size: 27px !important;
+        line-height: 120% !important; /* 32.4px */
+
+        height: 150px !important;
+        min-height: 150px !important;
+        max-height: 150px !important;
+    }
+
+    .kc-footer-logo{
+        grid-column: span 1;
+        width: 50%;
+
+        align-items: center !important;
+    }
+
+    .kc-footer-logo img{
+        width: 100%;
+        height: auto;
+    }
+
+    .kc-footer-info{
+        grid-column: span 3;
+        font-size: 9px !important;
+    }
+
+    .kc-sidebar-spacing-100{
+        grid-column: span 4;
+    }
+    
+    .kc-sidebar-spacing-28{
+        grid-column: span 4;
+    }
+
+    .kc-sidebar-decor-container {
+        position: absolute;
+        overflow-y: hidden;
+        bottom: 20px; /* Отступ от нижнего края */
+        right: -30px; /* Отступ от правого края */
+        width: 242.031px;
+        height: 115.637px;
+        pointer-events: none; /* Чтобы клики проходили сквозь */
+    }
+
+    .kc-sidebar-decor{
+        overflow: hidden !important;
+        pointer-events: none !important; 
+    
+    
+        height: 100%;
+        width: 100%;
+    }
+
+    .kc-sidebar-decor img {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        stroke-width: 2px;
+        stroke: #1E8DD3;
     }
 }

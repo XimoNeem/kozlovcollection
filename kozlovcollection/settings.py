@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 import dj_database_url
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
+from django.templatetags.static import static
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,16 +41,30 @@ if RENDER_EXTERNAL_HOSTNAME:
 # Application definition
 
 INSTALLED_APPS = [
-    'app.apps.AppConfig',
-    'django.contrib.auth',
+    'modeltranslation',
+
+    "unfold",
+    "unfold.contrib.filters",
+    "unfold.contrib.forms",
+    "unfold.contrib.inlines",
+    "unfold.contrib.import_export",
+    "unfold.contrib.guardian",
+    "unfold.contrib.simple_history",
+
     'django.contrib.admin',
+
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+
     'django.contrib.staticfiles',
+
+    'app.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -130,8 +147,21 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+LANGUAGES = [
+    ('ru', _('Русский')),
+    ('en', _('English')),
+    ('zh-hans', '简体中文'),  # Упрощенный китайский
+]
 
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+ADMIN_SITE_LANGUAGE = 'ru'
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
+
+USE_I18N = True
+USE_L10N = True
 USE_TZ = True
 
 
@@ -157,3 +187,42 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#===========================================================================================
+
+
+UNFOLD = {
+    "SITE_TITLE": "Коллекция Антона Козлова",
+    "SITE_HEADER": "Коллекция Антона Козлова",
+    # "SITE_SUBHEADER": "Appears under SITE_HEADER",
+    "SITE_SYMBOL": "image",  # symbol from icon set
+    "SHOW_LANGUAGES": True,
+    "SHOW_HISTORY": True, # show/hide "History" button, default: True
+    "SHOW_VIEW_ON_SITE": True, # show/hide "View on site" button, default: True
+    "SHOW_BACK_BUTTON": True, # show/hide "Back" button on changeform in header, default: False
+    # "STYLES": [
+    #     lambda request: static("css/style.css"),
+    # ],
+    # "SCRIPTS": [
+    #     lambda request: static("js/script.js"),
+    # ],
+    "BORDER_RADIUS": "6px",
+    "COLORS": {
+        "primary": {
+            "600": "30 141 211",
+        },
+    },
+    "SIDEBAR": {
+        "show_search": True,  # Search in applications and models names
+        "show_all_applications": False,  # Dropdown with all applications and models
+    },
+}
+
+CKEDITOR_CONFIGS = {
+    'default': {
+
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+    }
+}

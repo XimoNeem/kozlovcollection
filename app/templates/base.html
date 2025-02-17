@@ -8,35 +8,23 @@
 
     <title>{% block title %}Коллекция Антона Козлова{% endblock %}</title>
 
+    <link rel="stylesheet" href="{% static 'common/css/spacings.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/containers.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/layouts.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/typography.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/base-items.css' %}">
-    <link rel="stylesheet" href="{% static 'common/css/spacings.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/artwork-item.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/route-item.css' %}">
 
-    <link rel="stylesheet" href="{% static 'artist_list/css/artist_list.css' %}">
+    <link rel="stylesheet" href="{% static 'templates_data/css/artist_list.css' %}">
+    <link rel="stylesheet" href="{% static 'templates_data/css/collection.css' %}">
+    <link rel="stylesheet" href="{% static 'templates_data/css/artwork.css' %}">
 
 </head>
 <body>
     <div class="kc-container-window">
 
-        <header class="kc-header kc-spacing-padding-main">
-            <div class="kc-header-container">
-                <div class="kc-header-menu">
-                    <button class="kc-header-menu-button" id="menuToggle">&#9776;</button>
-                </div>
-                <div class="kc-header-logo">
-                    <img src="{% static 'common/assets/logo.svg' %}" alt="Logo" class="kc-logo">
-                    <span class="kc-header-text">КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА</span>
-                </div>
-                <div class="kc-header-lang">
-                    <a href="?lang=ru" class="kc-lang {% if request.LANGUAGE_CODE == 'ru' %}active{% endif %}">RUS</a>
-                    <a href="?lang=en" class="kc-lang {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">ENG</a>
-                </div>
-            </div>
-        </header>
+        {% include "items/header.html"%}
 
         <div class="kc-separator"></div>
 
@@ -50,47 +38,8 @@
 
         <div class="kc-separator"></div>
 
-        <footer class="kc-footer kc-spacing-padding-main">
-            <div class="kc-footer-container">
-                <div class="kc-footer-logo">
-                    <img src="{% static 'common/assets/logo.svg' %}" alt="Коллекция Антона Козлова">
-                </div>
-                <div class="kc-footer-info">
-                    <p>© АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ «КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА», 2024</p>
-                    <p>+7 926 660-25-53</p>
-                    <p>INFO@KOZLOVCOLLECTION.COM</p>
-                    <p><strong>TELEGRAM</strong> / <strong>YOUTUBE</strong> / <strong>VK</strong> / <strong>INST</strong></p>
-                    <p>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</p>
-                </div>
-            </div>
-        </footer>
-        
-        <!-- Боковое меню -->
-        <div id="kc-sidebar" class="kc-sidebar kc-spacing-padding-main">
-        
-            <spacer class="kc-close-btn kc-spacer-regular" id="closeMenu"></spacer>
-
-            
-            <a class="kc-text-wrapper kc-sidebar-item-main kc-text-large kc-text-normal" href="{% url 'collection' %}">КОЛЛЕКЦИЯ</a>
-            <a class="kc-text-wrapper kc-sidebar-item-small kc-text-regular kc-text-normal kc-text-info" href="{% url 'collection_m1_m10' %}">М.1 — М.10</a>
-            <a class="kc-text-wrapper kc-sidebar-item-small kc-text-regular kc-text-normal kc-text-info" href="{% url 'collection_a_z' %}">А — Я</a>
-            <a class="kc-text-wrapper kc-sidebar-item-small kc-text-regular kc-text-normal kc-text-info" href="{% url 'collection_by_years' %}">1957 — 2057</a>
-        
-            <a class="kc-text-wrapper kc-sidebar-item-main kc-text-large kc-text-normal" href="{% url 'home_anton' %}">ПОКА ВСЕ ДОМА У АНТОНА</a>
-            <a class="kc-text-wrapper kc-sidebar-item-main kc-text-large kc-text-normal" href="{% url 'team' %}">КОМАНДА</a>
-        
-            <a class="kc-text-wrapper kc-sidebar-item-main kc-text-large kc-text-normal" href="{% url 'exhibitions' %}">ВЫСТАВКИ</a>
-            <a class="kc-text-wrapper kc-sidebar-item-small kc-text-regular kc-text-normal kc-text-info" href="{% url 'exhibition_participation' %}">УЧАСТИЕ В ПРОЕКТАХ</a>
-            <a class="kc-text-wrapper kc-sidebar-item-small kc-text-regular kc-text-normal kc-text-info" href="{% url 'own_exhibitions' %}">СОБСТВЕННАЯ ВЫСТАВОЧНАЯ ПРОГРАММА</a>
-        
-            <a class="kc-text-wrapper kc-sidebar-item-main kc-text-large kc-text-normal" href="{% url 'publications' %}">ИЗДАНИЯ</a>
-            <a class="kc-text-wrapper kc-sidebar-item-main kc-text-large kc-text-normal" href="{% url 'cooperation' %}">СОТРУДНИЧЕСТВО</a>
-            <a class="kc-text-wrapper kc-sidebar-item-main kc-text-large kc-text-normal" href="{% url 'press' %}">ПРЕССА</a>
-
-
-            <spacer class="kc-close-btn kc-spacer-regular"></spacer>
-
-        </div>
+        {% include "items/footer.html"%}
+        {% include "items/menu.html"%}
 
     </div>
 

@@ -27,6 +27,15 @@
     grid-column: span 14;
 }
 
+
+.kc-align-5 {
+    grid-column: 2 / span 5; /* Начинаем со 2-й колонки и занимаем 5 */
+}
+
+.kc-align-6 {
+    grid-column: 8 / span 6; /* Начинаем со 2-й колонки и занимаем 5 */
+}
+
 /* Элемент, занимающий 4 колонки (1/3 ширины)
 .kc-align-third {
     grid-column: span 4;
@@ -74,8 +83,19 @@
     justify-self: start;
 }
 
+.kc-order-0{
+    order: 0;
+}
+
+
+.kc-order-1{
+    order: 1;
+}
+
 /* Адаптация под мобильные устройства */
 @media (max-width: 768px) {
+    .kc-align-5,    
+    .kc-align-6,
     .kc-align-half,
     .kc-align-full,
     .kc-align-third,
@@ -86,7 +106,12 @@
     .kc-align-end-6,
     .kc-align-right,
     .kc-align-left {
-        grid-column: span 12; /* На мобилках элементы растягиваются на всю ширину */
+        grid-column: span 2; /* На мобилках элементы растягиваются на всю ширину */
+    }
+
+    .kc-container-page {
+        grid-template-columns: repeat(1, 1fr); /* 12 равных колонок */
+        gap: 0px 0px; /* Отступы между колонками (gutter) */
     }
 }
 
@@ -107,14 +132,3 @@
     }
 }
 
-/* Адаптация под мобильные устройства */
-@media (max-width: 768px) {
-    .kc-container-page {
-        grid-template-columns: 1fr; /* 1 колонка */
-    }
-    
-    .kc-container-item,
-    .kc-container-full {
-        grid-column: span 1; /* Полная ширина */
-    }
-}

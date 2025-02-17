@@ -1,0 +1,59 @@
+<div class="kc-align-full">
+    <div class="kc-align-full kc-text-wrapper kc-text-xlarge"><i>{{ data.title }}</i></div>
+    <div class="kc-align-full kc-text-wrapper kc-text-xlarge">{{ data.series }}</div>
+</div>
+
+<div class="id-artwork-spacer-40 kc-align-full"></div>
+
+
+<div class="td-artwork-info kc-align-full">
+    <div class="td-artwork-info-name kc-text-regular"><strong>АВТОР:</strong></div> 
+    <div class="td-artwork-info-value kc-text-regular">
+        <a href="{% url 'artist_detail' data.artist.id %}">{{ data.artist.name }}</a>
+    </div>
+
+    <div class="id-artwork-spacer-25"></div>
+
+    <div class="td-artwork-info-name kc-text-regular"><strong>ГОД:</strong></div>
+    <div class="td-artwork-info-value kc-text-regular">{{ data.year }}</div>
+
+    <div class="id-artwork-spacer-25"></div>
+
+    
+    <div class="td-artwork-info-name kc-text-regular"><strong>ТЕХНИКА:</strong></div>
+    <div class="td-artwork-info-value kc-text-regular">{{ data.technique }}</div>
+
+    <div class="id-artwork-spacer-25"></div>
+
+    
+    <div class="td-artwork-info-name kc-text-regular"><strong>РАЗМЕР:</strong></div>
+    <div class="td-artwork-info-value kc-text-regular">{{ data.size }}</div>
+
+    <div class="id-artwork-spacer-25"></div>
+
+    
+    <div class="td-artwork-info-name kc-text-regular"><strong>ШИФР:</strong></div>
+    <div class="td-artwork-info-value kc-text-regular">{{ data.cipher }}</div>
+
+    <div class="id-artwork-spacer-25"></div>
+
+    
+    <div class="td-artwork-info-name kc-text-regular"><strong>ПРОВЕНАНС:</strong></div>
+    <div class="td-artwork-info-value kc-text-regular">{{ data.provenance }}</div>
+
+    <div class="id-artwork-spacer-25"></div>
+
+    
+    <div class="td-artwork-info-name kc-text-regular"><strong>ВЫСТАВКИ:</strong></div>
+    <div class="td-artwork-info-value kc-text-regular">{{ data.exhibitions }}</div>
+
+    <div class="id-artwork-spacer-25"></div>
+
+    
+    <div class="td-artwork-info-name kc-text-regular"><strong>ПУБЛИКАЦИИ:</strong></div>
+    <div class="td-artwork-info-value kc-text-regular">{{ data.publications }}</div>
+
+    <div class="id-artwork-spacer-500"></div>
+
+</div>
+

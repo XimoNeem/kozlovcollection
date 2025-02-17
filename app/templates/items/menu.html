@@ -1,0 +1,135 @@
+{% load static %}
+
+{% if is_mobile %}
+
+<div id="kc-sidebar" class="kc-sidebar kc-spacing-padding-main">
+        
+    <spacer class="kc-close-btn" id="closeMenu"></spacer>
+    <spacer class="kc-sidebar-spacing-90"></spacer>
+
+    
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'collection' %}">КОЛЛЕКЦИЯ</a>
+
+    <spacer class="kc-sidebar-spacing-20"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-large kc-text-normal kc-text-info" href="{% url 'collection_m1_m10' %}">М.1 — М.10</a>
+    
+    <spacer class="kc-sidebar-spacing-20"></spacer>
+    
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-large kc-text-normal kc-text-info" href="{% url 'collection_a_z' %}">А — Я</a>
+    
+    <spacer class="kc-sidebar-spacing-20"></spacer>
+    
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-large kc-text-normal kc-text-info" href="{% url 'collection_by_years' %}">1957 — 2057</a>
+
+    <spacer class="kc-sidebar-spacing-40"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'home_anton' %}">ПОКА ВСЕ ДОМА У АНТОНА</a>
+
+    <spacer class="kc-sidebar-spacing-40"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'team' %}">КОМАНДА</a>
+
+    <spacer class="kc-sidebar-spacing-20"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'exhibitions' %}">ВЫСТАВКИ</a>
+
+    <spacer class="kc-sidebar-spacing-20"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-large kc-text-normal kc-text-info" href="{% url 'exhibition_participation' %}">УЧАСТИЕ В ПРОЕКТАХ</a>
+
+    <spacer class="kc-sidebar-spacing-20"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-large kc-text-normal kc-text-info" href="{% url 'own_exhibitions' %}">СОБСТВЕННАЯ ВЫСТАВОЧНАЯ ПРОГРАММА</a>
+
+    <spacer class="kc-sidebar-spacing-20"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'publications' %}">ИЗДАНИЯ</a>
+
+    <spacer class="kc-sidebar-spacing-20"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'cooperation' %}">СОТРУДНИЧЕСТВО</a>
+
+    <spacer class="kc-sidebar-spacing-20"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'press' %}">ПРЕССА</a>
+
+    <spacer class="kc-sidebar-spacing-20"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'press' %}">СУЕТА</a>
+
+
+    <spacer class="kc-close-btn kc-spacer-main"></spacer>
+
+    <div class="kc-sidebar-decor-container">
+        <div class="kc-sidebar-decor">
+            <img src="{% static 'common/assets/menu-decor.svg' %}" alt="Decor">
+        </div>
+    </div>
+
+</div>
+
+{% else %}
+
+<div id="kc-sidebar" class="kc-sidebar kc-spacing-padding-main">
+        
+    <spacer class="kc-close-btn" id="closeMenu"></spacer>
+    <spacer class="kc-sidebar-spacing-100"></spacer>
+
+    
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'collection' %}">КОЛЛЕКЦИЯ</a>
+
+    <spacer class="kc-sidebar-spacing-28"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-large kc-text-normal kc-text-info" href="{% url 'collection_m1_m10' %}">М.1 — М.10</a>
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-large kc-text-normal kc-text-info" href="{% url 'collection_a_z' %}">А — Я</a>
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-large kc-text-normal kc-text-info" href="{% url 'collection_by_years' %}">1957 — 2057</a>
+
+    <spacer class="kc-sidebar-spacing-100"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'home_anton' %}">ПОКА ВСЕ ДОМА У АНТОНА</a>
+
+    <spacer class="kc-sidebar-spacing-100"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'team' %}">КОМАНДА</a>
+
+    <spacer class="kc-sidebar-spacing-28"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'exhibitions' %}">ВЫСТАВКИ</a>
+
+    <spacer class="kc-sidebar-spacing-28"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-large kc-text-normal kc-text-info" href="{% url 'exhibition_participation' %}">УЧАСТИЕ В ПРОЕКТАХ</a>
+
+    <spacer class="kc-sidebar-spacing-28"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-large kc-text-normal kc-text-info" href="{% url 'own_exhibitions' %}">СОБСТВЕННАЯ ВЫСТАВОЧНАЯ ПРОГРАММА</a>
+
+    <spacer class="kc-sidebar-spacing-28"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'publications' %}">ИЗДАНИЯ</a>
+
+    <spacer class="kc-sidebar-spacing-28"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'cooperation' %}">СОТРУДНИЧЕСТВО</a>
+
+    <spacer class="kc-sidebar-spacing-28"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'press' %}">ПРЕССА</a>
+
+    <spacer class="kc-sidebar-spacing-28"></spacer>
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-xlarge kc-text-normal" href="{% url 'press' %}">СУЕТА</a>
+
+
+    <spacer class="kc-close-btn kc-spacer-regular"></spacer>
+
+    <div class="kc-sidebar-decor-container">
+        <div class="kc-sidebar-decor">
+            <img src="{% static 'common/assets/menu-decor.svg' %}" alt="Decor">
+        </div>
+    </div>
+
+</div>
+
+{% endif %}

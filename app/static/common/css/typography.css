@@ -1,9 +1,8 @@
 body {
     /* font-family: 'Arial', sans-serif; */
-    font-family: FranklinGothicBookITC, sans-serif;
+    font-family: 'FranklinGothicBookITC', sans-serif;
     font-size: 16px; /* Базовый размер шрифта */
     font-weight: 400;
-    line-height: 1.6; /* Межстрочный интервал */
     color: #000000; /* Основной цвет текста */
 }
 
@@ -45,13 +44,13 @@ p {
 }
 
 a {
-    color: #007bff;
+    color: black;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #0056b3;
+    color: black;
 }
 
 /* Утилиты (управление текстом) */
@@ -61,14 +60,16 @@ a:hover {
     text-decoration: none !important; /* Убирает подчеркивание */
 }
 
-
 /* Выравнивание */
 .kc-text-wrapper{
     margin: 0 !important;
     padding: 0 !important;
     
     line-height: 100%;
+    /* word-wrap: break-word;
+    overflow-wrap: break-word;  */
 }
+
 .kc-text-left {
     text-align: left;
 }
@@ -87,23 +88,21 @@ a:hover {
 
 /* Размеры*/
 .kc-text-small {
-    font-size: 21px;
+    font-size: 17px;
 }
 
 .kc-text-regular {
-    font-size: 33px !important;
+    font-size: 21px !important;
 }
 
 .kc-text-large {
-    font-size: 53px !important;
+    font-size: 33px !important;
     font-style: normal !important;
 }
 
 .kc-text-xlarge {
-    font-size: 33px;
+    font-size: 53px;
     font-style: normal;
-    line-height: 36px; /* 36.3px */
-    text-transform: uppercase;
 }
 
 /* Толщина*/
@@ -113,7 +112,7 @@ a:hover {
 }
 
 .kc-text-normal {
-    font-weight: 400;
+    font-weight: 400 !important;
 }
 
 .kc-text-bold {
@@ -122,18 +121,22 @@ a:hover {
 
 @media (max-width: 768px) {
     .kc-text-small {
-        font-size: 10px;
+        font-size: 10px !important;
     }
     
     .kc-text-regular {
-        font-size: 15px;
+        font-size: 15px !important;
     }
     
     .kc-text-large {
-        font-size: 24px;
+        font-size: 20px !important;
     }
     .kc-text-xlarge {
-        font-size: 24px;
+        font-size: 24px !important;
+    }
+
+    .kc-line-height-big {
+        line-height: 120% !important;
     }
 }
 
@@ -148,14 +151,6 @@ a:hover {
 
 .kc-text-secondary {
     color: #6c757d;
-}
-
-.kc-text-danger {
-    color: #dc3545;
-}
-
-.kc-text-warning {
-    color: #ffc107;
 }
 
 .kc-text-info {
@@ -176,13 +171,19 @@ a:hover {
 }
 
 /* Межстрочный интервал */
-.kc-line-height-sm {
-    line-height: 1.2;
+.kc-line-height-big {
+    line-height: 110% !important;
 }
 
-.kc-line-height-lg {
-    line-height: 2;
+.kc-line-height-full {
+    line-height: 100% !important;
 }
+
+.kc-text-font-GothicMedium{
+    /* font-family: FranklinGothicMediumITC !important; */
+    font-weight: 600 !important;
+}
+
 
 
 /*

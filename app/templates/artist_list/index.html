@@ -7,15 +7,16 @@
 <!-- 🛇 ↑↑↑ выше ничего не трогать -->
 
 <spacer class="kc-align-full kc-spacer-main"></spacer>
+<spacer class="kc-align-full kc-spacer-regular"></spacer>
 
 {% for letter, artists in data.items %}
     {% for artist in artists %}
-        <div class="letter kc-align-half kc-text-regular kc-text-left kc-text-uppercase">
+        <div class="letter kc-align-half kc-text-customsize-artists kc-text-left kc-text-uppercas kc-text-font-GothicMedium">
             {% if forloop.first %}
                 {{ letter }}
             {% endif %}
         </div>
-        <div class="artist-name kc-align-half kc-text-regular kc-text-left kc-text-uppercase kc-text-color-remove">
+        <div class="artist-name kc-align-half kc-text-customsize-artists kc-text-left kc-text-uppercase kc-text-color-remove">
             <a href="{% url 'artist_detail' artist.id %}">{{ artist.name }}</a>
         </div>
     {% endfor %}

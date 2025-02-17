@@ -1,0 +1,50 @@
+{% load static %}
+
+{% if is_mobile %}
+
+<header class="kc-header kc-header-padding-mobile" id="menuToggle">
+    <div class="kc-header-container">
+
+        <div class="kc-header-logo-container">
+            <div class="kc-header-logo">
+                <img src="{% static 'common/assets/logo.svg' %}" alt="Logo" class="kc-logo">
+            </div>
+        </div>
+
+        <div class="kc-header-button-mobile">
+            <img src="{% static 'common/assets/header-button-mobile.svg' %}" alt="Logo" class="kc-header-button-logo">
+        </div>
+    </div>
+</header>
+
+{% else %}
+
+<header class="kc-header kc-spacing-padding-main">
+    <div class="kc-header-container">
+        <div class="kc-header-menu">
+            <button class="kc-header-menu-button" id="menuToggle">&#9776;</button>
+        </div>
+
+        <div class="kc-logo-decor-left">
+            <img src="{% static 'common/assets/header-decor-right.svg' %}" alt="Decor Left">
+        </div>
+
+        <div class="kc-header-logo-container">
+            <div class="kc-header-logo">
+                <img src="{% static 'common/assets/logo.svg' %}" alt="Logo" class="kc-logo">
+                <span class="kc-header-text">КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА</span>
+            </div>
+        </div>
+
+        <div class="kc-logo-decor-right">
+            <img src="{% static 'common/assets/header-decor-left.svg' %}" alt="Decor Right">
+        </div>
+
+        <div class="kc-header-lang">
+            <a href="?lang=ru" class="kc-lang {% if request.LANGUAGE_CODE == 'ru' %}active{% endif %}">RUS</a>
+            <a href="?lang=en" class="kc-lang {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">ENG</a>
+        </div>
+    </div>
+</header>
+
+{% endif %}

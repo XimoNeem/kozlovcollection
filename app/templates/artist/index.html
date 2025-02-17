@@ -6,17 +6,20 @@
 
 <!-- 🛇 ↑↑↑ выше ничего не трогать -->
 
+    <p>
+        {{ data.description }}
+    </p>
     <spacer class="kc-align-full kc-spacer-main"></spacer>
     <block class="kc-align-half">
-        <div class="kc-text-wrapper kc-text-large kc-text-uppercase">{{ data.name }}</div>
+        <div class="kc-text-wrapper kc-text-large kc-text-uppercase">{{ data.name|safe }}</div>
         <div class="kc-spacer-small"></div>
         <div class="kc-text-wrapper kc-text-normal kc-text-small">  {{ data.birth_year }}—{{ data.death_year }}  </div>
         <div class="kc-spacer-small"></div>
-        <p class="kc-text-wrapper kc-text-normal kc-text-small" style="line-height: 140% !important;">  {{ data.description }}  </p>
+        <p class="kc-text-wrapper kc-text-normal kc-text-small" style="line-height: 140% !important;">  {{ data.description|safe }}  </p>
     </block>
     <block class="kc-align-half">
         <div class="kc-photo-wrapper">
-            <img class="fit-picture" src="{{ data.photo.url }}" alt="Artist photo">
+            <img class="kc-photo-wrapper" src="{{ data.photo.url }}" alt="Artist photo">
             <div class="kc-spacer-tiny"></div>
             <div class="kc-text-wrapper kc-text-small kc-text-light kc-text-muted">Фото: {{data.photoAuthor}}</div>
             <div class="kc-text-wrapper kc-text-small kc-text-light kc-text-muted">Текст: {{data.textAuthor}}</div>
@@ -28,53 +31,7 @@
     <div class="kc-text-wrapper kc-text-regular kc-text-large kc-text-uppercase kc-align-full">Работы в коллекции</div>
     <spacer class="kc-align-full kc-spacer-regular"></spacer>
 
-    <div class="artworks-grid kc-align-full">
-        <div class="artwork-column">
-            {% for artwork in data.artworks.all %}
-                {% if forloop.counter0|divisibleby:3 %}
-                    <div class="artwork-item">
-                        <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
-                        <div class="artwork-text">
-                            <h3>{{ artwork.title }}</h3>
-                            <p>{{ artwork.artist }}</p>
-                            <p>{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</p>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    
-        <div class="artwork-column">
-            {% for artwork in data.artworks.all %}
-                {% if forloop.counter0|divisibleby:3 and not forloop.counter0|divisibleby:6 %}
-                    <div class="artwork-item">
-                        <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
-                        <div class="artwork-text">
-                            <h3>{{ artwork.title }}</h3>
-                            <p>{{ artwork.artist }}</p>
-                            <p>{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</p>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    
-        <div class="artwork-column">
-            {% for artwork in data.artworks.all %}
-                {% if forloop.counter0|divisibleby:3 and forloop.counter0|divisibleby:2 %}
-                    <div class="artwork-item">
-                        <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
-                        <div class="artwork-text">
-                            <h3>{{ artwork.title }}</h3>
-                            <p>{{ artwork.artist }}</p>
-                            <p>{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</p>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    
+    {% include "items/artwork_grid.html" with artworks=data.artworks.all %}
     
     
 

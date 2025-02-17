@@ -1,0 +1,46 @@
+<div class="artworks-grid kc-align-full">
+    <div class="artwork-column">
+        {% for artwork in artworks %}
+            {% if forloop.counter0|divisibleby:3 %}
+                <a href="{% url 'artwork' artwork.id %}" class="artwork-item">
+                    <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
+                    <div class="artwork-text">
+                        <h3>{{ artwork.title }}</h3>
+                        <p>{{ artwork.artist }}</p>
+                        <p>{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</p>
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="artwork-column">
+        {% for artwork in artworks %}
+            {% if forloop.counter0|divisibleby:3 and not forloop.counter0|divisibleby:6 %}
+                <div class="artwork-item">
+                    <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
+                    <div class="artwork-text">
+                        <h3>{{ artwork.title }}</h3>
+                        <p>{{ artwork.artist }}</p>
+                        <p>{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="artwork-column">
+        {% for artwork in artworks %}
+            {% if forloop.counter0|divisibleby:3 and forloop.counter0|divisibleby:2 %}
+                <div class="artwork-item">
+                    <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
+                    <div class="artwork-text">
+                        <h3>{{ artwork.title }}</h3>
+                        <p>{{ artwork.artist }}</p>
+                        <p>{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
