@@ -1,0 +1,11 @@
+<div class="kc-wrapper-container-third-full ">
+    {% if data.image %}
+        <img src="{{ data.image.url }}" alt="Flow Event Image" class="employee-item-photo" style="height: 483px;">
+    {% endif %}
+    <div class="employee-item-text-name kc-text-21-15 kc-text-uppercase">
+        {{ data.name|safe }}
+    </div>
+    <div class="employee-item-text-job kc-text-17-15">
+        {{ data.position|safe }}
+    </div>
+</div>

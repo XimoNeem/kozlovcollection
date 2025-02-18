@@ -13,7 +13,7 @@ class ArtworkTranslationOptions(TranslationOptions):
 
 @register(Exhibition)
 class ExhibitionTranslationOptions(TranslationOptions):
-    fields = ('title', 'location', 'curators')
+    fields = ('title', 'location', 'curators', 'text')
 
 @register(Employee)
 class EmployeeTranslationOptions(TranslationOptions):

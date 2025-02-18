@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -8,13 +9,24 @@
 
     <title>{% block title %}Коллекция Антона Козлова{% endblock %}</title>
 
-    <link rel="stylesheet" href="{% static 'common/css/spacings.css' %}">
-    <link rel="stylesheet" href="{% static 'common/css/containers.css' %}">
-    <link rel="stylesheet" href="{% static 'common/css/layouts.css' %}">
-    <link rel="stylesheet" href="{% static 'common/css/typography.css' %}">
-    <link rel="stylesheet" href="{% static 'common/css/base-items.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/core/base-items.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/core/colors.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/core/layouts.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/core/spacings.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/core/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/core/utils.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/core/wrappers.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'common/css/items/header.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/items/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/items/footer.css' %}">
+
     <link rel="stylesheet" href="{% static 'common/css/items/artwork-item.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/route-item.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/items/flow-item.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/items/employee-item.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/items/cooperation-item.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/items/exhibition-item.css' %}">
 
     <link rel="stylesheet" href="{% static 'templates_data/css/artist_list.css' %}">
     <link rel="stylesheet" href="{% static 'templates_data/css/collection.css' %}">
@@ -30,7 +42,7 @@
 
         <div id="kc-overlay" class="kc-overlay"></div>
 
-        <main class="kc-container-page kc-spacing-padding-main">
+        <main class="kc-container-page kc-container-grid kc-spacing-padding-main">
             {% block content %}
             <!-- Тут контент страницы -->
             {% endblock %}

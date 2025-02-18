@@ -82,14 +82,25 @@ class Artwork(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if self.description:
+            self.description = self.description.strip()
+            self.description = self.description.lstrip('<div>').rstrip('</div>')
+            self.description = bleach.clean(self.description, tags=['br', 'em', 'strong', 'p', 'div'], strip=True)
+            self.description = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.description)  
+        super().save(*args, **kwargs)
 
 class Exhibition(models.Model):
     is_visible = models.BooleanField("Отображается на сайте", default=True)
+    is_own = models.BooleanField("Собственная выставка", default=False)
+    image = models.ImageField("Превью выставки", upload_to="routes/", blank=True, null=True)
     title = models.CharField(max_length=255)
+    text = models.TextField("Описание")
     start_date = models.DateField()
     end_date = models.DateField()
     location = models.CharField(max_length=255)
-    curators = models.TextField()
+    curators = models.CharField()
     catalog_pdf = models.FileField(upload_to='exhibitions/catalogs/', blank=True, null=True)
     press_kit_zip = models.FileField(upload_to='exhibitions/press_kits/', blank=True, null=True)
     artworks = models.ManyToManyField("Artwork", verbose_name="Список работ", blank=True)
@@ -100,6 +111,14 @@ class Exhibition(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if self.text:
+            self.text = self.text.strip()
+            self.text = self.text.lstrip('<div>').rstrip('</div>')
+            self.text = bleach.clean(self.text, tags=['br', 'em', 'strong', 'p', 'div'], strip=True)
+            self.text = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.text)  
+        super().save(*args, **kwargs)
 
 class PressMention(models.Model):
     title = models.CharField("Заголовок", max_length=255)
@@ -213,6 +232,17 @@ class ExhibitionPDFImage(models.Model):
     def __str__(self):
         return f"Изображение для {self.artwork.title}"
     
+class ExhibitionImage(models.Model):
+    exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE, related_name="artwork_images")
+    image = models.ImageField(upload_to='artworks/images/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "элемент изображения"
+        verbose_name_plural = "Изображения"
+
+    def __str__(self):
+        return f"Изображение для {self.exhibition.title}"
 
 # Модель сотрудника
 class Employee(models.Model):
@@ -240,11 +270,19 @@ class PostalLink(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if self.description:
+            self.description = self.description.strip()
+            self.description = self.description.lstrip('<div>').rstrip('</div>')
+            self.description = bleach.clean(self.description, tags=['br', 'em', 'strong', 'p', 'div'], strip=True)
+            self.description = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.description)  
+        super().save(*args, **kwargs)
 
 # Модель Flow события
 class FlowEvent(models.Model):
     photo = models.ImageField(upload_to='flow_events/', blank=True, null=True)
-    text = models.TextField()
+    text = models.TextField("Текст")
 
     class Meta:
         verbose_name = "элемент Flow"
@@ -252,4 +290,12 @@ class FlowEvent(models.Model):
 
     def __str__(self):
         return self.text[:50]
+    
+    def save(self, *args, **kwargs):
+        if self.text:
+            self.text = self.text.strip()
+            self.text = self.text.lstrip('<div>').rstrip('</div>')
+            self.text = bleach.clean(self.text, tags=['br', 'em', 'strong', 'p', 'div'], strip=True)
+            self.text = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.text)  
+        super().save(*args, **kwargs)
 

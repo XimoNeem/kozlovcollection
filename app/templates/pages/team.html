@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+
+    {% if is_mobile %}
+
+
+    
+    {% else %}
+
+
+
+    {% endif %}
+
+    {% for item in data %}
+        {% include "items/employee_item.html" with data=item %}
+        <div class="kc-wrapper-container-one-null kc-utils-remove-fisrt-in-grid-hide"></div>
+    {% endfor %}
+
+{% endblock %}

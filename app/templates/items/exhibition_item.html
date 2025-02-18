@@ -1,0 +1,51 @@
+<div class="kc-wrapper-container-full-full kc-container-grid exhibition-item">
+
+    {% if is_mobile %}
+
+        <div class="kc-text-53-15 kc-text-uppercase kc-wrapper-container-span2 ">
+            {{ data.title|safe }}
+        </div>
+
+        {% if data.image %}
+            <div class="kc-wrapper-container-span2 cooperation-item-image-content">
+                <img src="{{ data.image.url }}" alt="Flow Event Image" class="cooperation-item-image">
+            </div>
+        {% endif %}
+
+        <div class="kc-wrapper-container-span4 kc-text-uppercase kc-text-21-15">
+            {{ data.description|safe }}
+        </div>
+
+        <div class="kc-wrapper-container-span4 kc-text-uppercase kc-text-21-15 kc-text-primary">
+            {{ data.email|safe }}
+        </div>
+    
+    {% else %}
+
+        {% if data.image %}
+
+            <div class="exhibition-item-image-content kc-wrapper-container-span7">
+                <img src="{{ data.image.url }}" alt="Flow Event Image" class="exhibition-item-image">
+            </div>
+
+        {% endif %}
+
+        <div class="exhibition-item-text-content kc-wrapper-container-span7">
+
+            <div class="exhibition-item-text-name kc-text-53-15 kc-text-uppercase kc-wrapper-container-span9-from6 ">
+                {{ data.title|safe }}
+            </div>
+
+            <div class="exhibition-item-text-description kc-wrapper-container-span4-from8 kc-text-uppercase kc-text-21-15 ">
+                {{ data.start_date|safe }} - {{ data.end_date|safe }} <br>
+                {{ data.location|safe }}
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+
+    
+</div>

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.name }}{% endblock %}
+
+{% block content %}
+
+<!-- 🛇 ↑↑↑ выше ничего не трогать -->
+
+{% if is_mobile %}
+
+    <spacer class="kc-wrapper-container-full-full kc-spacer-main"></spacer>
+    <block class="kc-wrapper-container-half-full">
+        <div class="kc-text-53-24 kc-text-uppercase">{{ data.name|safe }}</div>
+        <div class="kc-text-wrapper kc-text-21-15">  {{ data.birth_year }}—{{ data.death_year }}  </div>
+        <div class="kc-spacer-small"></div>
+    </block>
+    <block class="kc-wrapper-container-half-full">
+        <div class="kc-photo-wrapper">
+            <img class="kc-wrapper-image" src="{{ data.photo.url }}" alt="Artist photo">
+            <div class="kc-spacer-tiny"></div>
+            <div class="kc-text-wrapper kc-text-21-15 kc-text-gray">Фото: {{data.photoAuthor}}</div>
+            <div class="kc-text-wrapper kc-text-21-15 kc-text-gray">Текст: {{data.textAuthor}}</div>
+        </div>
+    </block>
+
+    <block class="kc-wrapper-container-half-full">
+        <p class="kc-text-wrapper kc-text-21-15" style="line-height: 140% !important;">  {{ data.description|safe }}  </p>
+    </block>
+
+    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
+    {% comment %} <spacer class="kc-wrapper-container-full-full kc-spacer-cut"></spacer> {% endcomment %}
+    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
+    <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full">Работы в коллекции</div>
+    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
+
+    {% include "items/artwork_grid.html" with artworks=data.artworks.all %}
+    
+{% else %}
+
+    <spacer class="kc-wrapper-container-full-full kc-spacer-main"></spacer>
+    <block class="kc-wrapper-container-half-full">
+        <div class="kc-text-53-24 kc-text-uppercase">{{ data.name|safe }}</div>
+        <div class="kc-spacer-small"></div>
+        <div class="kc-text-wrapper kc-text-21-15">  {{ data.birth_year }}—{{ data.death_year }}  </div>
+        <div class="kc-spacer-small"></div>
+        <p class="kc-text-wrapper kc-text-21-15" style="line-height: 140% !important;">  {{ data.description|safe }}  </p>
+    </block>
+    <block class="kc-wrapper-container-half-full">
+        <div class="kc-photo-wrapper">
+            <img class="kc-wrapper-image" src="{{ data.photo.url }}" alt="Artist photo">
+            <div class="kc-spacer-tiny"></div>
+            <div class="kc-text-wrapper kc-text-21-15 kc-text-gray">Фото: {{data.photoAuthor}}</div>
+            <div class="kc-text-wrapper kc-text-21-15 kc-text-gray">Текст: {{data.textAuthor}}</div>
+        </div>
+    </block>
+    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
+    {% comment %} <spacer class="kc-wrapper-container-full-full kc-spacer-cut"></spacer> {% endcomment %}
+    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
+    <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full">Работы в коллекции</div>
+    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
+
+{% include "items/artwork_grid.html" with artworks=data.artworks.all %}
+
+{% endif %}
+
+
+    
+    
+
+<!-- 🛇 ↓↓↓ ниже ничего не трогать -->
+
+{% endblock %}

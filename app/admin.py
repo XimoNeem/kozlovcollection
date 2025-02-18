@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import (
-    ExhibitionPDFImage, RouteVideo, Artist, Artwork, ArtworkImage, ArtistVideo, ArtistPDF, Exhibition, Employee, PostalLink, FlowEvent, Route, 
+    ExhibitionImage, ExhibitionPDFImage, RouteVideo, Artist, Artwork, ArtworkImage, ArtistVideo, ArtistPDF, Exhibition, Employee, PostalLink, FlowEvent, Route, 
 )
 from django.db import models
 from django import forms
@@ -16,6 +16,18 @@ class ArtworkImageInline(admin.TabularInline):
     extra = 0
     readonly_fields = ("preview", 'uploaded_at')
     show_change_link = True
+
+    def preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="max-height: 100px;"/>', obj.image.url)
+        return "Нет изображения"
+
+    preview.short_description = "Превью"
+
+class ExhibitionImageImageeInline(admin.TabularInline):
+    model = ExhibitionImage
+    extra = 0
+    readonly_fields = ("preview", 'uploaded_at')
 
     def preview(self, obj):
         if obj.image:
@@ -111,7 +123,7 @@ class ExhibitionAdmin(TranslationAdmin, ModelAdmin):
     search_fields = ['title', 'location']
     list_filter = ['start_date', 'end_date']
     filter_horizontal = ['artworks']
-    inlines = [ExhibitionPDFImageeInline]
+    inlines = [ExhibitionPDFImageeInline, ExhibitionImageImageeInline]
 
     formfield_overrides = {
         # models.TextField: {'widget': forms.Textarea(attrs={'rows': 2, 'style': 'height: 40px;'})}, 
@@ -156,7 +168,7 @@ class PostalLinkAdmin(TranslationAdmin, ModelAdmin):
 
 @admin.register(FlowEvent)
 class FlowEventAdmin(TranslationAdmin, ModelAdmin):
-    list_display = ['id', 'preview_image']
+    list_display = ['text', 'preview_image']
     readonly_fields = ['preview_image']
 
     formfield_overrides = {
