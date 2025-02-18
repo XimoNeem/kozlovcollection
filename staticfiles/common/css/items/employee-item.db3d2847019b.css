@@ -1,0 +1,37 @@
+.employee-item {
+    padding-bottom: 30px;
+    background: #ffffff;
+    margin-bottom: 100px;
+}
+
+.employee-item-photo {
+    height: 483px;
+    max-width: 100%;
+    margin-bottom: 30px;
+    object-fit: cover;
+}
+
+.employee-item-text-name{
+    margin-bottom: 30px !important;
+}
+.employee-item-text-job{
+    margin-bottom: 100px !important;
+}
+
+@media (max-width: 768px) {
+    .employee-item-photo {
+        height: 348px !important;
+        max-height: 348px;
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: 10px;
+        object-fit: cover;
+    }
+
+    .employee-item-text-name{
+        margin-bottom: 10px !important;
+    }
+    .employee-item-text-job{
+        margin-bottom: 40px !important;
+    }
+}

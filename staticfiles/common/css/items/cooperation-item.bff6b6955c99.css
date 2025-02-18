@@ -1,0 +1,52 @@
+.cooperation-item{
+    width: 100%;
+    height: 523px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+.cooperation-item-image-content {
+    min-width: 100px;
+    min-height: 100px;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Делаем контейнер квадратным */
+    overflow: hidden; /* Обрезаем лишнее */
+    display: flex; /* Для выравнивания изображения */
+    align-items: flex-start; /* Прижимаем изображение к верху */
+}
+.cooperation-item-image {
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Заполняем квадратное пространство без искажений */
+}
+.cooperation-item-text-content{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 0px 30px;
+}
+.cooperation-item-text-name{
+    grid-column: span 11;
+
+    height: auto;
+    margin: 0%;
+    padding: 0%;
+    display: inline-block;
+}
+.cooperation-item-text-description{
+    grid-column: span 11;
+}
+.cooperation-item-text-link{
+    grid-column: 4 / span 9;
+}
+.cooperation-test {
+    grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+    .cooperation-item{
+        width: 100%;
+        height: 523px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+}
