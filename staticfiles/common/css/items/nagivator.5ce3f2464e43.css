@@ -1,0 +1,16 @@
+.kc-navigator{
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row; 
+}
+
+.kc-navigator-item{
+    color: black;
+}
+
+.kc-navigator-item:hover{
+    color: black;
+    color: #1E8DD3;
+}

@@ -6,6 +6,9 @@
 
 <!-- 🛇 ↑↑↑ выше ничего не трогать -->
 
+    {% include 'items/navigator.html' %}
+
+
     <div class="kc-wrapper-container-full-full kc-margin-top-150-40">
         {% for route in data %}
             {% include "items/route_item.html" with route=route %}
