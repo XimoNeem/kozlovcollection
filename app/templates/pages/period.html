@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+
+    {% if is_mobile %}
+
+
+    
+    {% else %}
+
+
+
+    {% endif %}
+
+    <div class="kc-wrapper-container-half-full kc-margin-top-150-40 kc-text-33-24">
+        МЕСТА ДЕЙСТВИЯ:
+    </div>
+
+    <div class="kc-wrapper-container-half-full kc-margin-top-150-40 kc-text-21-15 kc-margin-bottom-100-40">
+        {{ data.text|safe }}
+    </div>
+
+    <div class="kc-wrapper-container-full-full kc-text-21-15 kc-separator-wide kc-margin-bottom-100-40"> </div>
+
+    {% include "items/artwork_grid.html" with artworks=data.artworks.all %}
+
+{% endblock %}

@@ -4,18 +4,10 @@
 
 {% block content %}
 
-<!-- 🛇 ↑↑↑ выше ничего не трогать -->
-
-    <spacer class="kc-align-full kc-spacer-main"></spacer>
-
-    <block class="kc-align-half">
-    </block>
-
-    <block class="kc-align-half">
-    </block>
-
-    <spacer class="kc-align-full kc-spacer-main"></spacer>
-
-<!-- 🛇 ↓↓↓ выше ничего не трогать -->
+<spacer class="kc-wrapper-container-full-full kc-margin-top-150-40"></spacer>
+    
+<block class="kc-wrapper-container-full-full">
+    {% include 'items/periods_item.html' with data=data %}
+</block>
 
 {% endblock %}

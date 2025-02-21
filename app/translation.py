@@ -1,6 +1,6 @@
 from modeltranslation.translator import register, TranslationOptions
 from modeltranslation.admin import TranslationAdmin
-from .models import Artist, Exhibition, Employee, PostalLink, FlowEvent, Route, Artwork
+from .models import Artist, Exhibition, Employee, PostalLink, FlowEvent, Route, Artwork, YearPeriod, PressMention
 
 @register(Artist)
 class ArtistTranslationOptions(TranslationOptions):
@@ -30,3 +30,11 @@ class FlowEventTranslationOptions(TranslationOptions):
 @register(Route)
 class RouteTranslationOptions(TranslationOptions):
     fields = ('title', 'short_description', 'full_description', 'article')
+
+@register(YearPeriod)
+class YearPeriodTranslationOptions(TranslationOptions):
+    fields = ('title', 'text')
+
+@register(PressMention)
+class PressMentionTranslationOptions(TranslationOptions):
+    fields = ('title', 'author', 'source', 'date')

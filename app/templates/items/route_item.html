@@ -1,0 +1,53 @@
+<div class="kc-wrapper-container-full-full kc-container-grid kc-route-container">
+
+    {% if is_mobile %}
+
+        <div class="kc-wrapper-container-span2 kc-route-line-wrapper">
+            <div class="route-top-circle" style="background-color: {{ route.color }}">
+            </div>
+
+            <div class="kc-route-line" style="background-color: {{ route.color }}"></div>
+                <div class="route-bottom-circle-container">
+                    <div class="route-bottom-circle" style="background-color: {{ route.color }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="kc-route-content">
+
+            <div class="kc-route-title kc-text-33-15" style="color: {{ route.color }}">{{ route.title }}<br></div>
+            
+            <div class="kc-wrapper-container-6-full kc-route-image">
+                <img src="{{ route.image.url }}" alt="{{ route.name }}">
+            </div>
+    
+            <div class="kc-wrapper-container-6-full">
+                <div class="kc-route-description kc-text-33-15">{{ route.short_description }}</div>
+            </div>
+        </div>
+    
+    {% else %}
+
+        <div class="kc-wrapper-container-6-full kc-route-image">
+            <img src="{{ route.image.url }}" alt="{{ route.name }}">
+        </div>
+
+        <div class="kc-wrapper-container-span2 kc-route-line-wrapper">
+            <div class="route-top-circle" style="background-color: {{ route.color }}">
+            </div>
+
+            <div class="kc-route-line" style="background-color: {{ route.color }}"></div>
+                <div class="route-bottom-circle-container">
+                    <div class="route-bottom-circle" style="background-color: {{ route.color }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="kc-wrapper-container-6-full">
+            <div class="kc-route-title kc-text-33-15" style="color: {{ route.color }}">{{ route.title }}<br></div>
+            <div class="kc-route-description kc-text-33-15">{{ route.short_description }}</div>
+        </div>
+
+    {% endif %}
+
+</div>

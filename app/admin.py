@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import (
-    ExhibitionImage, ExhibitionPDFImage, RouteVideo, Artist, Artwork, ArtworkImage, ArtistVideo, ArtistPDF, Exhibition, Employee, PostalLink, FlowEvent, Route, 
+    PressMention, YearPeriod, ExhibitionImage, ExhibitionPDFImage, RouteVideo, Artist, Artwork, ArtworkImage, ArtistVideo, ArtistPDF, Exhibition, Employee, PostalLink, FlowEvent, Route, 
 )
 from django.db import models
 from django import forms
@@ -116,6 +116,10 @@ class ArtworkAdmin(TranslationAdmin, ModelAdmin):
         } 
     }
 
+@admin.register(PressMention)
+class PressMentionAdmin(TranslationAdmin, ModelAdmin):
+    list_display = ['title', 'is_visible']
+    search_fields = ['title']
 
 @admin.register(Exhibition)
 class ExhibitionAdmin(TranslationAdmin, ModelAdmin):
@@ -132,6 +136,18 @@ class ExhibitionAdmin(TranslationAdmin, ModelAdmin):
         } 
     }
 
+@admin.register(YearPeriod)
+class YearPeriodAdmin(TranslationAdmin, ModelAdmin):
+    list_display = ['title']
+    search_fields = ['title']
+    filter_horizontal = ['artworks']
+
+    formfield_overrides = {
+        # models.TextField: {'widget': forms.Textarea(attrs={'rows': 2, 'style': 'height: 40px;'})}, 
+        models.TextField: {
+            "widget": WysiwygWidget,
+        } 
+    }
 
 @admin.register(Employee)
 class EmployeeAdmin(TranslationAdmin, ModelAdmin):

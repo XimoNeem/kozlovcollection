@@ -1,0 +1,50 @@
+<a href="{{ data.link }}" class="kc-wrapper-container-full-full kc-container-grid kc-margin-bottom-100-40 kc-margin-top-30-0">
+
+
+    {% if is_mobile %}
+
+        {% if data.image %}
+            <div class="press-item-image-content kc-wrapper-container-full-full">
+                <img src="{{ data.image.url }}" alt="Flow Event Image" class="press-item-image">
+                <img src="{{ data.image.url }}" alt="Flow Event Image" class="press-item-image">
+            </div>
+        {% endif %}
+
+        <div class="press-item-text-content kc-wrapper-container-full-full">
+
+            <div class="press-item-text-name kc-text-41-15 kc-text-uppercase kc-wrapper-container-span9-from6 ">
+                {{ data.title|safe }}
+            </div>
+
+            <div class="press-item-text-description kc-text-uppercase kc-text-21-15 kc-text-primary">
+                {{ data.author|safe }} / {{ data.source|safe }} / {{ data.date|safe }}
+            </div>
+
+        </div>
+    
+    {% else %}
+
+        {% if data.image %}
+            <div class="press-item-image-content kc-wrapper-container-span6">
+                <img src="{{ data.image.url }}" alt="Flow Event Image" class="press-item-image">
+                <img src="{{ data.image.url }}" alt="Flow Event Image" class="press-item-image">
+            </div>
+        {% endif %}
+
+        <div class="press-item-text-content kc-wrapper-container-span6-from7">
+
+            <div class="press-item-text-name kc-text-41-15 kc-text-uppercase kc-wrapper-container-span9-from6 ">
+                {{ data.title|safe }}
+            </div>
+
+            <div class="press-item-text-description kc-text-uppercase kc-text-21-15 kc-text-primary">
+                {{ data.author|safe }} / {{ data.source|safe }} / {{ data.date|safe }}
+            </div>
+
+        </div>
+
+    {% endif %}
+
+
+    
+</a>

@@ -6,34 +6,11 @@
 
 <!-- 🛇 ↑↑↑ выше ничего не трогать -->
 
-    <spacer class="kc-align-full kc-spacer-main"></spacer>
-
-    <div class="kc-route-container kc-align-full">
+    <div class="kc-wrapper-container-full-full kc-margin-top-150-40">
         {% for route in data %}
-        <div class="kc-route-item">
-            <!-- Левая часть: текст -->
-            <div class="kc-route-content">
-                <h3 class="kc-route-title">{{ route.name }}</h3>
-                <p class="kc-route-description">{{ route.short_description }}</p>
-            </div>
-            
-            <!-- Центральная цветная полоса -->
-            <div class="kc-route-line" style="background-color: '{{ route.color }}';"></div>
-            
-            <!-- Правая часть: изображение -->
-            <div class="kc-route-image">
-                {% if route.image %}
-                    <img src="{{ route.image.url }}" alt="{{ route.name }}">
-                {% else %}
-                    <div class="kc-no-image">Нет изображения</div>
-                {% endif %}
-            </div>
-        </div>
+            {% include "items/route_item.html" with route=route %}
         {% endfor %}
     </div>
-    
-
-    <spacer class="kc-align-full kc-spacer-main"></spacer>
 
 <!-- 🛇 ↓↓↓ выше ничего не трогать -->
 

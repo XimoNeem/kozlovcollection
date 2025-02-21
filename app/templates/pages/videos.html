@@ -1,21 +1,58 @@
-news{% extends "base.html" %}
-
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
 {% block title %}{{ data.title }}{% endblock %}
 
 {% block content %}
 
-<!-- 🛇 ↑↑↑ выше ничего не трогать -->
+    <div class="kc-margin-top-150-40 kc-margin-bottom-100-40 kc-text-27-15 kc-wrapper-container-full-full" style="color: #456FA1; !important">
+        M.1 • ЦВЕТ, РИТМ, ПРОСТРАНСТВО, ТОЖДЕСТВО
+    </div>
 
-    <spacer class="kc-align-full kc-spacer-main"></spacer>
 
-    <block class="kc-align-half">
-    </block>
+    {% if is_mobile %}
 
-    <block class="kc-align-half">
-    </block>
+        <div class="videos-grid-1 ">
+            <div class="video-item">
+                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
+            </div>
+        </div>
 
-    <spacer class="kc-align-full kc-spacer-main"></spacer>
+        <div class="videos-grid-2">
+            <div class="video-item">
+                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
+            </div>
+        </div>
 
-<!-- 🛇 ↓↓↓ выше ничего не трогать -->
+        <div class="videos-grid-1 ">
+            <div class="video-item">
+                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
+            </div>
+        </div>
+    
+    {% else %}
+
+        <div class="videos-grid-1">
+            <div class="video-item">
+                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
+            </div>
+        </div>
+
+        <div class="videos-grid-2">
+            <div class="video-item">
+                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
+            </div>
+        </div>
+
+        <div class="videos-grid-3">
+            <div class="video-item">
+                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
+            </div>
+        </div>
+
+    {% endif %}
+
+
+
 
 {% endblock %}

@@ -1,0 +1,17 @@
+<div class="period-context">
+    {% for period in data %}
+        {% if forloop.counter0|divisibleby:7 %}
+            <a href="{% url 'period' period.id %}"class="period-item kc-text-33-24" style="grid-column: span 3;">
+                {{ period.title }}
+            </a>
+        {% elif forloop.counter0|divisibleby:7|add:3 %}
+            <a href="{% url 'period' period.id %}"class="period-item kc-text-33-24" style="grid-column: span 4;">
+                {{ period.title }}
+            </a>
+        {% else %}
+            <a href="{% url 'period' period.id %}"class="period-item kc-text-33-24" style="grid-column: span 3;">
+                {{ period.title }}
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>

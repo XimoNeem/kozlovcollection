@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Artist, Artwork, Route, PressMention, FlowEvent, Employee, PostalLink, Exhibition
+from .models import Artist, Artwork, Route, PressMention, FlowEvent, Employee, PostalLink, Exhibition, YearPeriod
 from collections import defaultdict
 from django.shortcuts import get_object_or_404
 from django.http import HttpRequest
@@ -18,10 +18,15 @@ def get_artwork(request, artwork_id):
     is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
     return render(request, 'pages/artwork.html', {'data': data, 'is_mobile': is_mobile})
 
+def get_period(request, period_id):
+    data = get_object_or_404(YearPeriod, id=period_id) 
+    is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
+    return render(request, 'pages/period.html', {'data': data, 'is_mobile': is_mobile})
+
 def get_news(request):
     data = PressMention.objects.all().order_by('name')
     is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
-    return render(request, 'pages/news.html')
+    return render(request, 'pages/press.html')
 
 def get_artist_list(request):
     artists = Artist.objects.all().order_by('name')
@@ -38,16 +43,25 @@ def get_artist_list(request):
 
 # Новые представления
 
+def get_routes(request):
+    data = Route.objects.all()
+    is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
+    return render(request, 'pages/routes.html', {'data': data, 'is_mobile': is_mobile})
+
+
 def get_collection_by_period(request):
     data = Route.objects.all()
     is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
     return render(request, 'routes/index.html', {'data': data, 'is_mobile': is_mobile})
 
 def get_collection_by_years(request):
-    return render(request, 'collection/years.html')
+    data = YearPeriod.objects.all()
+    is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
+    return render(request, 'pages/collection/years.html', {'data': data, 'is_mobile': is_mobile})
 
-def get_home_anton(request):
-    return render(request, 'home_anton/index.html')
+def get_videos(request):
+    is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
+    return render(request, 'pages/videos.html', {'is_mobile': is_mobile})
 
 def get_team(request):
     data = Employee.objects.all()
@@ -65,7 +79,8 @@ def get_own_exhibitions(request):
     return render(request, 'pages/exhibitions.html', {'data': data, 'is_mobile': is_mobile})
 
 def get_publications(request):
-    return render(request, 'publications/index.html')
+    is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
+    return render(request, 'pages/publications.html', {'is_mobile': is_mobile})
 
 def get_cooperation(request):
     data = PostalLink.objects.all()
@@ -73,7 +88,9 @@ def get_cooperation(request):
     return render(request, 'pages/cooperation.html', {'data': data, 'is_mobile': is_mobile})
 
 def get_press(request):
-    return render(request, 'press/index.html')
+    data = PressMention.objects.filter(is_visible=True)
+    is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
+    return render(request, 'pages/press.html', {'data': data, 'is_mobile': is_mobile})
 
 def get_flow(request):
     data = FlowEvent.objects.all()

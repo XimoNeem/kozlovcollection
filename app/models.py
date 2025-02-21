@@ -120,10 +120,35 @@ class Exhibition(models.Model):
             self.text = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.text)  
         super().save(*args, **kwargs)
 
+class YearPeriod(models.Model):
+    is_visible = models.BooleanField("Отображается на сайте", default=True)
+    title = models.CharField(max_length=255)
+    text = models.TextField("Места действия")
+    artworks = models.ManyToManyField("Artwork", verbose_name="Список работ", blank=True)
+
+    class Meta:
+        verbose_name = "год"
+        verbose_name_plural = "📅 Годы"
+
+    def __str__(self):
+        return self.title
+    
+    def save(self, *args, **kwargs):
+        if self.text:
+            self.text = self.text.strip()
+            self.text = self.text.lstrip('<div>').rstrip('</div>')
+            self.text = bleach.clean(self.text, tags=['br', 'em', 'strong', 'p', 'div'], strip=True)
+            self.text = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.text)  
+        super().save(*args, **kwargs)
+
 class PressMention(models.Model):
+    is_visible = models.BooleanField("Отображается на сайте", default=True)
     title = models.CharField("Заголовок", max_length=255)
     link = models.URLField("Ссылка")
     image = models.ImageField("Изображение", upload_to="press_mentions/", blank=True, null=True)
+    author = models.CharField("Автор", max_length=255)
+    source = models.CharField("Издание", max_length=255)
+    date = models.CharField("Дата", max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -133,6 +158,10 @@ class PressMention(models.Model):
         return "Нет изображения"
 
     preview_image.short_description = "Превью"
+    
+    class Meta:
+        verbose_name = "упоминание в прессе"
+        verbose_name_plural = "📰 Пресса"
 
     def __str__(self):
         return self.title

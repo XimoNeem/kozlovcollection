@@ -1,23 +1,41 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}{{ data.title }}{% endblock %}
 
 {% block content %}
-{% load static %}
-<!-- 🛇 ↑↑↑ выше ничего не трогать -->
 
-    <spacer class="kc-align-full kc-spacer-main"></spacer>
+    {% if is_mobile %}
 
-    <div class="kc-text-wrapper kc-text-regular kc-text-large kc-text-uppercase kc-align-full">пресса</div>
 
-    <spacer class="kc-align-full kc-spacer-regular"></spacer>
+    
+    {% else %}
 
-    <img src="{% static 'common/assets/press-item.svg' %}" alt="Logo" class="kc-image-wrapper kc-align-full">
-    <img src="{% static 'common/assets/press-item.svg' %}" alt="Logo" class="kc-image-wrapper kc-align-full">
-    <img src="{% static 'common/assets/press-item.svg' %}" alt="Logo" class="kc-image-wrapper kc-align-full">
 
-    <spacer class="kc-align-full kc-spacer-main"></spacer>
 
-<!-- 🛇 ↓↓↓ выше ничего не трогать -->
+    {% endif %}
+
+    <div class="kc-margin-top-150-40 kc-margin-bottom-100-40 kc-text-53-24 kc-wrapper-container-full-full kc-text-uppercase">
+        Пресса
+    </div>
+
+    {% for item in data %}
+
+        {% if is_mobile %}
+        {% else %}
+
+            <div class="kc-separator kc-wrapper-container-full-full"></div>
+
+        {% endif %}
+
+        {% include "items/press_item.html" with data=item %}
+
+        {% if is_mobile %}
+
+            <div class="kc-separator-wide kc-wrapper-container-full-full"></div>
+            
+        {% endif %}
+
+    {% endfor %}
 
 {% endblock %}
