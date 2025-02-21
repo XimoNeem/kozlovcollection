@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+
 {% if is_mobile %}
 
 <footer class="kc-footer kc-spacing-padding-main">
@@ -24,7 +25,7 @@
 <footer class="kc-footer kc-spacing-padding-main">
 
 
-    <form action="{% url 'set_language' %}" method="post">
+    {% comment %} <form action="{% url 'set_language' %}" method="post">
         {% csrf_token %}
         <select name="language">
             {% get_current_language as LANGUAGE_CODE %}
@@ -38,7 +39,7 @@
             {% endfor %}
         </select>
         <button type="submit">Change language</button>
-    </form>
+    </form> {% endcomment %}
 
     <div class="kc-spacer-regular"> </div>
     <div class="kc-footer-container">
