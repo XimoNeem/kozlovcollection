@@ -1,6 +1,6 @@
 from modeltranslation.translator import register, TranslationOptions
 from modeltranslation.admin import TranslationAdmin
-from .models import Artist, Exhibition, Employee, PostalLink, FlowEvent, Route, Artwork, YearPeriod, PressMention
+from .models import VideoSet, Artist, Exhibition, Employee, PostalLink, FlowEvent, Route, Artwork, YearPeriod, PressMention
 
 @register(Artist)
 class ArtistTranslationOptions(TranslationOptions):
@@ -38,3 +38,7 @@ class YearPeriodTranslationOptions(TranslationOptions):
 @register(PressMention)
 class PressMentionTranslationOptions(TranslationOptions):
     fields = ('title', 'author', 'source', 'date')
+
+@register(VideoSet)
+class VideoSetTranslationOptions(TranslationOptions):
+    fields = ('title',)

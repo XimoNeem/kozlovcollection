@@ -1,0 +1,56 @@
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+    <span class="next" onclick="changeImage(1)">&#10095;</span>
+    <img class="modal-content" id="modalImage">
+    <div id="caption"></div>
+</div>
+
+<script>
+    var currentIndex = 0;
+    var images = [];
+
+    function openModal(imageUrl, index) {
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImage");
+        modal.style.display = "block";
+        modalImg.src = imageUrl;
+
+        // Сохраняем текущий индекс
+        currentIndex = index;
+
+        // Собираем все изображения в массив
+        images = [];
+        {% for item in images %}
+            images.push("{{ item.image.url }}");
+        {% endfor %}
+        updateCaption();
+    }
+
+    function closeModal() {
+        var modal = document.getElementById("imageModal");
+        modal.style.display = "none";
+    }
+
+    function changeImage(direction) {
+        // Изменяем индекс текущего изображения
+        currentIndex += direction;
+
+        // Проверяем границы массива
+        if (currentIndex < 0) {
+            currentIndex = images.length - 1; // Переход к последнему изображению
+        } else if (currentIndex >= images.length) {
+            currentIndex = 0; // Переход к первому изображению
+        }
+
+        // Обновляем изображение в модальном окне
+        var modalImg = document.getElementById("modalImage");
+        modalImg.src = images[currentIndex];
+        updateCaption();
+    }
+
+    function updateCaption() {
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = (currentIndex + 1) + " из " + images.length;
+    }
+</script>

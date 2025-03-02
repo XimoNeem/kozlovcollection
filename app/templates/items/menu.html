@@ -32,7 +32,7 @@
 
     {% comment %} <spacer class="kc-sidebar-spacing-20"></spacer> {% endcomment %}
 
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'own_exhibitions' %}">ВЫСТАВКИ</a>
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'exhibitions' %}">ВЫСТАВКИ</a>
 
     <spacer class="kc-sidebar-spacing-20"></spacer>
 
@@ -61,11 +61,11 @@
 
     <spacer class="kc-close-btn kc-spacer-main"></spacer>
 
-    <div class="kc-sidebar-decor-container">
+    {% comment %} <div class="kc-sidebar-decor-container">
         <div class="kc-sidebar-decor">
             <img src="{% static 'common/assets/menu-decor.svg' %}" alt="Decor">
         </div>
-    </div>
+    </div> {% endcomment %}
 
 </div>
 
@@ -87,7 +87,7 @@
 
     <spacer class="kc-sidebar-spacing-100"></spacer>
 
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'home_anton' %}">ПОКА ВСЕ ДОМА У АНТОНА</a>
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'home_anton' %}">ПОКА ВСЕ ДОМА У АНТОНА{% include "items/video_icon_menu.html" %}</a>
 
     <spacer class="kc-sidebar-spacing-100"></spacer>
 
@@ -95,7 +95,7 @@
 
     <spacer class="kc-sidebar-spacing-28"></spacer>
 
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'own_exhibitions' %}">ВЫСТАВКИ</a>
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'exhibitions' %}">ВЫСТАВКИ</a>
 
     <spacer class="kc-sidebar-spacing-28"></spacer>
 
@@ -121,7 +121,7 @@
 
     <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'flow' %}">СУЕТА</a>
 
-
+{% comment %} 
     <spacer class="kc-close-btn kc-spacer-regular"></spacer>
 
     <div class="kc-sidebar-decor-container">
@@ -129,6 +129,7 @@
             <img src="{% static 'common/assets/menu-decor.svg' %}" alt="Decor">
         </div>
     </div>
+{% endcomment %}
 
 </div>
 

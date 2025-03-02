@@ -1,0 +1,32 @@
+<div id="pdf_viewer">
+    <button id="pdf_viewer_prev" class="pdf_viewer_arrow pdf_viewer_left">&lt;</button>
+    <div id="pdf_viewer_container">
+        {% for image in images %}
+        <img src="{{ image }}" class="pdf_viewer_image {% if forloop.first %}active{% endif %}" alt="Page {{ forloop.counter }}">
+        {% endfor %}
+    </div>
+    <button id="pdf_viewer_next" class="pdf_viewer_arrow pdf_viewer_right">&gt;</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let images = document.querySelectorAll(".pdf_viewer_image");
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle("active", i === index);
+            });
+        }
+
+        document.getElementById("pdf_viewer_next").addEventListener("click", function () {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+
+        document.getElementById("pdf_viewer_prev").addEventListener("click", function () {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+    });
+</script>

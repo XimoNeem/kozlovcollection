@@ -6,10 +6,12 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
 
-
 class Artist(models.Model):
     is_visible = models.BooleanField("Отображается на сайте", default=True)
     name = models.CharField("Имя", max_length=255)
+    video_name = models.CharField("Название видео", max_length=255, null=True)
+    video_link = models.URLField("Ссылка на видео", null=True)
+    video_preview = models.FileField("Превью видео", upload_to='artistVideoImages/', null=True)
     photo = models.ImageField("Фото", upload_to="artists/", blank=True, null=True)
     birth_year = models.IntegerField("Год рождения", blank=True, null=True)
     death_year = models.IntegerField("Год смерти", blank=True, null=True)
@@ -21,6 +23,9 @@ class Artist(models.Model):
 
     # Этот метод возвращает список работ художника
     def get_artworks(self):
+        return self.artworks.all()
+    
+    def get_video_shots(self):
         return self.artworks.all()
 
     def preview_image(self):
@@ -51,7 +56,7 @@ class Artist(models.Model):
 
 class Artwork(models.Model):
     is_visible = models.BooleanField("Отображается на сайте", default=True)
-    main_image = models.ImageField("Главная картинка", upload_to='artworks/main_images/', blank=True, null=True)
+    main_image = models.ImageField("Главная картинка", upload_to='artworks/main_images/', null=True)
     title = models.CharField("Название", max_length=255)
     artist = models.ForeignKey("Artist", on_delete=models.CASCADE, related_name="artworks")
     series = models.CharField("Серия", max_length=255)
@@ -94,16 +99,17 @@ class Artwork(models.Model):
 class Exhibition(models.Model):
     is_visible = models.BooleanField("Отображается на сайте", default=True)
     is_own = models.BooleanField("Собственная выставка", default=False)
+    title = models.CharField("Название", max_length=255)
     image = models.ImageField("Превью выставки", upload_to="routes/", blank=True, null=True)
-    title = models.CharField(max_length=255)
+    start_date = models.DateField("Начало выставки")
+    end_date = models.DateField("Конец выставки")
     text = models.TextField("Описание")
-    start_date = models.DateField()
-    end_date = models.DateField()
-    location = models.CharField(max_length=255)
-    curators = models.CharField()
-    catalog_pdf = models.FileField(upload_to='exhibitions/catalogs/', blank=True, null=True)
+    location = models.CharField("Место проведения", max_length=255)
+    curators = models.CharField("Кураторы")
+    artworks = models.ManyToManyField("Artwork", verbose_name="работы", blank=True)    
+
     press_kit_zip = models.FileField(upload_to='exhibitions/press_kits/', blank=True, null=True)
-    artworks = models.ManyToManyField("Artwork", verbose_name="Список работ", blank=True)
+    catalog_pdf = models.FileField(upload_to='exhibitions/catalogs/', blank=True, null=True)
 
     class Meta:
         verbose_name = "выставка"
@@ -122,9 +128,9 @@ class Exhibition(models.Model):
 
 class YearPeriod(models.Model):
     is_visible = models.BooleanField("Отображается на сайте", default=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField("Название", max_length=255)
     text = models.TextField("Места действия")
-    artworks = models.ManyToManyField("Artwork", verbose_name="Список работ", blank=True)
+    artworks = models.ManyToManyField("Artwork", verbose_name="Работы", blank=True)
 
     class Meta:
         verbose_name = "год"
@@ -166,14 +172,15 @@ class PressMention(models.Model):
     def __str__(self):
         return self.title
 
-
 class Route(models.Model):
     title = models.CharField("Название маршрута", max_length=255, default="Маршрут")
     short_description = models.CharField("Краткое описание", max_length=500, blank=True, null=True)
     image = models.ImageField("Превью маршрута", upload_to="routes/", blank=True, null=True)
     color = models.CharField("Цвет", max_length=7, default="#FFFFFF")  # HEX-код цвета
     artworks = models.ManyToManyField("Artwork", verbose_name="Список работ", blank=True)
-    # videos = models.ManyToManyField(RouteVideo, blank=True, related_name='routes')
+    route_video = models.ForeignKey("VideoSet", on_delete=models.CASCADE, related_name="route_video", null=True, verbose_name="Видео маршрута")
+    artworks = models.ManyToManyField("Artwork", verbose_name="Работы", blank=True)
+    # videos = models.ManyToManyField("VideoSet", blank=True, related_name='routes')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     full_description = models.TextField("Полное описание", blank=True, null=True)
@@ -205,61 +212,91 @@ class ArtworkImage(models.Model):
     def __str__(self):
         return f"Изображение для {self.artwork.title}"
     
+class VideoSet(models.Model):
+    title = models.CharField("Название блока видео", max_length=255, default="Маршрут")
+    color = models.CharField("Цвет", max_length=7, default="#FFFFFF")  # HEX-код цвета
+
+    class Meta:
+        verbose_name = "Блок видео для маршрута"
+        verbose_name_plural = "🎥 Видео"
+
+    def __str__(self):
+        return f"{self.title}"
+    
 # Сущность PDF-файла для автора
-class ArtistPDF(models.Model):
-    is_visible = models.BooleanField("Отображается на сайте", default=True)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="artist_pdfs")
-    title = models.CharField(max_length=255)
-    file = models.FileField(upload_to='artistPDFs/')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+# class ArtistPDF(models.Model):
+#     is_visible = models.BooleanField("Отображается на сайте", default=True)
+#     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="artist_pdfs")
+#     title = models.CharField("Название", max_length=255)
+#     file = models.ImageField("Файл PDF", upload_to='artistPDFsImages/')
+#     uploaded_at = models.DateTimeField(auto_now_add=True)
     
-    class Meta:
-        verbose_name = "PDF"
-        verbose_name_plural = "📃 PDF авторов"
+#     class Meta:
+#         verbose_name = "PDF"
+#         verbose_name_plural = "📃 PDF авторов"
 
-    def __str__(self):
-        return self.title
+#     def __str__(self):
+#         return self.title
 
-# Сущность YouTube-видео для автора
+# Сущность превью (!) YouTube видео для автора
 class ArtistVideo(models.Model):
-    is_visible = models.BooleanField("Отображается на сайте", default=True)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="artist_videos")
-    title = models.CharField(max_length=255)
-    url = models.URLField()
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="artist_video_images")
+    image = models.ImageField("Изображение", upload_to='artistPDFsImages/', null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = "Видео"
-        verbose_name_plural = "🎥 Видео авторов"
+        verbose_name = "шот видео"
+        verbose_name_plural = "🎥 Шоты из видео"
     
     def __str__(self):
-        return self.title
+        return f"Превью видео для {self.artist.name}"
     
 # Сущность видео для маршрута
 class RouteVideo(models.Model):
     route = models.ForeignKey(Route, on_delete=models.CASCADE, related_name="route_videos")
-    title = models.CharField(max_length=255)
-    url = models.URLField()
     image = models.ImageField("Превью видео", upload_to="routesVideos/", blank=True, null=True)
 
     class Meta:
-        verbose_name = "видео маршрута"
-        verbose_name_plural = "Видео для маршрута"
+        verbose_name = "превью видео маршрута"
+        verbose_name_plural = "Превью видео для маршрута"
 
     def __str__(self):
-        return self.title
+        return self.route.title
+    
+class RouteImage(models.Model):
+    route = models.ForeignKey(Route, on_delete=models.CASCADE, related_name="route_images")
+    image = models.ImageField("Фото маршрута", upload_to="routesImages/", blank=True, null=True)
+
+    class Meta:
+        verbose_name = "фото маршрута"
+        verbose_name_plural = "Фото для маршрута"
+
+    def __str__(self):
+        return self.route.title
     
 class ExhibitionPDFImage(models.Model):
     exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE, related_name="exhibition_pdf_images")
-    image = models.ImageField(upload_to='exhibitionPDFImages/images/')
+    image = models.ImageField(upload_to='exhibitionPDFImages/images/', verbose_name="изображение")
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = "превью PDF для выставки"
-        verbose_name_plural = "PDF"
+        verbose_name_plural = "превью PDF"
 
     def __str__(self):
-        return f"Изображение для {self.artwork.title}"
+        return f"Превью PDF для {self.exhibition.title}"
+    
+class Video(models.Model):
+    video_set = models.ForeignKey(VideoSet, on_delete=models.CASCADE, related_name="videos")
+    image = models.ImageField(upload_to='videoPreviews/images/', verbose_name="изображение")
+    link = models.URLField("Ссылка на видео")
+
+    class Meta:
+        verbose_name = "Ссылки на видео вмаршруте"
+        verbose_name_plural = "Видео"
+
+    def __str__(self):
+        return f"Превью PDF для {self.video_set.title}"
     
 class ExhibitionImage(models.Model):
     exhibition = models.ForeignKey(Exhibition, on_delete=models.CASCADE, related_name="artwork_images")
@@ -327,4 +364,3 @@ class FlowEvent(models.Model):
             self.text = bleach.clean(self.text, tags=['br', 'em', 'strong', 'p', 'div'], strip=True)
             self.text = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.text)  
         super().save(*args, **kwargs)
-

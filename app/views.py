@@ -4,6 +4,11 @@ from collections import defaultdict
 from django.shortcuts import get_object_or_404
 from django.http import HttpRequest
 
+
+def get_main(request):
+    is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
+    return render(request, 'pages/main.html', {'is_mobile': is_mobile})
+
 def get_collection(request):
     is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
     return render(request, 'pages/collection/collection.html', {'is_mobile': is_mobile})
@@ -22,6 +27,16 @@ def get_period(request, period_id):
     data = get_object_or_404(YearPeriod, id=period_id) 
     is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
     return render(request, 'pages/period.html', {'data': data, 'is_mobile': is_mobile})
+
+def get_route(request, route_id):
+    data = get_object_or_404(Route, id=route_id) 
+    is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
+    return render(request, 'pages/route.html', {'data': data, 'is_mobile': is_mobile})
+
+def get_exhibition(request, exhibition_id):
+    data = get_object_or_404(Exhibition, id=exhibition_id) 
+    is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
+    return render(request, 'pages/exhibition.html', {'data': data, 'is_mobile': is_mobile})
 
 def get_news(request):
     data = PressMention.objects.all().order_by('name')
@@ -72,6 +87,10 @@ def get_exhibition_participation(request):
     data = Exhibition.objects.filter(is_own=False, is_visible=True)
     is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
     return render(request, 'pages/exhibitions.html', {'data': data, 'is_mobile': is_mobile})
+
+def get_exhibitions_list(request):
+    is_mobile = request.META.get('HTTP_USER_AGENT') and 'Mobile' in request.META['HTTP_USER_AGENT']
+    return render(request, 'pages/exhibition_switch.html', {'is_mobile': is_mobile})
 
 def get_own_exhibitions(request):
     data = Exhibition.objects.filter(is_own=True, is_visible=True)

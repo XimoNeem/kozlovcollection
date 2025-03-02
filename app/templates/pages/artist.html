@@ -29,6 +29,10 @@
 
     <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
     {% comment %} <spacer class="kc-wrapper-container-full-full kc-spacer-cut"></spacer> {% endcomment %}
+
+    {% include "items/video_cut_artist.html" with previews=data.artist_video_images.all main_image=data.video_preview name=data.video_name link=data.video_link %}
+
+
     <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
     <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full">Работы в коллекции</div>
     <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
@@ -54,12 +58,20 @@
         </div>
     </block>
     <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
+
+    {% if data.photo %}
+        <img src="{{ flow_event.photo.url }}" alt="Flow Event Image" class="flow-event-photo" style="height: 483px;">
+    {% endif %}
+
     {% comment %} <spacer class="kc-wrapper-container-full-full kc-spacer-cut"></spacer> {% endcomment %}
+
+    {% include "items/video_cut_artist.html" with previews=data.artist_video_images.all main_image=data.video_preview name=data.video_name link=data.video_link %}
+
     <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
     <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full">Работы в коллекции</div>
     <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
 
-{% include "items/artwork_grid.html" with artworks=data.artworks.all %}
+    {% include "items/artwork_grid.html" with artworks=data.artworks.all %}
 
 {% endif %}
 

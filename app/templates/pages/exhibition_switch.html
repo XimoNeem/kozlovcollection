@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+
+    <div class="kc-wrapper-container-full-full kc-text-item-inner-header">
+        Выставки
+    </div>
+
+
+    {% if is_mobile %}
+
+    <a href="{% url 'exhibitions_participation' %}" class="kc-wrapper-container-full-full kc-container-grid exhibition-item" style="height:310px">
+        <div class="kc-text-53-15 kc-text-uppercase kc-wrapper-container-full-full ">
+            участие в проектах
+        </div>
+        <div class="kc-wrapper-container-full-full cooperation-item-image-content" style="height:170px">
+            <img src="{% static 'common/assets/exhibition-item1.svg' %}" alt="Flow Event Image" class="cooperation-item-image">
+        </div>
+        <div class="kc-wrapper-container-full-full kc-text-uppercase kc-text-21-15">
+            АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ "КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА" АКТИВНО СОТРУДНИЧАЕТ С МУЗЕЯМИ И НЕЗАВИСИМЫМИ КУРАТОРАМИ. МЫ ГОТОВЫ ПРЕДОСТАВИТЬ РАБОТЫ ИЗ КОЛЛЕКЦИИ НА ВЫСТАВКИ. ДЛЯ ЭТОГО ВЫ МОЖЕТЕ написать нам НА ПОЧТУ
+        </div>
+    </a>
+
+    <div class="kc-wrapper-container-full-full kc-separator-wide"></div>
+
+    <a href="{% url 'own_exhibitions' %}' %}" class="kc-wrapper-container-full-full kc-container-grid exhibition-item" style="height:310px">
+        <div class="kc-text-53-15 kc-text-uppercase kc-wrapper-container-full-full ">
+            собственная выставочная программa
+        </div>
+
+        <div class="kc-wrapper-container-full-full cooperation-item-image-content" style="height:170px">
+            <img src="{% static 'common/assets/exhibition-item1.svg' %}" alt="Flow Event Image" class="cooperation-item-image">
+        </div>
+
+        <div class="kc-wrapper-container-full-full kc-text-uppercase kc-text-21-15">
+            АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ "КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА" НАХОДИТСЯ В ПОИСКЕ РАБОТ ДЛЯ ПОПОЛНЕНИЯ КОЛЛЕКЦИИ. МЫ БУДЕМ РАДЫ РАССМОТРЕТЬ ВАШИ ПРЕДЛОЖЕНИЯ. ДЛЯ ЭТОГО ВЫ МОЖЕТЕ написать нам НА ПОЧТУ
+        </div>
+    </a>
+
+    <div class="kc-wrapper-container-full-full kc-separator-wide"></div>
+    
+    {% else %}
+
+    <div class="kc-wrapper-container-full-full kc-separator"></div>
+    
+    <a href="{% url 'exhibitions_participation' %}" class="kc-wrapper-container-full-full kc-container-grid exhibition-item">
+        <div class="kc-wrapper-container-span6 cooperation-item-image-content" style="height:500px">
+            <img src="{% static 'common/assets/exhibition-item1.svg' %}" alt="Flow Event Image" class="cooperation-item-image">
+        </div>
+        <div class="kc-wrapper-container-span7-from6">
+            <div class="kc-text-53-15 kc-text-uppercase kc-margin-bottom-100-40">
+                участие в проектах
+            </div>
+            <div class="kc-text-uppercase kc-text-21-15 ">
+                АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ "КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА" АКТИВНО СОТРУДНИЧАЕТ С МУЗЕЯМИ И НЕЗАВИСИМЫМИ КУРАТОРАМИ. МЫ ГОТОВЫ ПРЕДОСТАВИТЬ РАБОТЫ ИЗ КОЛЛЕКЦИИ НА ВЫСТАВКИ. ДЛЯ ЭТОГО ВЫ МОЖЕТЕ написать нам НА ПОЧТУ
+
+            </div>
+        </div>
+    </a>
+
+    <div class="kc-wrapper-container-full-full kc-separator"></div>
+    
+    <a href="{% url 'own_exhibitions' %}" class="kc-wrapper-container-full-full kc-container-grid exhibition-item">
+        <div class="kc-wrapper-container-span6 cooperation-item-image-content" style="height:500px">
+            <img src="{% static 'common/assets/exhibition-item1.svg' %}" alt="Flow Event Image" class="cooperation-item-image">
+        </div>
+        <div class="kc-wrapper-container-span7-from6">
+            <div class="kc-text-53-15 kc-text-uppercase kc-margin-bottom-100-40">
+                собственная выставочная программa
+            </div>
+            <div class="kc-text-uppercase kc-text-21-15 ">
+                АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ "КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА" НАХОДИТСЯ В ПОИСКЕ РАБОТ ДЛЯ ПОПОЛНЕНИЯ КОЛЛЕКЦИИ. МЫ БУДЕМ РАДЫ РАССМОТРЕТЬ ВАШИ ПРЕДЛОЖЕНИЯ. ДЛЯ ЭТОГО ВЫ МОЖЕТЕ написать нам НА ПОЧТУ
+
+            </div>
+        </div>
+    </a>
+
+    <div class="kc-wrapper-container-full-full kc-separator"></div>
+
+    {% endif %}
+
+    {% for item in data %} 
+
+        <div class="kc-separator kc-wrapper-container-full-full"></div>
+        {% include "items/exhibition_item.html" with data=item %}
+        <div class="kc-wrapper-container-one-null kc-utils-remove-fisrt-in-grid-hide"></div>
+    
+    {% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+
+    <div class="kc-wrapper-container-full-full kc-margin-top-100-40"></div>
+
+    {% include 'items/route_image_slider.html' with images=data.route_images.all %}
+
+    {% if is_mobile %}
+
+    
+    
+    {% else %}
+
+    <div class="kc-wrapper-container-full-full kc-margin-top-100-40">
+        <div class="kc-text-53-24 kc-margin-bottom-100-40">
+            {{ data.title }}
+        </div>
+        <div class="kc-text-21-15 kc-text-uppercase">
+            {{ data.short_description }}
+        </div>
+    </div>
+
+    <div class="kc-wrapper-container-half"></div>
+
+    <div class="kc-wrapper-container-half">
+        <div class="kc-text-21-18" style="line-height: 29.4px;">
+            {{ data.text|safe }}
+        </div>
+    </div>
+
+    {% endif %}
+
+    <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+    <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full">работы в маршруте</div>
+    <spacer class="kc-wrapper-container-full-full kc-margin-bottom-100-40"></spacer>
+
+    {% include "items/video_cut.html" with previews=data.route_video.videos.all name=data.route_video.title %}
+
+    {% include "items/artwork_grid.html" with artworks=data.artworks.all %}
+
+
+{% endblock %}

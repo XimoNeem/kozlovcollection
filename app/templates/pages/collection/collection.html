@@ -30,25 +30,7 @@
     <div class="kc-wrapper-container-full-full kc-text-53-24">ИССЛЕДУЙТЕ КОЛЛЕКЦИЮ:</div>
     <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
 
-    <a href="{% url 'routes' %}" class="td-collection-menu-container kc-wrapper-container-full-full">
-        <div class="td-collection-menu-item-main kc-text-33-24">М.1 — М.10</div> 
-        <div class="td-collection-menu-item-small kc-text-33-15">НЕЛИНЕЙНЫЕ ОБЪЕДИНЕНИЯ ПРОИЗВЕДЕНИЙ<br>В МАРШРУТЫ ПО ИСТОРИИ ИСКУССТВА</div>
-    </a>
-    
-    <a href="{% url 'collection_a_z' %}" class="td-collection-menu-container kc-wrapper-container-full-full">
-        <div class="td-collection-menu-item-main kc-text-33-24">А — Я</div> 
-        <div class="td-collection-menu-item-small kc-text-33-15">СПИСОК ХУДОЖНИКОВ КОЛЛЕКЦИИ<br>В АЛФАВИТНОМ ПОРЯДКЕ</div>
-    </a>
-    
-    <a href="{% url 'collection_by_years' %}" class="td-collection-menu-container kc-wrapper-container-full-full">
-        <div class="td-collection-menu-item-main kc-text-33-24">1957 — 2057</div> 
-        <div class="td-collection-menu-item-small kc-text-33-15">ПРОИЗВЕДЕНИЯ ИСКУССТВА,<br>ПРЕДСТАВЛЕННЫЕ В ХРОНОЛОГИЧЕСКОМ ПОРЯДКЕ</div>
-    </a>
-    
-    <a href="{% url 'collection' %}" class="td-collection-menu-container kc-wrapper-container-full-full">
-        <div class="td-collection-menu-item-main kc-text-33-24">ВИДЕО</div> 
-        <div class="td-collection-menu-item-small kc-text-33-15">YOUTUBE-КАНАЛ «ПОКА ВСЕ ДОМА У АНТОНА»<br>О РАБОТАХ ИЗ КОЛЛЕКЦИИ</div>
-    </a>
+    {% include "items/bottom_navigator.html" %}
 
 <!-- 🛇 ↓↓↓ выше ничего не трогать -->
 

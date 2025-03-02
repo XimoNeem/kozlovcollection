@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import (
-    PressMention, YearPeriod, ExhibitionImage, ExhibitionPDFImage, RouteVideo, Artist, Artwork, ArtworkImage, ArtistVideo, ArtistPDF, Exhibition, Employee, PostalLink, FlowEvent, Route, 
+    Video, VideoSet, RouteImage, PressMention, YearPeriod, ExhibitionImage, ExhibitionPDFImage, RouteVideo, Artist, Artwork, ArtworkImage, ArtistVideo, Exhibition, Employee, PostalLink, FlowEvent, Route, 
 )
 from django.db import models
 from django import forms
@@ -10,11 +10,10 @@ from unfold.admin import ModelAdmin
 from unfold.contrib.forms.widgets import WysiwygWidget
 
 
-
 class ArtworkImageInline(admin.TabularInline):
     model = ArtworkImage
     extra = 0
-    readonly_fields = ("preview", 'uploaded_at')
+    readonly_fields = ("preview", )
     show_change_link = True
 
     def preview(self, obj):
@@ -24,7 +23,7 @@ class ArtworkImageInline(admin.TabularInline):
 
     preview.short_description = "Превью"
 
-class ExhibitionImageImageeInline(admin.TabularInline):
+class ExhibitionImageImageInline(admin.TabularInline):
     model = ExhibitionImage
     extra = 0
     readonly_fields = ("preview", 'uploaded_at')
@@ -39,7 +38,20 @@ class ExhibitionImageImageeInline(admin.TabularInline):
 class ExhibitionPDFImageeInline(admin.TabularInline):
     model = ExhibitionPDFImage
     extra = 0
-    readonly_fields = ("preview", 'uploaded_at')
+    readonly_fields = ("preview", )
+    show_change_link = True
+
+    def preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="max-height: 100px;"/>', obj.image.url)
+        return "Нет изображения"
+
+    preview.short_description = "Превью"
+
+class VideoInline(admin.TabularInline):
+    model = Video
+    extra = 0
+    readonly_fields = ("preview",)
     show_change_link = True
 
     def preview(self, obj):
@@ -52,32 +64,59 @@ class ExhibitionPDFImageeInline(admin.TabularInline):
 class ArtworkInline(admin.TabularInline):  # Можно заменить на admin.StackedInline
     model = Artwork
     extra = 0  # Количество пустых полей для добавления новых произведений
-    fields = ['title']
-    readonly_fields = ['is_visible']
-    #readonly_fields = ['preview_images']  # Предпросмотр изображений
-    show_change_link = True  # Добавляет ссылку на редактирование объекта
+    fields = ['is_visible',]
+    readonly_fields = ("title", "is_visible", "preview")
+    show_change_link = True
 
-    def preview_images(self, obj):
-        return obj.preview_images() if obj else "Нет изображений"
+    def preview(self, obj):
+        if obj.main_image:
+            return format_html('<img src="{}" style="max-height: 100px;"/>', obj.image.url)
+        return "Нет изображения"
+
+    preview.short_description = "Превью"
     
-    preview_images.short_description = "Превью"
+class RouteImageImageInline(admin.TabularInline):
+    model = RouteImage
+    extra = 0
+    readonly_fields = ("preview",)
 
-class ArtistPDFInline(admin.TabularInline):
-    model = ArtistPDF
-    extra = 0  # Количество пустых полей для добавления новых произведений
-    fields = ['title', 'file']
-    readonly_fields = ['is_visible']
+    def preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="max-height: 100px;"/>', obj.image.url)
+        return "Нет изображения"
+
+    preview.short_description = "Превью"
+
+# class ArtistPDFInline(admin.TabularInline):
+#     model = ArtistPDF
+#     extra = 0  # Количество пустых полей для добавления новых произведений
+#     fields = ['title', 'file']
+#     readonly_fields = ['is_visible']
 
 class ArtistVideoInline(admin.TabularInline):
     model = ArtistVideo
-    extra = 0  # Количество пустых полей для добавления новых произведений
-    fields = ['title', 'url']
-    readonly_fields = ['is_visible']
+    extra = 0
+    readonly_fields = ("preview",)
+
+    def preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="max-height: 100px;"/>', obj.image.url)
+        return "Нет изображения"
+
+    preview.short_description = "Превью"
 
 class RouteVideoInline(admin.TabularInline):
     model = RouteVideo
     extra = 0  # Количество пустых полей для добавления новых произведений
-    fields = ['title', 'url', 'image']
+    fields = ['image',]
+    readonly_fields = ("preview",)
+
+    def preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="max-height: 100px;"/>', obj.image.url)
+        return "Нет изображения"
+
+    preview.short_description = "Превью"
 
 @admin.register(Artist)
 class ArtistAdmin(TranslationAdmin, ModelAdmin):
@@ -85,10 +124,41 @@ class ArtistAdmin(TranslationAdmin, ModelAdmin):
     readonly_fields = ['created_at', 'updated_at']
     search_fields = ['name']
     list_filter = ['birth_year', 'death_year']
-    inlines = [ArtworkInline, ArtistPDFInline, ArtistVideoInline]  # Добавляем Inline для работ художника
+    inlines = [ArtistVideoInline, ArtworkInline]
+
+    fieldsets = [
+        (None,
+        {
+            "fields": ["is_visible", "photo", "created_at", "updated_at"],
+        },
+        ),
+        ("💠 Имя",
+            {
+                "classes": ["collapse in"],
+                "fields": ["name"],
+            },
+        ),
+        ("💠 Информация",
+            {
+                "classes": ["collapse"],
+                "fields": ["birth_year", "death_year", "photoAuthor", "textAuthor"],
+            },
+        ),
+        ("💠 Описание",
+            {
+                "classes": ["collapse"],
+                "fields": ["description"],
+            },
+        ),
+        ("💠 Видео",
+            {
+                "classes": ["collapse"],
+                "fields": ["video_name", "video_link", "video_preview"],
+            },
+        ),
+    ]
 
     formfield_overrides = {
-        # models.TextField: {'widget': forms.Textarea(attrs={'rows': 2, 'style': 'height: 40px;'})}, 
         models.TextField: {
             "widget": WysiwygWidget,
         } 
@@ -100,7 +170,6 @@ class ArtistAdmin(TranslationAdmin, ModelAdmin):
         return "Нет изображения"
 
     preview_image.short_description = 'Фото'
-
 
 @admin.register(Artwork)
 class ArtworkAdmin(TranslationAdmin, ModelAdmin):
@@ -127,7 +196,41 @@ class ExhibitionAdmin(TranslationAdmin, ModelAdmin):
     search_fields = ['title', 'location']
     list_filter = ['start_date', 'end_date']
     filter_horizontal = ['artworks']
-    inlines = [ExhibitionPDFImageeInline, ExhibitionImageImageeInline]
+    inlines = [ExhibitionPDFImageeInline, ExhibitionImageImageInline]
+    fieldsets = [
+        (None,
+            {
+                "fields": ["is_visible", "is_own", "start_date", "end_date", "image"],
+            },
+        ),
+        ("💠 Название",
+            {
+                "classes": ["collapse in"],
+                "fields": ["title"],
+            },
+        ),
+        ("💠 Описание",
+            {
+                "classes": ["collapse"],
+                "fields": ["text"],
+            },
+        ),
+        (
+            "💠 Информация",
+            {
+                "classes": ["collapse"],
+                "fields": ["location", "curators", "artworks"],
+            },
+        ),
+                (
+            "💠 Файлы",
+            {
+                "classes": ["collapse"],
+                "fields": ["press_kit_zip", "catalog_pdf"],
+            },
+        ),
+    ]
+    
 
     formfield_overrides = {
         # models.TextField: {'widget': forms.Textarea(attrs={'rows': 2, 'style': 'height: 40px;'})}, 
@@ -168,7 +271,6 @@ class EmployeeAdmin(TranslationAdmin, ModelAdmin):
 
     preview_image.short_description = 'Фото'
 
-
 @admin.register(PostalLink)
 class PostalLinkAdmin(TranslationAdmin, ModelAdmin):
     list_display = ['title', 'email']
@@ -180,7 +282,6 @@ class PostalLinkAdmin(TranslationAdmin, ModelAdmin):
             "widget": WysiwygWidget,
         } 
     }
-
 
 @admin.register(FlowEvent)
 class FlowEventAdmin(TranslationAdmin, ModelAdmin):
@@ -201,12 +302,16 @@ class FlowEventAdmin(TranslationAdmin, ModelAdmin):
 
     preview_image.short_description = 'Фото'
 
+@admin.register(VideoSet)
+class VideoSetAdmin(TranslationAdmin, ModelAdmin):
+    list_display = ['title', 'color']
+    inlines = [VideoInline]
 
 @admin.register(Route)
 class RouteAdmin(TranslationAdmin, ModelAdmin):
     list_display = ['title', 'color_display']
     filter_horizontal = ['artworks']
-    #inlines = [RouteVideoInline]
+    inlines = [RouteImageImageInline, RouteVideoInline]
 
     formfield_overrides = {
         # models.TextField: {'widget': forms.Textarea(attrs={'rows': 2, 'style': 'height: 40px;'})}, 
@@ -222,3 +327,29 @@ class RouteAdmin(TranslationAdmin, ModelAdmin):
         )
 
     color_display.short_description = "Цвет"
+
+    fieldsets = [
+        (None,
+        {
+            "fields": ["image", "color", "artworks", "route_video"],
+        },
+        ),
+        ("💠 Название",
+            {
+                "classes": ["collapse in"],
+                "fields": ["title"],
+            },
+        ),
+        ("💠 Описание",
+            {
+                "classes": ["collapse"],
+                "fields": ["short_description", "full_description"],
+            },
+        ),
+        ("💠 Статья",
+            {
+                "classes": ["collapse"],
+                "fields": ["article"],
+            },
+        ),
+    ]
