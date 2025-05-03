@@ -1,0 +1,135 @@
+.video-line-wrapper{
+    grid-column: span 4;
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0px 0px;
+}
+
+.video-line-content{
+    grid-column: span 1;
+    display: flex;
+    align-items: flex-start;
+    align-content: center;
+    justify-content: end;
+    margin-right: 10px;
+
+    position: relative;
+}
+
+.video-line-title{
+    grid-column: span 3;
+    margin-top: 0px;
+    
+    font-family: 'с_FranklinGothicDemiITC';
+}
+
+.video-line-circle{
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+    margin-top: 2px;
+    align-self: start;
+}
+
+.video-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 100px;
+}
+
+.video-wrapper-content {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-wrapper-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0s ease-in-out;
+}
+
+.video-overlay:hover  {
+    opacity: 1;
+}
+
+.video-link {
+    color: white;
+    text-decoration: none;
+    margin-bottom: -7px;
+}
+
+
+.video-line-line{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    height: 4px;
+    width: 300%;
+    align-self: center;
+}
+
+.video-content{
+    grid-column: span 4;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 40px;
+}
+
+.video-preview-item{
+    height: 100%;
+    grid-column: span 2;
+}
+
+.video-preview-item-image{
+    width: 100%;
+    height: auto;
+}
+
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-modal.hidden {
+    display: none;
+}
+
+.video-modal-backdrop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 90%;
+}
+
+.video-modal-content {
+    position: relative;
+    z-index: 10000;
+}

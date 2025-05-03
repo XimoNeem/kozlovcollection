@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %} Коллекция {% endblock %}
+{% load i18n %}
+{% block title %} {% trans Главная  %} {% endblock %}
 
 {% block content %}
 
@@ -11,16 +12,16 @@
     {% if is_mobile %}
 
     <div class="kc-wrapper-container-full-full">
-        <div class="kc-margin-bottom-150-40" style="height: 400px;">
-            <img src="{% static 'common/assets/main-image.svg' %}" alt="Logo" class="kc-wrapper-image-full">
+        <div class="kc-margin-bottom-150-40" style="height: 420px;">
+            <img src="{% static 'common/assets/main-image.png' %}" alt="Logo" class="kc-wrapper-image-full" style="object-position: top;">
         </div>
     </div>
 
     {% else %}
 
     <div class="kc-wrapper-container-span4">
-        <div class="" style="height: 400px;">
-            <img src="{% static 'common/assets/main-image.svg' %}" alt="Logo" class="kc-wrapper-image">
+        <div class="" style="object-position: top;">
+            <img src="{% static 'common/assets/main-image.png' %}" alt="Logo" class="kc-wrapper-image">
         </div>
     </div>
 
@@ -31,19 +32,25 @@
 
 
     <div class="kc-wrapper-container-half-full">
-        <div class="kc-text-33-20 kc-text-uppercase kc-text-normal kc-line-height-big">
-            КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА, ФОРМИРОВАНИЕ КОТОРОЙ НАЧАЛОСЬ ВЕСНОЙ 2019 ГОДА, ПРЕДСТАВЛЯЕТ ИСТОРИЮ РАЗВИТИЯ СОВЕТСКОГО НОНКОНФОРМИЗМА И СОВРЕМЕННОГО РОССИЙСКОГО ИСКУССТВА, ОХВАТЫВАЯ ПЕРИОД С 1957 ГОДАПО НАСТОЯЩЕЕ ВРЕМЯ.<br><br>
-            На сегодняшний день коллекция насчитывает БОЛЕЕ ТЫСЯЧи ПРОИЗВЕДЕНИЙ ПОРЯДКА СТА авторов, среди которых есть как признанные во всем мире художники, так и находящиеся в начале творческого пути. Определяющим фактором в выборе художников, принадлежащих разным поколениям и историческим эпохам, стала их способность чутко улавливать течение мирового художественного процесса, одновременно откликаясь на своеобразие российского контекста.<br><br>
-            Структура коллекции соответствует ключевым направлениям искусства послевоенного периода: абстракция, кинетическое искусство и оп-арт, метафизическое искусство, московский концептуализм, соц-арт и другие. Особое место в коллекции занимает искусство 2010−2020-х годов, демонстрирующее противоречивый характер времени и множество вариантов его осмысления.<br><br>
-            Помимо традиционных видов изобразительного искусства — живописи, графики и скульптуры —в коллекции представлено все многообразие актуальных художественных практик, от объектов и инсталляций до фотографии и видео-арта.
+        <div class="kc-text-33-20 kc-text-uppercase kc-text-normal">
+            {% trans "msg.main.description" %}
         </div>
     </div>
 
-    <spacer class="kc-wrapper-container-full-full kc-spacer-medium"></spacer>
+    {% if is_mobile %}
+        <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+    {% endif %}
+    <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+
     <div class="kc-wrapper-container-full-full kc-separator-wide"></div>
-    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
-    <div class="kc-wrapper-container-full-full kc-text-53-24">ИССЛЕДУЙТЕ КОЛЛЕКЦИЮ:</div>
-    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
+
+    <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+    {% if is_mobile %}
+        <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+    {% endif %}
+
+    <div class="kc-wrapper-container-full-full kc-text-53-24 kc-text-uppercase">{% trans "msg.main.exploreCollection" %}</div>
+    <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
 
     {% include "items/bottom_navigator.html" %}
 

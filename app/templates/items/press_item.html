@@ -3,6 +3,8 @@
 
     {% if is_mobile %}
 
+        <div class="kc-wrapper-container-full-full kc-margin-top-150-40"></div>
+
         {% if data.image %}
             <div class="press-item-image-content kc-wrapper-container-full-full">
                 <img src="{{ data.image.url }}" alt="Flow Event Image" class="press-item-image">
@@ -17,7 +19,7 @@
             </div>
 
             <div class="press-item-text-description kc-text-uppercase kc-text-21-15 kc-text-primary">
-                {{ data.author|safe }} / {{ data.source|safe }} / {{ data.date|safe }}
+                {{ data.author|safe }} / {{ data.source|safe }} <br>{{ data.date|safe }}
             </div>
 
         </div>
@@ -33,12 +35,12 @@
 
         <div class="press-item-text-content kc-wrapper-container-span6-from7">
 
-            <div class="press-item-text-name kc-text-41-15 kc-text-uppercase kc-wrapper-container-span9-from6 ">
+            <div class="press-item-text-name kc-text-41-15 kc-text-uppercase kc-wrapper-container-span9-from6">
                 {{ data.title|safe }}
             </div>
 
             <div class="press-item-text-description kc-text-uppercase kc-text-21-15 kc-text-primary">
-                {{ data.author|safe }} / {{ data.source|safe }} / {{ data.date|safe }}
+                {{ data.author|safe }} / {{ data.source|safe }} <br>{{ data.date|safe }}
             </div>
 
         </div>

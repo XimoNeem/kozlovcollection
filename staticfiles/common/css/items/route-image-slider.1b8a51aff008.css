@@ -1,0 +1,171 @@
+.route-image-slider {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    width: 100%;
+
+    grid-column: span 14;
+
+    margin-bottom: 90px;
+    margin-top: 90px;
+}
+
+.second-preview{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.image-slider-content{
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.slider-main {
+    height: 500px;
+    width: auto;
+    overflow-x: auto;
+    
+    display: flex;
+    gap: 30px;
+        
+    scroll-snap-type: x mandatory; /* Обязательное залипание по горизонтали */
+    scroll-behavior: smooth; /* Плавная прокрутка */
+
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+  
+.scroll-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.slide {
+    flex: 1;
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex: 0 0 auto; /* Каждый слайд занимает 100% ширины контейнера */
+    scroll-snap-align: start; /* Слайд залипает в центре */
+}
+
+
+
+.slide.active {
+   
+}
+
+.slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.slider-thumbnails {
+    position: relative;
+    display: flex;
+    
+    flex-wrap: wrap;
+
+    margin-top: 30px;
+
+    gap: 30px;
+    max-height: 150px;
+    
+}
+
+/* .thumbnail.disabled {
+    opacity: 0.5; 
+    pointer-events: none;
+} */
+
+.thumbnail {
+    width: auto;
+    height: 150px;
+    cursor: pointer;
+
+    transition: opacity 0.3s;
+}
+
+.thumbnail.active {
+
+    border: 4px solid var(--primary-color);
+}
+
+.slider-nav {
+    
+    margin-top: 30px;
+    
+    width: 160px;
+    display: flex;
+
+    justify-content: start;
+
+    
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    
+    background-color: white;
+
+    gap: 30px;
+}
+
+.slider-nav button {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.slider-dots {
+    display: none;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: gray;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: #333;
+}
+
+.prev{
+    object-fit: cover;
+
+    width: 50px;
+    height: 50px;
+}
+.next{
+    object-fit: cover;
+
+    width: 50px;
+    height: 50px;
+}
+
+/* Адаптация под мобильные устройства */
+@media (max-width: 600px) {
+    .slider-thumbnails {
+        display: none;
+    }
+
+    .slider-dots {
+        display: block;
+    }
+    .slide {
+        flex: 0 0 100%;
+    }
+}

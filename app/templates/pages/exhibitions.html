@@ -5,24 +5,32 @@
 
 {% block content %}
 
-    <div class="kc-wrapper-container-full-full kc-text-item-inner-header">
-        выставки
+    <div class="kc-wrapper-container-full-full kc-page-header">
+        {% if is_own %}
+            {% trans "msg.exhibitions.own" %}
+        {% else %}
+            {% trans "msg.exhibitions.part" %}
+        {% endif %}
     </div>
 
     {% if is_mobile %}
 
-
+    <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"></div>
     
     {% else %}
 
+    <div class="kc-separator kc-wrapper-container-full-full"></div>
 
-
-    {% endif %}
+{% endif %}
 
     {% for item in data %}
 
-        <div class="kc-separator kc-wrapper-container-full-full"></div>
-        {% include "items/exhibition_item.html" with data=item %}
+        {% if is_own %}
+            {% include "items/exhibition_item.html" with data=item is_last=forloop.last %}
+        {% else %}
+            {% include "items/exhibition_item_part.html" with data=item is_last=forloop.last %}
+        {% endif %}
+
         <div class="kc-wrapper-container-one-null kc-utils-remove-fisrt-in-grid-hide"></div>
     
     {% endfor %}

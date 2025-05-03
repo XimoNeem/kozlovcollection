@@ -5,8 +5,8 @@
 
 {% block content %}
 
-    <div class="kc-wrapper-container-full-full kc-text-item-inner-header">
-        сотрудничество
+    <div class="kc-wrapper-container-full-full kc-page-header">
+        {% trans 'msg.cooperation.header' %}
     </div>
 
     {% if is_mobile %}
@@ -21,9 +21,21 @@
 
     {% for item in data %}
 
-        <div class="kc-separator kc-wrapper-container-full-full"></div>
-        {% include "items/cooperation_item.html" with data=item %}
-        <div class="kc-wrapper-container-one-null kc-utils-remove-fisrt-in-grid-hide"></div>
+        {% if is_mobile %}
+
+            {% include "items/cooperation_item.html" with data=item %}
+
+            {% if not forloop.last %}
+                <div class="kc-separator-wide kc-wrapper-container-full-full"></div>
+            {% endif %}
+        
+        {% else %}
+
+            <div class="kc-separator kc-wrapper-container-full-full"></div>
+            {% include "items/cooperation_item.html" with data=item %}
+            <div class="kc-wrapper-container-one-null kc-utils-remove-fisrt-in-grid-hide"></div>
+
+        {% endif %}
     
     {% endfor %}
 

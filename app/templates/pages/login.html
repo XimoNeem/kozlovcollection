@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход на сайт</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1E8DD3,rgb(121, 177, 212));
+        }
+
+        .header-container{
+            width: 100%;
+
+            display: flex;
+            flex-direction: row;
+
+            align-items: center;
+            aling-content: center;
+            gap: 1.5rem;
+
+            margin-bottom: 2rem;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+        }
+
+        .form{
+            width: 100%;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #1E8DD3;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background:rgb(45, 174, 255);
+        }
+
+        @media (max-width: 480px) {
+
+            body {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .login-container {
+                padding: 1.5rem;
+            }
+
+            input, button {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+    
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="header-container">
+            <img src="{% static 'common/assets/logo.svg' %}" alt="">
+            <h2>Авторизация</h2>
+        </div>
+        <form method="post" class="form">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Логин" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Пароль" required>
+            </div>
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+</body>
+</html>

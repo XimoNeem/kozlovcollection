@@ -1,45 +1,129 @@
 {% extends "base.html" %}
+{% load static %}
 {% load i18n %}
 
 {% block title %}{{ data.title }}{% endblock %}
 
-{% block content %}
+{% block content %}    
 
-    <div class="kc-wrapper-container-full-full kc-margin-top-100-40"></div>
+    {% include "items/route_header.html" with route_header=header_data %}
+    
+    
 
-    {% include 'items/route_image_slider.html' with images=data.route_images.all %}
 
     {% if is_mobile %}
 
-    
+    <div class="kc-wrapper-container-full-full kc-margin-top-100-40"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let headerText = document.querySelector(".kc-header-text");
+            if (headerText) {
+                headerText.textContent = "{% trans "msg.mobile_header.collection_routes" %}";
+
+                //if (headerText.tagName === "A") {
+                //    headerText.href = "https://example.com";
+                //}
+            }
+        });
+    </script>
+
+        {% comment %} {% if data.route_images %}
+            {% include 'items/route_image_slider.html' with images=data.route_images.all %}
+        {% endif %} {% endcomment %}
+
+        <div class="kc-wrapper-container-full-full kc-mobile-slider-wrapper-container kc-mobile-slider-margin-bottom">
+            <div class="kc-mobile-slider" data-color="{{ data.color }}">
+                {% for image in data.route_images.all %}
+                    <div class="kc-mobile-slider-slide">
+                        <img src="{{ image.image.url }}" alt="Artwork Image" class="kc-mobile-slider-slide-img">
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="kc-mobile-slider-dots">
+                {% for image in data.route_images.all %}
+                    <span class="kc-mobile-slider-dot" data-index="{{ forloop.counter0 }}"></span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <link rel="stylesheet" href="{% static 'common/css/items/artwork-image-slides.css' %}">
+        <script src="{% static 'common/js/mobile-slider.js' %}"></script>
+
+        <div class="kc-wrapper-container-full-full kc-margin-bottom-100-40">
+
+            <div class="kc-text-21-18">
+                {{ data.full_description|safe }}
+            </div>
+
+            {% if data.article_title %}
+
+            <a href="{% url 'article' data.id %}" class="kc-margin-top-40 kc-read-more" style="display: flex; gap: 10px;">
+                <div class="kc-route-read-more kc-text-21-18 kc-text-uppercase" style="align-self: center; margin-bottom: -4px; color: {{ data.color }}">
+                    {% trans "msg.route.read_more" %}
+                </div>
+
+                <div class="kc-route-line-wrapper-horizontal">
+                    <div class="route-top-circle" style="background-color: {{ data.color }}">
+                    </div>
+        
+                    <div class="kc-route-line-horizontal" style="background-color: {{ data.color }}"></div>
+                </div>
+            </a>
+
+            {% endif %}
+            
+        </div>
     
     {% else %}
 
-    <div class="kc-wrapper-container-full-full kc-margin-top-100-40">
-        <div class="kc-text-53-24 kc-margin-bottom-100-40">
-            {{ data.title }}
-        </div>
-        <div class="kc-text-21-15 kc-text-uppercase">
-            {{ data.short_description }}
-        </div>
-    </div>
+        {% if data.route_images %}
+            {% include 'items/image_slider_wide.html' with images=data.route_images.all %}
+        {% endif %}
 
-    <div class="kc-wrapper-container-half"></div>
+        <div class="kc-wrapper-container-half"></div>
 
-    <div class="kc-wrapper-container-half">
-        <div class="kc-text-21-18" style="line-height: 29.4px;">
-            {{ data.text|safe }}
+        <div class="kc-wrapper-container-half kc-margin-bottom-100-40">
+
+            <div class="kc-text-21-18">
+                {{ data.full_description|safe }}
+            </div>
+
+            {% if data.article_title %}
+
+            <a href="{% url 'article' data.id %}" class="kc-margin-top-40" style="display: flex; gap: 30px;">
+                <div class="kc-route-read-more kc-text-21-18 kc-text-uppercase" style="color: {{ data.color }}; align-self: center; margin-bottom: -8px;">
+                    {% trans "msg.route.read_more" %}
+                </div>
+
+                <div class="kc-route-line-wrapper-horizontal">
+                    <div class="route-top-circle" style="background-color: {{ data.color }}">
+                    </div>
+        
+                    <div class="kc-route-line-horizontal" style="background-color: {{ data.color }}"></div>
+                </div>
+            </a>
+
+            {% endif %}
+            
         </div>
-    </div>
 
     {% endif %}
 
+    {% if not is_mobile %}
+        {% include "items/video_cut.html" with previews=data.route_video.videos.all name=data.route_video.title %}
+    {% endif %}
+
+    
+
+    {% if is_mobile %}
+        <div class="kc-wrapper-container-full-full kc-separator-wide"> </div>
+    {% endif %}
+
     <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
-    <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full">работы в маршруте</div>
+    <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full">{% trans "msg.route.in_collection" %}</div>
     <spacer class="kc-wrapper-container-full-full kc-margin-bottom-100-40"></spacer>
-
-    {% include "items/video_cut.html" with previews=data.route_video.videos.all name=data.route_video.title %}
-
+    
     {% include "items/artwork_grid.html" with artworks=data.artworks.all %}
 
 

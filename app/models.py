@@ -6,12 +6,13 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
 
+
 class Artist(models.Model):
     is_visible = models.BooleanField("Отображается на сайте", default=True)
     name = models.CharField("Имя", max_length=255)
-    video_name = models.CharField("Название видео", max_length=255, null=True)
-    video_link = models.URLField("Ссылка на видео", null=True)
-    video_preview = models.FileField("Превью видео", upload_to='artistVideoImages/', null=True)
+    video_name = models.CharField("Название видео", max_length=255, null=True, blank=True)
+    video_link = models.URLField("Ссылка на видео", null=True, blank=True)
+    video_preview = models.FileField("Превью видео", upload_to='artistVideoImages/', null=True, blank=True)
     photo = models.ImageField("Фото", upload_to="artists/", blank=True, null=True)
     birth_year = models.IntegerField("Год рождения", blank=True, null=True)
     death_year = models.IntegerField("Год смерти", blank=True, null=True)
@@ -35,15 +36,10 @@ class Artist(models.Model):
     
     def save(self, *args, **kwargs):
         if self.description:
-            # Убираем теги <div> в начале и в конце текста
-            self.description = self.description.strip()  # Убираем пробелы по краям
-            self.description = self.description.lstrip('<div>').rstrip('</div>')  # Убираем <div> в начале и в конце
-            
-            # Используем bleach для безопасного сохранения разрешенных тегов
+            self.description = self.description.strip()  
+            self.description = self.description.lstrip('<div>').rstrip('</div>')
             self.description = bleach.clean(self.description, tags=['br', 'em', 'strong', 'p', 'div'], strip=True)
-
-            # Убираем лишние теги в конце текста (например, <br> или <p>)
-            self.description = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.description)  # Убираем теги в конце
+            self.description = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.description)
 
         super().save(*args, **kwargs)
 
@@ -53,23 +49,28 @@ class Artist(models.Model):
 
     def __str__(self):
         return self.name
+    
+
 
 class Artwork(models.Model):
     is_visible = models.BooleanField("Отображается на сайте", default=True)
     main_image = models.ImageField("Главная картинка", upload_to='artworks/main_images/', null=True)
     title = models.CharField("Название", max_length=255)
     artist = models.ForeignKey("Artist", on_delete=models.CASCADE, related_name="artworks")
-    series = models.CharField("Серия", max_length=255)
+    series = models.CharField("Серия", max_length=255, blank=True, null=True)
     description = models.TextField("Описание")
-    year = models.IntegerField("Год создания", blank=True, null=True)
-    technique = models.CharField("Техника", blank=True, null=True)
-    size = models.CharField("Размер", blank=True, null=True)
-    cipher = models.CharField("Шифр", blank=True, null=True)
-    provenance = models.CharField("Провенанс", blank=True, null=True)
-    exhibitions = models.CharField("Список выставок", blank=True, null=True)
-    publications = models.CharField("Публикации", blank=True, null=True)
+    year = models.CharField("Год создания", blank=True, null=True, max_length=255)
+    technique = models.CharField("Техника", blank=True, null=True, max_length=255)
+    size = models.CharField("Размер", blank=True, null=True, max_length=255)
+    cipher = models.CharField("Шифр", blank=True, null=True, max_length=255)
+    provenance = models.TextField("Провенанс", blank=True, null=True)
+    exhibitions = models.TextField("Список выставок", blank=True, null=True)
+    publications = models.TextField("Публикации", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    # order_desktop = models.PositiveIntegerField("Порядок для десктопа", default=0, db_index=True, blank=True, null=True)
+    # order_mobile = models.PositiveIntegerField("Порядок для телефона", default=0, db_index=True, blank=True, null=True)
 
     def preview_images(self):
         images = self.artwork_images.all()  # Получаем все изображения
@@ -84,9 +85,30 @@ class Artwork(models.Model):
     class Meta:
         verbose_name = "произведение"
         verbose_name_plural = "🎨 Произведения"
+        # ordering = ['order_desktop']
+        
 
     def __str__(self):
         return self.title
+    
+        
+    def get_safe_size(self):
+        if not self.size:
+            return ""
+
+        value = self.size
+        value = re.sub(r'(?<=\d)\s*[xхXX]\s*(?=\d)', ' × ', value)
+        parts = value.rsplit(' ', 1)
+        if len(parts) == 2:
+            value = parts[0] + '\u00A0' + parts[1]
+
+        return value
+    
+    def get_safe_technique(self):
+        if self.technique:
+            return self.technique.replace(" ", "\u00A0") 
+        else:
+            return ""
     
     def save(self, *args, **kwargs):
         if self.description:
@@ -96,6 +118,8 @@ class Artwork(models.Model):
             self.description = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.description)  
         super().save(*args, **kwargs)
 
+
+
 class Exhibition(models.Model):
     is_visible = models.BooleanField("Отображается на сайте", default=True)
     is_own = models.BooleanField("Собственная выставка", default=False)
@@ -104,9 +128,15 @@ class Exhibition(models.Model):
     start_date = models.DateField("Начало выставки")
     end_date = models.DateField("Конец выставки")
     text = models.TextField("Описание")
-    location = models.CharField("Место проведения", max_length=255)
-    curators = models.CharField("Кураторы")
-    artworks = models.ManyToManyField("Artwork", verbose_name="работы", blank=True)    
+    location = models.CharField("Место проведения", max_length=255, blank=True, null=True)
+    curators = models.CharField("Кураторы", max_length=255, blank=True, null=True)
+    # artworks = models.ManyToManyField("Artwork", verbose_name="работы", blank=True)    
+    artworks = models.ManyToManyField(
+        "Artwork",
+        through="PageArtwork",
+        verbose_name="работы",
+        blank=True
+    )
 
     press_kit_zip = models.FileField(upload_to='exhibitions/press_kits/', blank=True, null=True)
     catalog_pdf = models.FileField(upload_to='exhibitions/catalogs/', blank=True, null=True)
@@ -128,9 +158,18 @@ class Exhibition(models.Model):
 
 class YearPeriod(models.Model):
     is_visible = models.BooleanField("Отображается на сайте", default=True)
+    is_null = models.BooleanField("Скрыть контент (включить заглушку)", default=False)
     title = models.CharField("Название", max_length=255)
     text = models.TextField("Места действия")
-    artworks = models.ManyToManyField("Artwork", verbose_name="Работы", blank=True)
+    # artworks = models.ManyToManyField("Artwork", verbose_name="Работы", blank=True)
+
+    artworks = models.ManyToManyField(
+        "Artwork",
+        through="YearPeriodArtwork",
+        verbose_name="Работы",
+        blank=True,
+        related_name="year_periods"
+    )
 
     class Meta:
         verbose_name = "год"
@@ -147,12 +186,29 @@ class YearPeriod(models.Model):
             self.text = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.text)  
         super().save(*args, **kwargs)
 
+class Publication(models.Model):
+    is_visible = models.BooleanField("Отображается на сайте", default=True)
+    title = models.CharField("Название", max_length=255)
+    code = models.CharField("Код", max_length=255)
+    text = models.CharField("Тексты аннотаций", max_length=255)
+    redactor = models.CharField("Тексты аннотаций", max_length=255)
+    corrector = models.CharField("Корректор", max_length=255)
+    designer = models.CharField("Дизайн, верстка", max_length=255)
+    photos = models.CharField("Фотографы", max_length=255)
+
+    class Meta:
+        verbose_name = "публикацию"
+        verbose_name_plural = "📢 Публикации"
+
+    def __str__(self):
+        return self.title
+
 class PressMention(models.Model):
     is_visible = models.BooleanField("Отображается на сайте", default=True)
     title = models.CharField("Заголовок", max_length=255)
     link = models.URLField("Ссылка")
     image = models.ImageField("Изображение", upload_to="press_mentions/", blank=True, null=True)
-    author = models.CharField("Автор", max_length=255)
+    author = models.CharField("Автор", max_length=255, blank=True, null=True)
     source = models.CharField("Издание", max_length=255)
     date = models.CharField("Дата", max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -174,17 +230,28 @@ class PressMention(models.Model):
 
 class Route(models.Model):
     title = models.CharField("Название маршрута", max_length=255, default="Маршрут")
-    short_description = models.CharField("Краткое описание", max_length=500, blank=True, null=True)
+    short_description = models.TextField("Краткое описание", blank=True, null=True)
     image = models.ImageField("Превью маршрута", upload_to="routes/", blank=True, null=True)
     color = models.CharField("Цвет", max_length=7, default="#FFFFFF")  # HEX-код цвета
-    artworks = models.ManyToManyField("Artwork", verbose_name="Список работ", blank=True)
+    # artworks = models.ManyToManyField("Artwork", verbose_name="Список работ", blank=True)
+    # artworks = models.ManyToManyField("Artwork", verbose_name="Работы", blank=True)
+    artworks = models.ManyToManyField(
+        "Artwork",
+        through="RouteArtwork",
+        verbose_name="Работы",
+        blank=True,
+        related_name="routes"
+    )
+
+
     route_video = models.ForeignKey("VideoSet", on_delete=models.CASCADE, related_name="route_video", null=True, verbose_name="Видео маршрута")
-    artworks = models.ManyToManyField("Artwork", verbose_name="Работы", blank=True)
     # videos = models.ManyToManyField("VideoSet", blank=True, related_name='routes')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     full_description = models.TextField("Полное описание", blank=True, null=True)
     article = models.TextField("Текст статьи", blank=True, null=True)
+    article_title = models.CharField("Название статьи", max_length=255, blank=True, null=True)
+    article_author = models.CharField("Автор статьи", max_length=255, blank=True, null=True)
 
     def preview_image(self):
         if self.image:
@@ -203,6 +270,7 @@ class Route(models.Model):
 class ArtworkImage(models.Model):
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE, related_name="artwork_images")
     image = models.ImageField(upload_to='artworks/images/')
+    video = models.FileField(upload_to='artworks/videos/', blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -222,21 +290,6 @@ class VideoSet(models.Model):
 
     def __str__(self):
         return f"{self.title}"
-    
-# Сущность PDF-файла для автора
-# class ArtistPDF(models.Model):
-#     is_visible = models.BooleanField("Отображается на сайте", default=True)
-#     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="artist_pdfs")
-#     title = models.CharField("Название", max_length=255)
-#     file = models.ImageField("Файл PDF", upload_to='artistPDFsImages/')
-#     uploaded_at = models.DateTimeField(auto_now_add=True)
-    
-#     class Meta:
-#         verbose_name = "PDF"
-#         verbose_name_plural = "📃 PDF авторов"
-
-#     def __str__(self):
-#         return self.title
 
 # Сущность превью (!) YouTube видео для автора
 class ArtistVideo(models.Model):
@@ -312,11 +365,13 @@ class ExhibitionImage(models.Model):
 
 # Модель сотрудника
 class Employee(models.Model):
+    order = models.PositiveIntegerField(default=0, blank=False, null=False, db_index=True)
     name = models.CharField(max_length=255)
     position = models.CharField(max_length=255)
     image = models.ImageField(upload_to='employees/', blank=True, null=True)
 
     class Meta:
+        ordering = ['order']
         verbose_name = "сотрудник"
         verbose_name_plural = "🧑‍💻️ Сотрудники"
 
@@ -364,3 +419,46 @@ class FlowEvent(models.Model):
             self.text = bleach.clean(self.text, tags=['br', 'em', 'strong', 'p', 'div'], strip=True)
             self.text = re.sub(r'(<br\s*/?>|<p>|</p>)$', '', self.text)  
         super().save(*args, **kwargs)
+
+class PageArtwork(models.Model):
+    page = models.ForeignKey(Exhibition, on_delete=models.CASCADE)
+    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
+
+    order_desktop = models.PositiveIntegerField("Порядок (десктоп)", default=0, db_index=True)
+    order_mobile = models.PositiveIntegerField("Порядок (моб.)", default=0, db_index=True)
+
+    class Meta:
+        unique_together = ('page', 'artwork')
+        ordering = ['order_desktop']
+
+class YearPeriodArtwork(models.Model):
+    period = models.ForeignKey("YearPeriod", on_delete=models.CASCADE, related_name="period_artworks")
+    artwork = models.ForeignKey("Artwork", on_delete=models.CASCADE, related_name="year_period_links")
+
+    order_desktop = models.PositiveIntegerField("Порядок (десктоп)", default=0, db_index=True)
+    order_mobile = models.PositiveIntegerField("Порядок (моб.)", default=0, db_index=True)
+
+    class Meta:
+        unique_together = ('period', 'artwork')
+        ordering = ['order_desktop']
+
+class RouteArtwork(models.Model):
+    route = models.ForeignKey("Route", on_delete=models.CASCADE, related_name="route_artworks")
+    artwork = models.ForeignKey("Artwork", on_delete=models.CASCADE, related_name="route_links")
+
+    order_desktop = models.PositiveIntegerField("Порядок (десктоп)", default=0, db_index=True)
+    order_mobile = models.PositiveIntegerField("Порядок (моб.)", default=0, db_index=True)
+
+    class Meta:
+        unique_together = ('route', 'artwork')
+        ordering = ['order_desktop']
+
+class ArtistArtwork(models.Model):
+    artist = models.ForeignKey('Artist', on_delete=models.CASCADE)
+    artwork = models.ForeignKey('Artwork', on_delete=models.CASCADE, related_name='artist_links')
+    order_desktop = models.PositiveIntegerField("Порядок для десктопа", default=0, db_index=True)
+    order_mobile = models.PositiveIntegerField("Порядок для телефона", default=0, db_index=True)
+
+    class Meta:
+        unique_together = ('artist', 'artwork')
+        ordering = ['order_desktop']

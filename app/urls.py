@@ -11,6 +11,7 @@ urlpatterns = [
     path('period/<int:period_id>/', views.get_period, name='period'), 
     path('route/<int:route_id>/', views.get_route, name='route'), 
     path('exhibition/<int:exhibition_id>/', views.get_exhibition, name='exhibition'), 
+    path("article/<int:article_id>/", views.get_article, name="article"),
 
     path('news/', views.get_news, name='news'), 
     path('artistlist/', views.get_artist_list, name='collection_a_z'),  # A - Я (список художников)
@@ -31,4 +32,6 @@ urlpatterns = [
     path('flow/', views.get_flow, name='flow'),  # ПРЕССА
 
     path("routes/", views.get_routes, name="routes"),
+
+    path('login/', views.get_login_view , name='login'),
 ]

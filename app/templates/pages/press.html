@@ -5,19 +5,15 @@
 
 {% block content %}
 
-    {% if is_mobile %}
+    <div class="kc-margin-top-150-40 kc-text-53-24 kc-wrapper-container-full-full kc-text-uppercase">
+        {% trans "msg.press.press" %}
+    </div>
 
+    {% if not is_mobile %}
 
-    
-    {% else %}
-
-
+        <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"></div>
 
     {% endif %}
-
-    <div class="kc-margin-top-150-40 kc-margin-bottom-100-40 kc-text-53-24 kc-wrapper-container-full-full kc-text-uppercase">
-        Пресса
-    </div>
 
     {% for item in data %}
 
@@ -30,10 +26,10 @@
 
         {% include "items/press_item.html" with data=item %}
 
-        {% if is_mobile %}
+        {% if is_mobile and not forloop.last %}
 
-            <div class="kc-separator-wide kc-wrapper-container-full-full"></div>
-            
+        <div class="kc-separator-wide kc-wrapper-container-full-full"></div>
+
         {% endif %}
 
     {% endfor %}

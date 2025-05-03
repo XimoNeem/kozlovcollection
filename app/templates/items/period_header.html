@@ -1,0 +1,69 @@
+{% load static %}
+
+
+<div class="period-header kc-wrapper-container-full-full">
+
+    {% if is_mobile %}
+
+    <div class="period-header-content">
+        <div class="period-header-item period-header-left kc-text-uppercase">
+            {% if period_header.previous %}
+            <a class="period-header-side-period" href="{% url 'period' period_header.previous.id %}">
+                <div class="kc-text-33-15 period-header-text kc-wrapper-container-one-null">
+                    {{ period_header.previous.title }}
+                </div>
+            </a>
+            {% endif %}
+        </div>
+    
+        <div class="period-header-item period-header-center kc-text-uppercase kc-text-33-15" style="font-family: 'с_FranklinGothicDemiITC';">
+            {{ period_header.current.title }}
+        </div>
+    
+        <div class="period-header-item period-header-right kc-text-uppercase">
+            {% if period_header.next %}
+            <a class="period-header-side-period" href="{% url 'period' period_header.next.id %}">
+                <div class="kc-text-33-15 period-header-text kc-wrapper-container-one-null">
+                    {{ period_header.next.title }}
+                </div>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+
+    {% else %}
+
+        <div class="period-header-content">
+            <div class="period-header-item period-header-left">
+                {% if period_header.previous %}
+                <a class="period-header-side-period" href="{% url 'period' period_header.previous.id %}">
+                    <div class="kc-text-33-15 period-header-text kc-text-uppercase">
+                        {{ period_header.previous.title }}
+                    </div>
+                </a>
+                {% endif %}
+            </div>
+        
+            <div class="period-header-item period-header-center kc-text-33-15 kc-text-uppercase">
+                {{ period_header.current.title }}
+            </div>
+        
+            <div class="period-header-item period-header-right">
+                {% if period_header.next %}
+                <a class="period-header-side-period" href="{% url 'period' period_header.next.id %}">
+                    <div class="kc-text-33-15 period-header-text kc-text-uppercase">
+                        {{ period_header.next.title }}
+                    </div>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="kc-separator-wide"></div>
+
+    {% endif %}
+
+</div>
+
+<link rel="stylesheet" href="{% static 'common/css/items/period-header.css' %}">

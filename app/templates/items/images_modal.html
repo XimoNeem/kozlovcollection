@@ -1,56 +1,103 @@
-<div id="imageModal" class="modal" onclick="closeModal()">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <span class="prev" onclick="changeImage(-1)">&#10094;</span>
-    <span class="next" onclick="changeImage(1)">&#10095;</span>
-    <img class="modal-content" id="modalImage">
-    <div id="caption"></div>
+{% load static %}
+
+<div id="imageModal" class="kc-image-modal kc-wrapper-container-full-full kc-color-background-wide hidden">
+    
+    <span class="image-modal-close" onclick="closeModal()">
+        <img src="{% static 'common/assets/image-modal-close.svg' %}" alt="Назад" class="image-modal-image">
+    </span>
+    
+
+    <div class="kc-image-main">
+        <span class="image-modal-prev" onclick="changeImage(-1)">
+            <img src="{% static 'common/assets/image-modal-left.svg' %}" alt="Назад" class="image-modal-image">
+        </span>
+        <img class="modal-content" id="modalImage">
+        <span class="image-modal-next" onclick="changeImage(1)">
+            <img src="{% static 'common/assets/image-modal-right.svg' %}" alt="Вперед" class="image-modal-image">
+        </span>
+    </div>
+
 </div>
 
-<script>
+<script src="{% static 'common/js/image-modal.js' %}"></script>
+
+{% comment %} <script>
     var currentIndex = 0;
     var images = [];
 
-    function openModal(imageUrl, index) {
-        var modal = document.getElementById("imageModal");
-        var modalImg = document.getElementById("modalImage");
-        modal.style.display = "block";
-        modalImg.src = imageUrl;
-
-        // Сохраняем текущий индекс
+    function openModal(newImages, index) {
+        images = newImages;
         currentIndex = index;
+    
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
 
-        // Собираем все изображения в массив
-        images = [];
-        {% for item in images %}
-            images.push("{{ item.image.url }}");
-        {% endfor %}
-        updateCaption();
+        modal.classList.remove("hidden");
+        document.body.classList.add("no-scroll");
+
+        modalImg.src = images[currentIndex];
+        modalImg.classList.remove("fullscreen");
     }
 
     function closeModal() {
-        var modal = document.getElementById("imageModal");
-        modal.style.display = "none";
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+
+        modal.classList.add("hidden");
+        document.body.classList.remove("no-scroll");
+
+        exitFullscreen();
+        modalImg.classList.remove("fullscreen");
     }
 
     function changeImage(direction) {
-        // Изменяем индекс текущего изображения
+        const modalImg = document.getElementById("modalImage");
+
         currentIndex += direction;
 
-        // Проверяем границы массива
         if (currentIndex < 0) {
-            currentIndex = images.length - 1; // Переход к последнему изображению
+            currentIndex = images.length - 1;
         } else if (currentIndex >= images.length) {
-            currentIndex = 0; // Переход к первому изображению
+            currentIndex = 0;
         }
 
-        // Обновляем изображение в модальном окне
-        var modalImg = document.getElementById("modalImage");
         modalImg.src = images[currentIndex];
-        updateCaption();
+        exitFullscreen();
+        modalImg.classList.remove("fullscreen");
     }
 
-    function updateCaption() {
-        var captionText = document.getElementById("caption");
-        captionText.innerHTML = (currentIndex + 1) + " из " + images.length;
+    // Полноэкранный режим при клике
+    document.addEventListener("DOMContentLoaded", function () {
+        const modalImg = document.getElementById("modalImage");
+
+        modalImg.addEventListener("click", function () {
+            if (!document.fullscreenElement) {
+                enterFullscreen(modalImg);
+                modalImg.classList.add("fullscreen");
+            } else {
+                exitFullscreen();
+                modalImg.classList.remove("fullscreen");
+            }
+        });
+    });
+
+    function enterFullscreen(element) {
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.webkitRequestFullscreen) { // Safari
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) { // IE11
+            element.msRequestFullscreen();
+        }
     }
-</script>
+
+    function exitFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { // Safari
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE11
+            document.msExitFullscreen();
+        }
+    }
+</script> {% endcomment %}

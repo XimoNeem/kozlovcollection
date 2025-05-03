@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 {% if is_mobile %}
 
@@ -7,7 +8,8 @@
         <img src="{{ main_image.url }}" alt="{{ artwork.title }}" class="video-cut-image">
     </div>
     <a href = "https://www.youtube.com/@kozlovcollection" class="video-cut-label-link kc-text-27-15 kc-text-white kc-text-uppercase">
-        Youtube канал пока все дома у Антона
+        {% trans "msg.pdf_cut.youtube" %}
+        {% include "items/video_icon_white.html" %}
     </a>
     <div class="video-cut-label-name kc-text-27-15 kc-text-white kc-text-uppercase">
         {{ name }}
@@ -19,8 +21,9 @@
 <div class="video-cut kc-wrapper-container-full-full">
     <div class="video-cut-items-content">
 
-        {% comment %} <spacer style="min-width: 30px;"></spacer>
+        <spacer style="min-width: 30px;"></spacer>
 
+        {% comment %} 
         <div class="video-cut-item">
             <img src="{{ main_image.url }}" alt="{{ artwork.title }}" class="video-cut-image">
         </div> {% endcomment %}
@@ -30,13 +33,16 @@
                 <img src="{{ item.image.url }}" alt="{{ artwork.title }}" class="video-cut-image">
             </a>
         {% endfor %}
+
+        <spacer style="min-width: 30px;"></spacer>
+        
     </div>
-    <div class="video-cut-text-content">
+    <div class="video-cut-text-content kc-margin-bottom-100-40px">
         <div class="video-cut-label-name kc-text-27-15 kc-text-white kc-text-uppercase">
                 {{ name }}
         </div>
         <a href = "https://www.youtube.com/@kozlovcollection"  class="video-cut-label-link kc-text-27-15 kc-text-white kc-text-uppercase">
-            Youtube канал пока все дома у Антона
+            {% trans "msg.pdf_cut.youtube" %}
             {% include "items/video_icon_white.html" %}
         </a>
     </div>

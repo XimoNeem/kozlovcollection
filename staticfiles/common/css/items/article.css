@@ -1,0 +1,50 @@
+.article-back-arrow-content{
+
+    grid-column: 1;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.article-back-button {
+    height: 100%;
+}
+.article-title{
+    grid-column: span 13;
+}
+.article-line-content{
+    height: 31px;
+    grid-column: 1;
+
+    display: flex;
+    flex-direction: row;
+    align-content: start;
+
+
+
+    margin-left: -100px;
+}
+.article-line{
+    background-color: rgb(255, 0, 0);
+    height: 6px;
+    width: 91%;
+    align-self: center;
+    margin-right: -5px;
+}
+.article-circle{
+    background-color: rgb(255, 0, 0);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    align-self: center;
+}
+.article-description{
+    margin-top: 3px;
+    grid-column: span 13;
+}
+.article-text{
+    grid-column: span 8;
+}
+.article-items-content{
+    grid-column: span 4;
+}

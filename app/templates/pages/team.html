@@ -7,103 +7,93 @@
 
     {% if is_mobile %}
 
-    <div class="kc-margin-top-150-40 kc-wrapper-container-full-full"></div>
+        {% comment %} <div class="kc-wrapper-image kc-wrapper-container-full-full kc-margin-top-100-40 kc-margin-bottom-100-40">
+            <img src="{% static 'common/assets/team-header.png' %}" alt="Фото команды" style="width:100%; height: auto;">
+        </div> {% endcomment %}
 
-    <div class="employee-image kc-wrapper-container-half-half">
-        <img src="{% static 'common/assets/team-decor-1.svg' %}" alt="Decor">
-    </div>
-    <div class="kc-wrapper-container-half-half employee-padding-left">
-        <div class=" kc-text-27-15 employee-text-parent-1">
-            Коллекция — это результат тщательного отбора произведений, каждое из которых отвечает нашим представлениям 
+        <div class="kc-wrapper-container-full-full kc-margin-bottom-100-40"></div>
+
+        <div class="employee-image-1">
+            <img src="{% static 'common/assets/team-decor-1.svg' %}" alt="Decor" class="employee-descripstion-image">
         </div>
-    </div>
-    <div class="kc-wrapper-container-full-full">
-        <div class=" kc-text-27-15 ">
-            об истории русского искусства ХХ-XXI веков, как о непрерывном процессе, отражающем противоречивый характер этого периода и являющемся неотъемлемой частью мировой художественной культуры. Нонконформизм и современное российское искусство, наследующие открытия авангарда, демонстрируют непостижимую природу и силу творческого импульса, способного преодолевать официальные запреты и идеологические доктрины
+
+        <div class="employee-descripstion-1">
+            <div class="kc-text-21-18">
+                {% trans "msg.team.text1" %}
+            </div>
         </div>
-    </div>
 
-    <div class="kc-margin-top-150-40 kc-wrapper-container-full-full"></div>
-
-    <div class="kc-wrapper-container-half-half employee-padding-right">
-        <div class=" kc-text-27-15 employee-text-parent-1">
-            Наша любовь к произведению начинается с любви к художнику и с интереса к его творческому методу.         </div>
-    </div>
-
-    <div class="employee-image-1 kc-wrapper-container-half-half">
-        <img src="{% static 'common/assets/team-decor-2.svg' %}" alt="Decor">
-    </div>
-
-    <div class="kc-wrapper-container-full-full">
-        <div class=" kc-text-27-15 employee-text-parent-1">
-            Нам важны не только работы, обладающие очевидной культурной, экспозиционной и материальной ценностью, но и артефакты индивидуальной траектории развития автора: эскизные материалы, архив художника, фото- и видео-документация. Осознавая ответственность, которую накладывает владение произведениями, мы видим свою задачу в обеспечении своевременной реставрации и поддержании музейных условий хранения. Мы привлекаем к сотрудничеству искусствоведов, кураторов и других специалистов для всестороннего изучения, описания и грамотного экспонирования произведений
+        <div class="employee-image-1">
+            <img src="{% static 'common/assets/team-decor-2.svg' %}" alt="Decor" class="employee-descripstion-image">
         </div>
-    </div>
-
-    <div class="kc-margin-top-150-40 kc-wrapper-container-full-full"></div>
-
-    <div class="employee-image-1">
-        <img class="employee-image-left" src="{% static 'common/assets/team-decor-3.svg' %}" alt="Decor">
-    </div>
-    <div class="kc-wrapper-container-half-half employee-padding-left ">
-        <div class=" kc-text-27-15 employee-text-parent-1">
-            Наша деятельность всегда направлена на утверждение ценности и неприкосновенности свободного
+        <div class="employee-descripstion-2">
+            <div class="kc-text-21-18">
+                {% trans "msg.team.text2" %}
+            </div>
         </div>
-    </div>
-    <div class="kc-wrapper-container-full-full">
-        <div class=" kc-text-27-15 ">
-            творческого высказывания, выступающих залогом сохранения правдивой картины текущего исторического момента. Непременным условием существования независимого искусства является поддержка актуального художественного процесса, основывающаяся на личной вовлеченности, понимании проблематики современного искусства, а также развитии зрительского опыта и художественного вкуса
-        </div>
-    </div>
+            
 
-    <div class="kc-margin-bottom-150-60 kc-wrapper-container-full-full"></div>
+        <div class="employee-image-1">
+            <img src="{% static 'common/assets/team-decor-3.svg' %}" alt="Decor" class="employee-descripstion-image">
+        </div>
+
+        <div class="employee-descripstion-3">
+            <div class="kc-text-21-18">
+                {% trans "msg.team.text3" %}
+            </div>
+        </div>
+
+        <div class="kc-separator-wide kc-wrapper-container-full-full"></div>
+        <div class="kc-wrapper-container-full-full kc-margin-bottom-100-40"></div>
     
     {% else %}
 
-
-
-    <div class="kc-margin-top-150-40 kc-margin-bottom-150-60 kc-wrapper-container-full-full kc-container-grid">
-        <div class="employee-spacer-3"></div>
-        <div class="employee-image-1">
-            <img src="{% static 'common/assets/team-decor-1.svg' %}" alt="Decor">
+        <div class="kc-wrapper-image kc-wrapper-container-full-full kc-margin-top-100-40 kc-margin-bottom-100-40">
+            <img src="{% static 'common/assets/team-header.png' %}" alt="Фото команды" style="width:100%; height: auto;">
         </div>
-        <div class="employee-spacer-1"></div>
+
+        <div class="employee-image-1">
+            <img src="{% static 'common/assets/team-decor-1.svg' %}" alt="Decor" class="employee-descripstion-image">
+        </div>
+
         <div class="employee-descripstion-1">
-            <div class=" kc-text-27-15 ">
-                Коллекция — это результат тщательного отбора произведений, каждое из которых отвечает нашим представлениям об истории русского искусства ХХ-XXI веков, как о непрерывном процессе, отражающем противоречивый характер этого периода и являющемся неотъемлемой частью мировой художественной культуры. Нонконформизм и современное российское искусство, наследующие открытия авангарда, демонстрируют непостижимую природу и силу творческого импульса, способного преодолевать официальные запреты и идеологические доктрины
+            <div class=" kc-text-21-15 ">
+                {% trans "msg.team.text1" %}
             </div>
         </div>
-    </div>
-    <div class="kc-margin-top-150-40 kc-margin-bottom-150-60 kc-wrapper-container-full-full kc-container-grid">
+
+        <div class="employee-image-1">
+            <img src="{% static 'common/assets/team-decor-2.svg' %}" alt="Decor" class="employee-descripstion-image">
+        </div>
         <div class="employee-descripstion-2">
-            <div class=" kc-text-27-15 ">
-                Наша любовь к произведению начинается с любви к художнику и с интереса к его творческому методу. Нам важны не только работы, обладающие очевидной культурной, экспозиционной и материальной ценностью, но и артефакты индивидуальной траектории развития автора: эскизные материалы, архив художника, фото- и видео-документация. Осознавая ответственность, которую накладывает владение произведениями, мы видим свою задачу в обеспечении своевременной реставрации и поддержании музейных условий хранения. Мы привлекаем к сотрудничеству искусствоведов, кураторов и других специалистов для всестороннего изучения, описания и грамотного экспонирования произведений
+            <div class=" kc-text-21-15 ">
+                {% trans "msg.team.text2" %}
             </div>
         </div>
-        <div class="employee-spacer-1"></div>
+            
+
         <div class="employee-image-1">
-            <img src="{% static 'common/assets/team-decor-2.svg' %}" alt="Decor">
+            <img src="{% static 'common/assets/team-decor-3.svg' %}" alt="Decor" class="employee-descripstion-image">
         </div>
-        <div class="employee-spacer-2"></div>
-    </div>
-    <div class="kc-margin-top-150-40 kc-margin-bottom-150-60 kc-wrapper-container-full-full kc-container-grid kc-container-grid">
-        <div class="employee-image-1">
-            <img src="{% static 'common/assets/team-decor-3.svg' %}" alt="Decor">
-        </div>
-        <div class="employee-spacer-1"></div>
+
         <div class="employee-descripstion-3">
-            <div class=" kc-text-27-15 ">
-                Наша деятельность всегда направлена на утверждение ценности и неприкосновенности свободного творческого высказывания, выступающих залогом сохранения правдивой картины текущего исторического момента. Непременным условием существования независимого искусства является поддержка актуального художественного процесса, основывающаяся на личной вовлеченности, понимании проблематики современного искусства, а также развитии зрительского опыта и художественного вкуса
+            <div class=" kc-text-21-15">
+                {% trans "msg.team.text3" %}
             </div>
         </div>
-    </div>
+
 
     {% endif %}
 
 
     {% for item in data %}
+    
         {% include "items/employee_item.html" with data=item %}
-        <div class="kc-wrapper-container-one-null kc-utils-remove-fisrt-in-grid-hide kc-utils-hide-on-mobile"></div>
+        
+        {% if not forloop.counter|divisibleby:3%}
+            <div class="kc-empty-space"></div>
+        {% endif %}
+        
     {% endfor %}
     
 

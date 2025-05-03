@@ -4,16 +4,16 @@
 {% if is_mobile %}
 
 <footer class="kc-footer kc-spacing-padding-main">
-    <div class="kc-spacer-regular"> </div>
+    <div class="kc-margin-top-100-40"> </div>
     <div class="kc-footer-container">
-        <div class="kc-footer-logo">
-            <img src="{% static 'common/assets/logo-with-text.svg' %}" alt="Коллекция Антона Козлова">
-        </div>
+        <a class="kc-footer-logo" href="{% url 'main' %}">
+            <img src="{% static 'common/assets/logo-with-text.svg' %}" alt="{% trans 'msg.footer.logoAlt' %}">
+        </a>
         <div class="kc-footer-info">
-            <div>© АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ<br>«КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА»</div>
-            <div>INFO@KOZLOVCOLLECTION.COM</div>
-            <div><strong>TELEGRAM</strong> / <strong>YOUTUBE</strong> / <strong>VK</strong> / <strong>INST</strong></div>
-            <div>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</div>
+            <div>{% trans 'msg.footer.orgInfo' %}</div>
+            <div>{% trans 'msg.footer.contactEmail' %}</div>
+            <div><strong style="color: #1E8DD3 !important;">{% trans 'msg.footer.telegram' %}</strong> / <strong style="color: #1E8DD3 !important;">{% trans 'msg.footer.youtube' %}</strong> / <strong style="color: #1E8DD3 !important;">{% trans 'msg.footer.vk' %}</strong> / <strong style="color: #1E8DD3 !important;">{% trans 'msg.footer.inst' %}</strong></div>
+            <div>{% trans 'msg.footer.privacyPolicy' %}</div>
         </div>
     </div>
     <div class="kc-spacer-main"> </div>
@@ -23,36 +23,21 @@
 
 <footer class="kc-footer kc-spacing-padding-main">
 
-
-    {% comment %} <form action="{% url 'set_language' %}" method="post">
-        {% csrf_token %}
-        <select name="language">
-            {% get_current_language as LANGUAGE_CODE %}
-            {% get_available_languages as LANGUAGES %}
-            {% get_language_info_list for LANGUAGES as languages %}
-            
-            {% for lang in languages %}
-                <option value="{{ lang.code }}" {% if lang.code == LANGUAGE_CODE %}selected{% endif %}>
-                    {{ lang.name_local }}
-                </option>
-            {% endfor %}
-        </select>
-        <button type="submit">Change language</button>
-    </form> {% endcomment %}
-
-    <div class="kc-spacer-regular"> </div>
-    <div class="kc-footer-container">
-        <div class="kc-footer-logo">
-            <img src="{% static 'common/assets/logo-with-text.svg' %}" alt="Коллекция Антона Козлова">
-        </div>
-        <div class="kc-footer-info">
-            <div>© АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ<br>«КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА»</div>
-            <div>INFO@KOZLOVCOLLECTION.COM</div>
-            <div><strong>TELEGRAM</strong> / <strong>YOUTUBE</strong> / <strong>VK</strong> / <strong>INST</strong></div>
-            <div>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</div>
+    <div class="kc-footer-content">
+        <div class="kc-footer-container">
+            <a class="kc-footer-logo" href="{% url 'main' %}">
+                <img src="{% static 'common/assets/logo-with-text.svg' %}" alt="{% trans 'msg.footer.logoAlt' %}">
+            </a>
+            <div class="kc-footer-info">
+                <div>{% trans 'msg.footer.orgInfo' %}</div>
+                <div>{% trans 'msg.footer.contactEmail' %}</div>
+                <div><strong>{% trans 'msg.footer.telegram' %}</strong> / <strong>{% trans 'msg.footer.youtube' %}</strong> / <strong>{% trans 'msg.footer.vk' %}</strong> / <strong>{% trans 'msg.footer.inst' %}</strong></div>
+                <div>{% trans 'msg.footer.privacyPolicy' %}</div>
+            </div>
         </div>
     </div>
-    <div class="kc-spacer-main"> </div>
+
+
 </footer>
 
 {% endif %}

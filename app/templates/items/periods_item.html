@@ -1,17 +1,155 @@
+{% load i18n %}
+{% if is_mobile %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let headerText = document.querySelector(".kc-header-text");
+        if (headerText) {
+            headerText.textContent = "{% trans "msg.mobile_header.collection_years" %}";
+
+            //if (headerText.tagName === "A") {
+            //    headerText.href = "https://example.com";
+            //}
+        }
+    });
+</script>
+
 <div class="period-context">
-    {% for period in data %}
-        {% if forloop.counter0|divisibleby:7 %}
-            <a href="{% url 'period' period.id %}"class="period-item kc-text-33-24" style="grid-column: span 3;">
-                {{ period.title }}
+
+        <div class="period-item-containers-row">
+
+            <a href="/period/11/" class="period-item kc-text-33-24 animation-hover-zoom-rotate kc-text-gray">
+                2050{% trans "msg.period_item.ending" %}
             </a>
-        {% elif forloop.counter0|divisibleby:7|add:3 %}
-            <a href="{% url 'period' period.id %}"class="period-item kc-text-33-24" style="grid-column: span 4;">
-                {{ period.title }}
+
+            <a href="/period/10/" class="period-item kc-text-33-24 animation-hover-zoom-rotate kc-text-gray">
+                2040{% trans "msg.period_item.ending" %}
             </a>
-        {% else %}
-            <a href="{% url 'period' period.id %}"class="period-item kc-text-33-24" style="grid-column: span 3;">
-                {{ period.title }}
+
+        </div>
+
+        <div class="period-item-containers-row-center">
+
+            <a href="/period/9/" class="period-item kc-text-33-24 animation-hover-zoom-rotate kc-text-gray">
+                2030{% trans "msg.period_item.ending" %}
             </a>
-        {% endif %}
-    {% endfor %}
+            
+        </div>
+
+        <div class="period-item-containers-row">
+
+            <a href="/period/8/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                2020{% trans "msg.period_item.ending" %}
+            </a>
+            
+            <a href="/period/7/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                2010{% trans "msg.period_item.ending" %}
+            </a>
+            
+        </div>
+
+        <div class="period-item-containers-row-center">
+
+            <a href="/period/6/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                2000{% trans "msg.period_item.ending" %}
+            </a>
+            
+        </div>
+
+        <div class="period-item-containers-row">
+
+            <a href="/period/5/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                1990{% trans "msg.period_item.ending" %}
+            </a>
+            
+            <a href="/period/4/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                1980{% trans "msg.period_item.ending" %}
+            </a>
+            
+        </div>
+
+        <div class="period-item-containers-row-center">
+
+            <a href="/period/3/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                1970{% trans "msg.period_item.ending" %}
+            </a>
+            
+        </div>
+
+        <div class="period-item-containers-row">
+
+            <a href="/period/2/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                1960{% trans "msg.period_item.ending" %}
+            </a>
+            
+            <a href="/period/1/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                1950{% trans "msg.period_item.ending" %}
+            </a>
+            
+        </div>
+
 </div>
+
+{% else %}
+
+<div class="period-context">
+
+        <div class="period-item-containers-row">
+
+            <a href="/period/1/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                1950{% trans "msg.period_item.ending" %}
+            </a>
+
+            <a href="/period/4/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                1980{% trans "msg.period_item.ending" %}
+            </a>
+
+            <a href="/period/7/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                2010{% trans "msg.period_item.ending" %}
+            </a>
+
+            <a href="/period/10/" class="period-item kc-text-33-24 animation-hover-zoom-rotate kc-text-gray">
+                2040{% trans "msg.period_item.ending" %}
+            </a>
+
+        </div>
+
+        <div class="period-item-containers-row-center">
+
+            <a href="/period/3/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                1970{% trans "msg.period_item.ending" %}
+            </a>
+
+            <a href="/period/6/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                2000{% trans "msg.period_item.ending" %}
+            </a>
+
+            <a href="/period/9/" class="period-item kc-text-33-24 animation-hover-zoom-rotate kc-text-gray">
+                2030{% trans "msg.period_item.ending" %}
+            </a>
+
+        </div>
+
+        <div class="period-item-containers-row">
+
+            <a href="/period/2/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                1960{% trans "msg.period_item.ending" %}
+            </a>
+
+            <a href="/period/5/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                1990{% trans "msg.period_item.ending" %}
+            </a>
+
+            <a href="/period/8/" class="period-item kc-text-33-24 animation-hover-zoom-rotate">
+                2020{% trans "msg.period_item.ending" %}
+            </a>
+
+            <a href="/period/11/" class="period-item kc-text-33-24 animation-hover-zoom-rotate kc-text-gray">
+                2050{% trans "msg.period_item.ending" %}
+            </a>
+
+        </div>
+
+</div>
+
+{% endif %}

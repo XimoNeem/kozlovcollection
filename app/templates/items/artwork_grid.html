@@ -4,13 +4,9 @@
         <div class="artwork-column">
             {% for artwork in artworks %}
                 {% if not forloop.counter|divisibleby:2 %}
-                    <a href="{% url 'artwork' artwork.id %}" class="artwork-item">
-                        <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
-                        <div class="artwork-text">
-                            <div class="kc-text-21-15 kc-margin-top-30-10 kc-margin-bottom-30-10">{{ artwork.artist }} - {{ artwork.title }}</div>
-                            <div class="kc-text-17-9">{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</div>
-                        </div>
-                    </a>
+
+                    {% include "items/artwork_item.html" with artwork=artwork %}
+
                 {% endif %}
             {% endfor %}
         </div>
@@ -19,13 +15,9 @@
         <div class="artwork-column">
             {% for artwork in artworks %}
                 {% if forloop.counter|divisibleby:2 %}
-                    <a href="{% url 'artwork' artwork.id %}" class="artwork-item">
-                        <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
-                        <div class="artwork-text">
-                            <div class="kc-text-21-15 kc-margin-top-30-10 kc-margin-bottom-30-10">{{ artwork.artist }} - {{ artwork.title }}</div>
-                            <div class="kc-text-17-9">{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</div>
-                        </div>
-                    </a>
+
+                    {% include "items/artwork_item.html" with artwork=artwork %}
+                
                 {% endif %}
             {% endfor %}
         </div>
@@ -38,13 +30,9 @@
             {% for artwork in artworks %}
                 {% comment %} {% if forloop.counter|divisibleby:3 %} {% endcomment %}
                 {% if not forloop.counter|divisibleby:3 and not forloop.counter|divisibleby:2 %}
-                    <a href="{% url 'artwork' artwork.id %}" class="artwork-item">
-                        <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
-                        <div class="artwork-text">
-                            <div class="kc-text-21-15 kc-margin-top-30-10 kc-margin-bottom-30-10">{{ artwork.artist }} - {{ artwork.title }}</div>
-                            <div class="kc-text-17-9">{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</div>
-                        </div>
-                    </a>
+                    
+                    {% include "items/artwork_item.html" with artwork=artwork %}
+
                 {% endif %}
             {% endfor %}
         </div>
@@ -54,13 +42,9 @@
             {% for artwork in artworks %}
                 {% comment %} {% if not forloop.counter|divisibleby:3 and not forloop.counter|divisibleby:2 %} {% endcomment %}
                 {% if not forloop.counter|divisibleby:3 and forloop.counter|divisibleby:2 %}
-                    <a href="{% url 'artwork' artwork.id %}" class="artwork-item">
-                        <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
-                        <div class="artwork-text">
-                            <div class="kc-text-21-15 kc-margin-top-30-10 kc-margin-bottom-30-10">{{ artwork.artist }} - {{ artwork.title }}</div>
-                            <div class="kc-text-17-9">{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</div>
-                        </div>
-                    </a>
+    
+                {% include "items/artwork_item.html" with artwork=artwork %}
+
                 {% endif %}
             {% endfor %}
         </div>
@@ -70,13 +54,9 @@
             {% for artwork in artworks %}
                 {% comment %} {% if not forloop.counter|divisibleby:3 and forloop.counter|divisibleby:2 %} {% endcomment %}
                 {% if forloop.counter|divisibleby:3 %}
-                    <a href="{% url 'artwork' artwork.id %}" class="artwork-item">
-                        <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
-                        <div class="artwork-text">
-                            <div class="kc-text-21-15 kc-margin-top-30-10 kc-margin-bottom-30-10">{{ artwork.artist }} - {{ artwork.title }}</div>
-                            <div class="kc-text-17-9">{{ artwork.year }} / {{ artwork.technique }} / {{ artwork.size }}</div>
-                        </div>
-                    </a>
+    
+                {% include "items/artwork_item.html" with artwork=artwork %}
+
                 {% endif %}
             {% endfor %}
         </div>

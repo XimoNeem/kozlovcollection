@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}{{ data.name }}{% endblock %}
 
@@ -8,70 +9,91 @@
 
 {% if is_mobile %}
 
-    <spacer class="kc-wrapper-container-full-full kc-spacer-main"></spacer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let headerText = document.querySelector(".kc-header-text");
+            if (headerText) {
+                headerText.textContent = "{% trans "msg.mobile_header.collection_az" %}";
+
+                //if (headerText.tagName === "A") {
+                //    headerText.href = "https://example.com";
+                //}
+            }
+        });
+    </script>
+
+    <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
     <block class="kc-wrapper-container-half-full">
-        <div class="kc-text-53-24 kc-text-uppercase">{{ data.name|safe }}</div>
-        <div class="kc-text-wrapper kc-text-21-15">  {{ data.birth_year }}—{{ data.death_year }}  </div>
-        <div class="kc-spacer-small"></div>
+        <div class="kc-text-53-24 kc-text-uppercase kc-margin-bottom-15">{{ data.name|safe }}</div>
+
+        {% if data.death_year %}
+            <div class="kc-text-wrapper kc-text-21-15 kc-margin-bottom-100-40 kc-text-primary">{{ data.birth_year }}—{{ data.death_year }}</div>
+        {% else %}
+            <div class="kc-text-wrapper kc-text-21-15 kc-margin-bottom-100-40 kc-text-primary">{% trans "msg.artist.born_prefix" %}{{ data.birth_year }}</div>
+        {% endif %}
+
     </block>
     <block class="kc-wrapper-container-half-full">
-        <div class="kc-photo-wrapper">
+        <div class="kc-photo-wrapper kc-margin-bottom-40">
             <img class="kc-wrapper-image" src="{{ data.photo.url }}" alt="Artist photo">
-            <div class="kc-spacer-tiny"></div>
-            <div class="kc-text-wrapper kc-text-21-15 kc-text-gray">Фото: {{data.photoAuthor}}</div>
-            <div class="kc-text-wrapper kc-text-21-15 kc-text-gray">Текст: {{data.textAuthor}}</div>
+            <div class="kc-margin-bottom-10"></div>
+            <div class="kc-text-wrapper kc-text-21-15 kc-text-gray" style="line-height: 90%; ">{% trans "msg.artist.photo" %}{{data.photoAuthor}}</div>
+            <div class="kc-text-wrapper kc-text-21-15 kc-text-gray" style="line-height: 90%; margin-top: 2px;">{% trans "msg.artist.text" %}{{data.textAuthor}}</div>
         </div>
     </block>
 
-    <block class="kc-wrapper-container-half-full">
-        <p class="kc-text-wrapper kc-text-21-15" style="line-height: 140% !important;">  {{ data.description|safe }}  </p>
+    <block class="kc-wrapper-container-half-full kc-margin-bottom-100-40">
+        <div class="kc-text-wrapper kc-text-21-18">  {{ data.description|safe }}  </div>
     </block>
 
-    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
-    {% comment %} <spacer class="kc-wrapper-container-full-full kc-spacer-cut"></spacer> {% endcomment %}
+    {% if data.video_name and data.video_preview %}
 
-    {% include "items/video_cut_artist.html" with previews=data.artist_video_images.all main_image=data.video_preview name=data.video_name link=data.video_link %}
+        {% include "items/video_cut_artist.html" with previews=data.artist_video_images.all main_image=data.video_preview name=data.video_name link=data.video_link %}
 
-
-    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
-    <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full">Работы в коллекции</div>
-    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
-
-    {% include "items/artwork_grid.html" with artworks=data.artworks.all %}
-    
-{% else %}
-
-    <spacer class="kc-wrapper-container-full-full kc-spacer-main"></spacer>
-    <block class="kc-wrapper-container-half-full">
-        <div class="kc-text-53-24 kc-text-uppercase">{{ data.name|safe }}</div>
-        <div class="kc-spacer-small"></div>
-        <div class="kc-text-wrapper kc-text-21-15">  {{ data.birth_year }}—{{ data.death_year }}  </div>
-        <div class="kc-spacer-small"></div>
-        <div class="kc-text-wrapper kc-text-21-15" style="line-height: 140% !important;">  {{ data.description|safe }}  </div>
-    </block>
-    <block class="kc-wrapper-container-half-full">
-        <div class="kc-photo-wrapper">
-            <img class="kc-wrapper-image" src="{{ data.photo.url }}" alt="Artist photo">
-            <div class="kc-spacer-tiny"></div>
-            <div class="kc-text-wrapper kc-text-21-15 kc-text-gray">Фото: {{data.photoAuthor}}</div>
-            <div class="kc-text-wrapper kc-text-21-15 kc-text-gray">Текст: {{data.textAuthor}}</div>
-        </div>
-    </block>
-    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
-
-    {% if data.photo %}
-        <img src="{{ flow_event.photo.url }}" alt="Flow Event Image" class="flow-event-photo" style="height: 483px;">
     {% endif %}
 
+
+    <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full kc-margin-bottom-100-40">{% trans "msg.artist.in_collection" %}</div>
+
+    {% include "items/artwork_grid.html" with artworks=artworks.all %}
+
+{% else %}
+
+    <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+    <block class="kc-wrapper-container-half-full">
+        <div class="kc-text-53-24 kc-text-uppercase">{{ data.name|safe }}</div>
+
+        {% if data.death_year %}
+            <div class="kc-text-wrapper kc-text-21-15 kc-text-primary">{{ data.birth_year }}—{{ data.death_year }}</div>
+        {% else %}
+            <div class="kc-text-wrapper kc-text-21-15 kc-text-primary">{% trans "msg.artist.born_prefix" %}{{ data.birth_year }}</div>
+        {% endif %}
+
+        <div class="kc-spacer-small"></div>
+        <div class="kc-text-wrapper kc-text-21-15">  {{ data.description|safe }}  </div>
+    </block>
+    <block class="kc-wrapper-container-half-full">
+        <div class="kc-photo-wrapper">
+            <img class="kc-wrapper-image" src="{{ data.photo.url }}" alt="Artist photo">
+            <div class="kc-text-wrapper kc-text-17-15 kc-text-gray" style="margin-top: 15px;">{% trans "msg.artist.photo" %}{{data.photoAuthor}}</div>
+            <div class="kc-text-wrapper kc-text-17-15 kc-text-gray">{% trans "msg.artist.text" %}{{data.textAuthor}}</div>
+        </div>
+    </block>
+    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
+
     {% comment %} <spacer class="kc-wrapper-container-full-full kc-spacer-cut"></spacer> {% endcomment %}
+
+    {% if data.video_name and data.video_preview %}
 
     {% include "items/video_cut_artist.html" with previews=data.artist_video_images.all main_image=data.video_preview name=data.video_name link=data.video_link %}
 
+    {% endif %}
+
     <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
-    <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full">Работы в коллекции</div>
+    <div class="kc-text-wrapper kc-text-53-24 kc-text-uppercase kc-wrapper-container-full-full">{% trans "msg.artist.in_collection" %}</div>
     <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
 
-    {% include "items/artwork_grid.html" with artworks=data.artworks.all %}
+    {% include "items/artwork_grid.html" with artworks=artworks.all %}
 
 {% endif %}
 

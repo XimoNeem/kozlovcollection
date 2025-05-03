@@ -1,0 +1,16 @@
+{% load static %}
+{% load i18n %}
+
+
+<div class="null-period-content">
+    <div class="null-period-decor">
+        <img src="{% static 'common/assets/period-decor.svg' %}" alt="Logo" class="null-period-decor-img">
+            <div class="null-period-content-text kc-text-uppercase kc-text-33-15">
+                {% trans "msg.null_period.hidden" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="{% static 'common/css/items/null-period.css' %}">

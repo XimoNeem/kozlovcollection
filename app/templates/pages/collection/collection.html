@@ -1,37 +1,86 @@
 {% extends "base.html" %}
-
-{% block title %} Коллекция {% endblock %}
-
+{% load i18n %}
+{% block title %} {% trans "msg.collection.title" %} {% endblock %}
 {% block content %}
 
 <!-- 🛇 ↑↑↑ выше ничего не трогать -->
 
-    <spacer class="kc-wrapper-container-full-full kc-margin-top-150-40"></spacer>
+{% if is_mobile %}
+
+<div class="kc-color-background-wide kc-wrapper-container-half-full kc-text-white">
+    <div class="kc-text-33-20 kc-text-normal kc-text-uppercase kc-line-height-big">
+        {% trans "msg.collection.section1Text1" %}<br><br>
+        {% trans "msg.collection.section1Text2" %}<br><br>
+        {% trans "msg.collection.section1Text3" %}<br><br>
+        {% trans "msg.collection.section1Text4" %}<br><br>
+    </div>
     
-    <div class="kc-wrapper-container-half-full">
-        <div class="kc-text-33-20 kc-text-normal kc-line-height-big">
-            КУЛЬТУРА — ПРАВО КАЖДОГО. МЫ ИМЕЕМ В ВИДУ НЕ ТОЛЬКО ДОСТУПНОСТЬ КУЛЬТУРЫ ДЛЯ ШИРОКОГО КРУГА ЗРИТЕЛЕЙ, НО И ВОЗМОЖНОСТЬ КАЖДОГО УЧАСТВОВАТЬ В ЕЕ ФОРМИРОВАНИИ.<br><br>
-            УЧАСТИЕ — НЕ ПРОСТО ВЫБОР ГОТОВЫХ ВАРИАНТОВ, КОТОРЫЕ ПРЕДЛАГАЮТ КУЛЬТУРНЫЕ ИНСТИТУЦИИ, НО И СОЗДАНИЕ СВОИХ.<br><br>
-            КОЛЛЕКЦИЯ И СВЯЗАННАЯ С НЕЙ ВЫСТАВОЧНАЯ ДЕЯТЕЛЬНОСТЬ — НЕ ТОЛЬКО ПРОСВЕТИТЕЛЬСКИЙ ПРОЕКТ, НО СПОСОБ ПОДДЕРЖКИ РАЗНООБРАЗНЫХ ИНИЦИАТИВ, ПОМОГАЮЩИХ ОБРЕСТИ ГОЛОС ХУДОЖНИКАМ, ЗРИТЕЛЯМ И ВСЕМ ИНТЕРЕСУЮЩИМСЯ ИСКУССТВОМ. В ОСНОВЕ КОЛЛЕКЦИИ ЛЕЖАТ ДРУЖЕСКИЕ ОТНОШЕНИЯ С ХУДОЖНИКАМИ И ПРОФЕССИОНАЛАМИ В ОБЛАСТИ ИСКУССТВА. ДРУЗЬЯ — ТЕ, КОМУ ТЫ ПОЗВОЛЯЕШЬ ВЛИЯТЬ НА СЕБЯ.<br><br>
-        </div>
+    <div class="kc-text-33-20 kc-text-normal kc-text-uppercase kc-line-height-big">
+        {% trans "msg.collection.section2Text1" %}<br><br>
+        {% trans "msg.collection.section2Text2" %}<br><br>
+        {% trans "msg.collection.section2Text3" %}
     </div>
+    <div class="kc-wrapper-container-full-full kc-margin-top-150-40"></div>
+</div>
+<div class="kc-wrapper-container-full-full kc-margin-top-150-40"></div>
 
-    <div class="kc-wrapper-container-half-full">
-        <div class="kc-text-33-20 kc-text-normal kc-line-height-big">
-            ДРУЖЕСКИЙ ДИАЛОГ ВОЗМОЖЕН ТОЛЬКО ВНЕ ТОТАЛЬНОЙ ИДЕОЛОГИИ, САМОЕ УГРОЖАЮЩЕЕ СВИДЕТЕЛЬСТВО КОТОРОЙ — ПРИЗНАНИЕ ЕДИНСТВЕННО ВОЗМОЖНОЙ ХУДОЖЕСТВЕННОЙ ДОКТРИНЫ И БЕЗАЛЬТЕРНАТИВНОЕ ПОНИМАНИЕ СОВРЕМЕННОСТИ.<br><br>
-            МЫ ОТКАЗЫВАЕМСЯ ОТ ЭТИХ КАТЕГОРИЙ В ПОЛЬЗУ МНОГООБРАЗИЯ. МЫ ВЕРИМ, ЧТО ИСКУССТВО — НЕОТЪЕМЛЕМАЯ ЧАСТЬ ЖИЗНЬ КАЖДОГО СОВРЕМЕННОГО ЧЕЛОВЕКА. ДЛЯ ЭТОГО МЫ ДВИЖЕМСЯ ОТ ЦЕНТРОВ КУЛЬТУРЫ В СТОЛИЦЕ КО МНОЖЕСТВУ ИНСТИТУЦИЙ И ХУДОЖЕСТВЕННЫХ СООБЩЕСТВ ПО ВСЕЙ СТРАНЕ.<br><br>
-            НАШИ ПРИНЦИПЫ: ОТНОШЕНИЯ НА РАВНЫХ СО ВСЕМИ УЧАСТНИКАМИ ХУДОЖЕСТВЕННОГО ПРОЦЕССА, ДИАЛОГ, ВЫСТРАИВАНИЕ ДЕЯТЕЛЬНОСТИ В СООТВЕТСТВИИ С ПРЕДСТАВЛЕНИЯМИ ОБ ИСТОРИИ ИСКУССТВА КАК О ЖИВОМ И МНОГООБРАЗНОМ ПРОЦЕССЕ.
-        </div>
+{% else %}
+
+<spacer class="kc-wrapper-container-full-full kc-margin-top-150-40"></spacer>
+<div class="kc-wrapper-container-half-full dt-left">
+    <div class="kc-text-33-20 kc-text-normal kc-text-uppercase kc-line-height-big">
+        {% trans "msg.collection.section1Text1" %}<br><br>
+        {% trans "msg.collection.section1Text2" %}<br><br>
+        {% trans "msg.collection.section1Text3" %}<br><br>
+        {% trans "msg.collection.section1Text4" %}
     </div>
+</div>
 
-    <spacer class="kc-wrapper-container-full-full kc-spacer-medium"></spacer>
-    <div class="kc-wrapper-container-full-full kc-separator-wide"></div>
-    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
-    <div class="kc-wrapper-container-full-full kc-text-53-24">ИССЛЕДУЙТЕ КОЛЛЕКЦИЮ:</div>
-    <spacer class="kc-wrapper-container-full-full kc-spacer-regular"></spacer>
+<div class="kc-wrapper-container-half-full dt-right">
+    <div class="kc-text-33-20 kc-text-normal kc-text-uppercase kc-line-height-big">
+        {% trans "msg.collection.section2Text1" %}<br><br>
+        {% trans "msg.collection.section2Text2" %}<br><br>
+        {% trans "msg.collection.section2Text3" %}<br><br>
+    </div>
+</div>
 
-    {% include "items/bottom_navigator.html" %}
+<spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+<div class="kc-wrapper-container-full-full kc-separator-wide"></div>
+
+{% endif %}
+
+<spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+<div class="kc-wrapper-container-full-full kc-text-53-24">{% trans "msg.collection.exploreCollection" %}</div>
+<spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+
+{% include "items/bottom_navigator.html" %}
+
+<script>
+    function adjustPadding() {
+        const leftCol = document.querySelector('.dt-left');
+        const rightCol = document.querySelector('.dt-right');
+    
+        if (leftCol && rightCol) {
+            const rightHeight = rightCol.clientHeight;
+            const leftHeight = leftCol.clientHeight;
+    
+            if (leftHeight < rightHeight) {
+                leftCol.style.paddingRight = `${rightHeight - leftHeight}px`;
+            } else {
+                leftCol.style.paddingRight = "20px"; // Стандартный отступ
+            }
+
+            console.log("resize");
+        }
+    }
+    
+    // Запускаем при загрузке и изменении размера окна
+    window.addEventListener('load', adjustPadding);
+    window.addEventListener('resize', adjustPadding);
+</script>
 
 <!-- 🛇 ↓↓↓ выше ничего не трогать -->
 
 {% endblock %}
+
+

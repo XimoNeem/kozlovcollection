@@ -1,0 +1,80 @@
+<a href="{% url 'exhibition' data.id %}" class="kc-wrapper-container-full-full kc-container-grid exhibition-item">
+
+    {% if is_mobile %}
+
+        {% if data.image %}
+
+            <div class="exhibition-item-image-content-part kc-wrapper-container-full-full">
+                <img src="{{ data.image.url }}" alt="Flow Event Image" class="exhibition-item-image">
+            </div>
+
+        {% endif %}
+
+        <div class="kc-wrapper-container-full-full">
+            <div class="exhibition-item-text-name kc-text-41-15 kc-text-uppercase">
+                {{ data.title|safe }}
+            </div>
+        </div>
+
+        <div class="kc-wrapper-container-full-full exhibition-item-text-description">
+            <div class="exhibition-item-text-description kc-text-uppercase kc-text-21-15 kc-text-primary"  style="margin-top: 0px;">
+                {{ data.start_date|safe }} — {{ data.end_date|safe }}
+            </div>
+        </div>
+
+        <div class="kc-wrapper-container-full-full exhibition-item-text-description" style="margin-top: 0px;">
+            <div class="exhibition-item-text-description kc-text-uppercase kc-text-21-15 kc-text-primary"  style="margin-top: 0px;">
+                {{ data.location|safe }}
+            </div>
+        </div>
+
+        
+
+        {% if not is_last %}
+
+            <spacer style="height: 40px;"></spacer> 
+            <div class="kc-separator-wide kc-wrapper-container-full-full"></div>
+
+        {% endif %}
+    
+    {% else %}
+
+        {% if data.image %}
+
+            <div class="exhibition-item-image-content-part kc-wrapper-container-span3">
+                <img src="{{ data.image.url }}" alt="Flow Event Image" class="exhibition-item-image">
+            </div>
+
+        {% endif %}
+
+        <div class="kc-wrapper-container-span2" style="margin-top: 0px;">
+            <div class="exhibition-item-text-description kc-text-uppercase kc-text-21-15"  style="margin-top: 0px;">
+                {{ data.location|safe }}
+            </div>
+        </div>
+
+        <div class="kc-wrapper-container-span2">
+            <div class="exhibition-item-text-description kc-text-uppercase kc-text-21-15 kc-text-primary"  style="margin-top: 0px;">
+                {{ data.start_date|safe }} —<br>{{ data.end_date|safe }}
+            </div>
+        </div>
+
+        <div class="kc-wrapper-container-span7">
+            <div class="exhibition-item-text-name kc-text-41-15 kc-text-uppercase">
+                {{ data.title|safe }}
+            </div>
+        </div>
+
+        <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+
+        
+
+        {% if not is_last %}
+
+            <div class="kc-separator kc-wrapper-container-full-full"></div>
+
+        {% endif %}
+
+    {% endif %}
+    
+</a>

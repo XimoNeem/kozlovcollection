@@ -1,136 +1,210 @@
 {% load static %}
+{% load i18n %}
 
 {% if is_mobile %}
 
 <div id="kc-sidebar" class="kc-sidebar kc-spacing-padding-main">
         
-    <spacer class="kc-close-btn" id="closeMenu"></spacer>
-    <spacer class="kc-sidebar-spacing-90"></spacer>
+    <spacer style="height: 70px;"></spacer> 
 
-    
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'collection' %}">КОЛЛЕКЦИЯ</a>
-
-    <spacer class="kc-sidebar-spacing-20"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-33-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'routes' %}">М.1 — М.10</a>
-    
-    {% comment %} <spacer class="kc-sidebar-spacing-20"></spacer> {% endcomment %}
-    
-    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-33-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'collection_a_z' %}">А — Я</a>
-    
-    {% comment %} <spacer class="kc-sidebar-spacing-20"></spacer> {% endcomment %}
-    
-    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-33-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'collection_by_years' %}">1957 — 2057</a>
-
-    <spacer class="kc-sidebar-spacing-40"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'home_anton' %}">ПОКА ВСЕ ДОМА У АНТОНА</a>
-
-    <spacer class="kc-sidebar-spacing-40"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'team' %}">КОМАНДА</a>
-
-    {% comment %} <spacer class="kc-sidebar-spacing-20"></spacer> {% endcomment %}
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'exhibitions' %}">ВЫСТАВКИ</a>
-
-    <spacer class="kc-sidebar-spacing-20"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-33-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'exhibitions_participation' %}">УЧАСТИЕ В ПРОЕКТАХ</a>
-
-    {% comment %} <spacer class="kc-sidebar-spacing-20"></spacer> {% endcomment %}
-
-    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-33-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'own_exhibitions' %}">СОБСТВЕННАЯ ВЫСТАВОЧНАЯ ПРОГРАММА</a>
-
-    <spacer class="kc-sidebar-spacing-20"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'publications' %}">ИЗДАНИЯ</a>
-
-    <spacer class="kc-sidebar-spacing-20"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'cooperation' %}">СОТРУДНИЧЕСТВО</a>
-
-    {% comment %} <spacer class="kc-sidebar-spacing-20"></spacer> {% endcomment %}
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'press' %}">ПРЕССА</a>
-
-    {% comment %} <spacer class="kc-sidebar-spacing-20"></spacer> {% endcomment %}
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'flow' %}">СУЕТА</a>
-
-
-    <spacer class="kc-close-btn kc-spacer-main"></spacer>
-
-    {% comment %} <div class="kc-sidebar-decor-container">
-        <div class="kc-sidebar-decor">
-            <img src="{% static 'common/assets/menu-decor.svg' %}" alt="Decor">
+    <div class="kc-sidebar-item-main" style="display:flex; align-content: space-between; flex-direction: row;">    
+        <a style="width: 100%;" class="kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'collection' %}">
+            {% trans "msg.menu.collection" %}
+        </a>
+        <div class="kc-close-btn" id="closeMenu">
+            <img src="{% static 'common/assets/close-button.svg' %}" alt="Logo" class="kc-close-btn-image">
         </div>
-    </div> {% endcomment %}
+    </div>
 
+    <spacer style="height: 13px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-21-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'routes' %}">
+        {% trans "msg.menu.routes" %}
+    </a>
+
+    <spacer style="height: 13px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-21-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'collection_a_z' %}">
+        {% trans "msg.menu.collectionAZ" %}
+    </a>
+
+    <spacer style="height: 13px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-21-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'collection_by_years' %}">
+        {% trans "msg.menu.collectionByYears" %}
+    </a>
+
+    <spacer style="height: 60px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'home_anton' %}">
+        {% trans "msg.menu.homeAnton" %} {% include "items/video_icon_menu.html" %}
+    </a>
+
+    <spacer style="height: 60px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'team' %}">
+        {% trans "msg.menu.team" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'exhibitions' %}">
+        {% trans "msg.menu.exhibitions" %}
+    </a>
+
+    <spacer style="height: 13px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-21-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'exhibitions_participation' %}">
+        {% trans "msg.menu.exhibitionsParticipation" %}
+    </a>
+
+    <spacer style="height: 13px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-21-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'own_exhibitions' %}">
+        {% trans "msg.menu.ownExhibitions" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'publications' %}">
+        {% trans "msg.menu.publications" %}
+    </a>
+    
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'cooperation' %}">
+        {% trans "msg.menu.cooperation" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'press' %}">
+        {% trans "msg.menu.press" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'flow' %}">
+        {% trans "msg.menu.flow" %}
+    </a>
+    
+    <spacer style="height: 15px;"></spacer> 
+
+
+    <div class="kc-sidebar-language-content">
+        <a href="#" class="kc-lang {% if request.LANGUAGE_CODE == 'ru' %}active{% endif %}" onclick="changeLanguage('ru')">
+            РУС
+        </a>
+        <div style="color: var(--text-color-gray);">
+            /
+        </div>
+        <a href="#" class="kc-lang {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}" onclick="changeLanguage('en')">
+            ENG
+        </a>
+    </div>
+    
+    <form id="languageForm" action="{% url 'set_language' %}" method="post" style="display: none;">
+        {% csrf_token %}
+        <input type="hidden" name="language" id="languageInput">
+    </form>
+    
+    <script>
+        function changeLanguage(lang) {
+            document.getElementById('languageInput').value = lang;
+            document.getElementById('languageForm').submit();
+        }
+    </script>
 </div>
+
 
 {% else %}
 
 <div id="kc-sidebar" class="kc-sidebar kc-spacing-padding-main">
-        
-    <spacer class="kc-close-btn" id="closeMenu"></spacer>
-    <spacer class="kc-sidebar-spacing-100"></spacer>
 
+    <spacer style="height: 90px;"></spacer> 
     
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'collection' %}">КОЛЛЕКЦИЯ</a>
-
-    <spacer class="kc-sidebar-spacing-28"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-33-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'routes' %}">М.1 — М.10</a>
-    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-33-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'collection_a_z' %}">А — Я</a>
-    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-33-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'collection_by_years' %}">1957 — 2057</a>
-
-    <spacer class="kc-sidebar-spacing-100"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'home_anton' %}">ПОКА ВСЕ ДОМА У АНТОНА{% include "items/video_icon_menu.html" %}</a>
-
-    <spacer class="kc-sidebar-spacing-100"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'team' %}">КОМАНДА</a>
-
-    <spacer class="kc-sidebar-spacing-28"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'exhibitions' %}">ВЫСТАВКИ</a>
-
-    <spacer class="kc-sidebar-spacing-28"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-33-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'exhibitions_participation' %}">УЧАСТИЕ В ПРОЕКТАХ</a>
-
-    <spacer class="kc-sidebar-spacing-28"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-small kc-text-33-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'own_exhibitions' %}">СОБСТВЕННАЯ ВЫСТАВОЧНАЯ ПРОГРАММА</a>
-
-    <spacer class="kc-sidebar-spacing-28"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'publications' %}">ИЗДАНИЯ</a>
-
-    <spacer class="kc-sidebar-spacing-28"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'cooperation' %}">СОТРУДНИЧЕСТВО</a>
-
-    <spacer class="kc-sidebar-spacing-28"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'press' %}">ПРЕССА</a>
-
-    <spacer class="kc-sidebar-spacing-28"></spacer>
-
-    <a class="kc-text-wrapper kc-sidebar-item-main kc-text-53-24 kc-text-normal" href="{% url 'flow' %}">СУЕТА</a>
-
-{% comment %} 
-    <spacer class="kc-close-btn kc-spacer-regular"></spacer>
-
-    <div class="kc-sidebar-decor-container">
-        <div class="kc-sidebar-decor">
-            <img src="{% static 'common/assets/menu-decor.svg' %}" alt="Decor">
+    <div class="kc-sidebar-item-main" style="display:flex; align-content: space-between; flex-direction: row;">    
+        <a style="width: 100%;" class="animation-hover-zoom-color kc-text-wrapper kc-text-33-24 kc-text-normal" href="{% url 'collection' %}">
+            {% trans "msg.menu.collection" %}
+        </a>
+        <div class="kc-close-btn" id="closeMenu">
+            <img src="{% static 'common/assets/close-button.svg' %}" alt="Logo" class="kc-close-btn-image">
         </div>
     </div>
-{% endcomment %}
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="animation-hover-bounce kc-text-wrapper kc-sidebar-item-small kc-text-21-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'routes' %}">
+        {% trans "msg.menu.routes" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="animation-hover-bounce kc-text-wrapper kc-sidebar-item-small kc-text-21-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'collection_a_z' %}">
+        {% trans "msg.menu.collectionAZ" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+    
+    <a class="animation-hover-bounce kc-text-wrapper kc-sidebar-item-small kc-text-21-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'collection_by_years' %}">
+        {% trans "msg.menu.collectionByYears" %}
+    </a>
+
+    <spacer style="height: 80px;"></spacer> 
+
+    <a class="animation-hover-zoom-color kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'home_anton' %}">
+        {% trans "msg.menu.homeAnton" %} {% include "items/video_icon_menu.html" %}
+    </a>
+
+    <spacer style="height: 60px;"></spacer> 
+
+    <a class="animation-hover-zoom-color kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'team' %}">
+        {% trans "msg.menu.team" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="animation-hover-zoom-color kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'exhibitions' %}">
+        {% trans "msg.menu.exhibitions" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="animation-hover-bounce kc-text-wrapper kc-sidebar-item-small kc-text-21-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'exhibitions_participation' %}">
+        {% trans "msg.menu.exhibitionsParticipation" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="animation-hover-bounce kc-text-wrapper kc-sidebar-item-small kc-text-21-15 kc-text-primary kc-text-normal kc-text-info" href="{% url 'own_exhibitions' %}">
+        {% trans "msg.menu.ownExhibitions" %}
+    </a>
+
+    <spacer style="height: 30px;"></spacer> 
+
+    <a class="animation-hover-zoom-color kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'publications' %}">
+        {% trans "msg.menu.publications" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="animation-hover-zoom-color kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'cooperation' %}">
+        {% trans "msg.menu.cooperation" %}
+    </a>
+    
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="animation-hover-zoom-color kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'press' %}">
+        {% trans "msg.menu.press" %}
+    </a>
+
+    <spacer style="height: 15px;"></spacer> 
+
+    <a class="animation-hover-zoom-color kc-text-wrapper kc-sidebar-item-main kc-text-33-24 kc-text-normal" href="{% url 'flow' %}">
+        {% trans "msg.menu.flow" %}
+    </a>
 
 </div>
+
 
 {% endif %}

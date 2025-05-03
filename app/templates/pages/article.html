@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+
+
+{% if is_mobile %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Скрытие заголовка
+            let header = document.querySelector(".kc-header");
+            if (header) {
+                header.style.display = "none";
+            }
+
+            // Установка padding-bottom для элемента с id="header-spacer"
+            let spacer = document.getElementById("header-spacer");
+            if (spacer) {
+                spacer.style.paddingBottom = "40px";
+            }
+        });
+    </script>
+    
+    {% comment %} <spacer class="kc-wrapper-container-full-full" style="min-height: 20px;"></spacer>    {% endcomment %}
+
+    <a class="id-artwork-close-button" href="#" onclick="window.history.back(); return false;">
+        <div class="id-artwork-close-button-img">
+            <img src="{% static 'common/assets/close-button.svg' %}" alt="Logo" class="id-artwork-close-button-img">
+        </div>
+    </a>
+
+    <div class="article-title kc-text-53-24 kc-text-uppercase" style="margin-top:-4px;">
+        {{ data.article_title }}
+    </div>
+
+    <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"> </div> 
+
+    <div class="article-description kc-text-21-15 kc-text-uppercase" style="color: {{data.color}};">
+        {{ data.article_author }}
+    </div>
+
+    {% comment %} <div class="kc-margin-top-100-40 kc-wrapper-container-full-full"> </div> {% endcomment %}
+
+    <div class="kc-text-21-18 article-text kc-margin-top-100-40 kc-margin-bottom-100-40">
+        {{ data.article|safe }}
+    </div>
+
+{% else %}
+
+
+    <div class="kc-margin-top-150-40 kc-wrapper-container-full-full"> </div>
+
+    <a class="article-back-arrow-content" href="#" onclick="window.history.back(); return false;">
+        <img src="{% static 'common/assets/back-button.svg' %}" alt="Logo" class="article-back-button">
+    </a>
+
+    <div class="article-title kc-text-53-24 kc-text-uppercase" style="margin-top:-4px;">
+        {{ data.article_title }}
+    </div>
+
+    <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"> </div> 
+
+    <div class="article-line-content ">
+        <div class="article-line" style="background-color: {{data.color}};"></div>
+        <div class="article-circle" style="background-color: {{data.color}};">
+        </div>
+    </div>
+
+    <div class="article-description kc-text-21-15 kc-text-uppercase">
+        {{ data.article_author }}
+    </div>
+
+    <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"> </div> 
+
+    <div class="kc-emply-space"> </div>
+
+    
+    <div class="kc-text-21-15 article-text">
+        {{ data.article|safe }}
+    </div>
+    
+    <div class="kc-emply-space"> </div>
+
+
+    <div class="article-items-content">
+        <div class="artworks-grid-1">
+            {% for artwork in ata.artworks.all %}
+                {% if forloop.counter <= 2 %}
+                    <div class="artwork-column">
+                        {% include "items/artwork_item.html" with artwork=artwork %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"> </div> 
+
+    
+
+{% endif %}
+
+{% endblock %}

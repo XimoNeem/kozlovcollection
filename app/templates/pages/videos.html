@@ -5,50 +5,137 @@
 
 {% block content %}
 
-    <div class="kc-margin-top-150-40 kc-margin-bottom-100-40 kc-text-27-15 kc-wrapper-container-full-full" style="color: #456FA1; !important">
-        M.1 • ЦВЕТ, РИТМ, ПРОСТРАНСТВО, ТОЖДЕСТВО
-    </div>
-
-
     {% if is_mobile %}
 
-        <div class="videos-grid-1 ">
-            <div class="video-item">
-                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let headerText = document.querySelector(".kc-header-text");
+                if (headerText) {
+                    headerText.textContent = "{% trans "msg.mobile_header.collection_video" %}";
+
+                    //if (headerText.tagName === "A") {
+                    //    headerText.href = "https://example.com";
+                    //}
+                }
+            });
+        </script>
+
+        <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"></div>
+
+        {% for video in data %}
+
+            <div class="kc-margin-bottom-100-40 video-line-wrapper">
+                
+                <div class="video-line-content">
+                    <div class="video-line-line" style="background-color: {{ video.color }}"></div>
+                    <div class="video-line-circle" style="background-color: {{ video.color }}"></div>
+                </div>
+
+                <div class="kc-text-53-15 kc-text-uppercase video-line-title" style="color: {{ video.color }}">
+                    {{ video.title }}
+                </div>
+
+            </div>
+
+            <div class="video-content">
+
+            {% for item in video.videos.all %}
+
+                <div class="video-preview-item"
+                    data-link-youtube="{{ item.link_youtube }}"
+                    data-link-vk="{{ item.link_vk }}">
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="Video" class="video-preview-item-image">
+                    {% endif %}
+                </div>
+
+            {% endfor %}
+                
+            </div>
+
+            <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"></div>
+
+        {% endfor %}
+
+        <div id="videoModal" class="video-modal hidden">
+            <div class="video-modal-backdrop"></div>
+            <div class="video-modal-content" style="height: 182px; width: 267px;">
+                <div class="video-overlay" style="opacity: 1;">
+                    <a id="modalYoutubeLink" href="#" target="_blank" class="video-link kc-text-21-15 kc-text-uppercase kc-text-white">YouTube</a>
+                    <div class="kc-text-21-15 kc-text-white video-link"> / </div>
+                    <a id="modalVkLink" href="#" target="_blank" class="video-link kc-text-21-15 kc-text-uppercase kc-text-white">VK Video</a>
+                </div>
             </div>
         </div>
 
-        <div class="videos-grid-2">
-            <div class="video-item">
-                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
-            </div>
-        </div>
-
-        <div class="videos-grid-1 ">
-            <div class="video-item">
-                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
-            </div>
-        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const modal = document.getElementById("videoModal");
+                const modalYoutubeLink = document.getElementById("modalYoutubeLink");
+                const modalVkLink = document.getElementById("modalVkLink");
+        
+                document.querySelectorAll(".video-preview-item").forEach(item => {
+                    item.addEventListener("click", () => {
+                        const linkYouTube = item.getAttribute("data-link-youtube");
+                        const linkVK = item.getAttribute("data-link-vk");
+        
+                        modalYoutubeLink.href = linkYouTube;
+                        modalVkLink.href = linkVK;
+                        modal.classList.remove("hidden");
+                    });
+                });
+        
+                // Закрытие модального окна по клику на фон
+                document.querySelector(".video-modal-backdrop").addEventListener("click", () => {
+                    modal.classList.add("hidden");
+                });
+            });
+        </script>
     
     {% else %}
 
-        <div class="videos-grid-1">
-            <div class="video-item">
-                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
-            </div>
-        </div>
+        {% include 'items/navigator.html' %}
 
-        <div class="videos-grid-2">
-            <div class="video-item">
-                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
-            </div>
-        </div>
+        <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"></div>
 
-        <div class="videos-grid-3">
-            <div class="video-item">
-                <img class="video-preview" src=" {% static 'common/assets/video_preview_temp.png' %}" alt="">
+        {% for video in data %}
+
+            <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"  style="display: flex; gap: 40px;">
+                <div class="kc-text-53-15 kc-text-uppercase" style="text-wrap-mode: nowrap; margin-bottom: -5px;">
+                    {{ video.title }}
+                </div>
+
+                <div class="kc-route-line-wrapper-horizontal">
+                    <div class="route-top-circle" style="background-color: {{ video.color }}">
+                    </div>
+        
+                    <div class="kc-route-line-horizontal" style="background-color: {{ video.color }}"></div>
+                </div>
             </div>
-        </div>
+
+            {% for item in video.videos.all %}
+                <div class="video-wrapper kc-wrapper-container-third-full">
+                    <div class="video-wrapper-content ">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="Flow Event Image" class="video-wrapper-img">
+                        {% endif %}
+                        <div class="video-overlay">
+                            <a href="{{ item.link }}" class="video-link kc-text-21-18 kc-text-uppercase kc-text-white">YouTube</a>
+                            <div class="kc-text-21-18 kc-text-white video-link"> / </div>
+                            <a href="{{ item.link }}" class="video-link kc-text-21-18 kc-text-uppercase kc-text-white">VK Video</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% if not forloop.counter|divisibleby:3 %}
+                    <div class="kc-empty-space"></div>
+                {% endif %}
+
+            {% endfor %}
+
+            {% comment %} <div class="kc-margin-bottom-100-40 kc-wrapper-container-full-full"></div> {% endcomment %}
+
+        {% endfor %}
 
     {% endif %}
 

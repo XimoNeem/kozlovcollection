@@ -1,0 +1,64 @@
+.cooperation-item{
+    width: 100%;
+
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+.cooperation-item-image-content {
+    min-width: 100px;
+    min-height: 100px;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Делаем контейнер квадратным */
+    overflow: hidden; /* Обрезаем лишнее */
+    display: flex; /* Для выравнивания изображения */
+    align-items: flex-start; /* Прижимаем изображение к верху */
+}
+.cooperation-item-image {
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Заполняем квадратное пространство без искажений */
+}
+.cooperation-item-text-content{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 0px 30px;
+
+    height: 100px;
+}
+.cooperation-item-text-name{
+    grid-column: span 11;
+
+    height: auto;
+    display: inline-block;
+
+    margin-bottom: 50px;
+}
+.cooperation-item-text-description{
+    grid-column: span 11;
+    margin-bottom: 50px;
+}
+.cooperation-item-text-link{
+    grid-column: 4 / span 9;
+}
+.cooperation-test {
+    grid-column: span 2;
+}
+.cooperation-link {
+    color: inherit; /* Цвет по умолчанию */
+    text-decoration: none; /* Убираем стандартное подчеркивание */
+    transition: color 0.3s ease-in-out; /* Плавное изменение цвета */
+}
+
+.cooperation-link:hover {
+    color: black; /* Черный текст при наведении */
+}
+
+@media (max-width: 768px) {
+    .cooperation-item{
+        width: 100%;
+        height: 523px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+}

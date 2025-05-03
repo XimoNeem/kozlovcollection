@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/x-icon" href="{% static "common/assets/favicon.ico" %}">
+
     <title>{% block title %}Коллекция Антона Козлова{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'common/css/core/base-items.css' %}">
@@ -16,11 +18,13 @@
     <link rel="stylesheet" href="{% static 'common/css/core/typography.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/core/utils.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/core/wrappers.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/core/animations.css' %}">
     
     <link rel="stylesheet" href="{% static 'common/css/items/header.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/footer.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/nagivator.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/items/videos.css' %}">
 
     <link rel="stylesheet" href="{% static 'common/css/items/artwork-item.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/route-item.css' %}">
@@ -31,11 +35,14 @@
     <link rel="stylesheet" href="{% static 'common/css/items/periods-item.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/video-item.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/press-item.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/items/article.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/items/images-modal.css' %}">
 
     <link rel="stylesheet" href="{% static 'common/css/items/pdf-cut.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/video-cut.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/video-cut-artist.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/items/pdf_viewer.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/items/publication-item.css' %}">
 
     <link rel="stylesheet" href="{% static 'common/css/items/route-image-slider.css' %}">
 
@@ -49,7 +56,7 @@
 
         {% include "items/header.html"%}
 
-        <div class="kc-margin-bottom-100-50 "></div>
+        <div class="kc-margin-bottom-100-50" id="header-spacer"></div>
 
         <div id="kc-overlay" class="kc-overlay"></div>
 
@@ -59,10 +66,9 @@
             {% endblock %}
         </main>
 
-        <div class="kc-separator"></div>
-
         {% include "items/footer.html"%}
         {% include "items/menu.html"%}
+        {% include 'items/images_modal.html'%}
 
     </div>
 

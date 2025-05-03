@@ -4,7 +4,10 @@
 
     {% if is_mobile %}
 
-        <div class="kc-text-53-15 kc-text-uppercase kc-wrapper-container-span2 ">
+        <div 
+            class="kc-text-53-15 kc-text-uppercase kc-wrapper-container-span2"
+            style="margin-right: 10px;"
+        >
             {{ data.title|safe }}
         </div>
 
@@ -14,9 +17,13 @@
             </div>
         {% endif %}
 
-        <div class="kc-wrapper-container-span4 kc-text-uppercase kc-text-21-15">
+        <spacer class="kc-wrapper-container-span4" style="height: 20px;"></spacer> 
+
+        <div class="kc-wrapper-container-span4 kc-text-21-15">
             {{ data.description|safe }}
         </div>
+
+        <spacer style="height: 20px;"></spacer> 
 
         <div class="kc-wrapper-container-span4 kc-text-uppercase kc-text-21-15 kc-text-primary">
             {{ data.email|safe }}
@@ -37,12 +44,12 @@
             </div>
 
             <div class="cooperation-item-text-description kc-text-uppercase kc-text-21-15">
-                {{ data.description|safe }}
+                {{ data.description }}
             </div>
 
-            <div class="cooperation-item-text-link kc-text-uppercase kc-text-21-15 kc-text-primary">
-                {{ data.email|safe }}
-            </div>
+            <a href="mailto:{{ data.email }}" class="cooperation-item-text-link kc-text-uppercase kc-text-21-15 kc-text-primary">
+                {{ data.email }}
+            </a>
 
         </div>
 

@@ -1,24 +1,29 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}Главная страница{% endblock %}
+{% block title %}Суета{% endblock %}
 
 {% block content %}
 
 {% if is_mobile %}
 
-	<div class="kc-wrapper-container-full-full kc-text-item-inner-header">
-        {% trans "Суета" %}
+	<div class="kc-wrapper-container-full-full kc-page-header kc-margin-bottom-100-40">
+        {% trans "msg.flow.flow" %}
     </div>
 	
 {% else %}
 
-	<div class="kc-wrapper-container-full-full" style="height: 166px;"></div>
+	<div class="kc-wrapper-container-full-full kc-margin-bottom-100-40"></div>
 
 {% endif %}
 
 {% for flow_event in data %}
+
     {% include "items/flow_item.html" with flow_event=flow_event %}
-    <div class="kc-wrapper-container-one-null kc-utils-remove-fisrt-in-grid-hide kc-utils-remove-6-in-grid"></div>
+
+    {% if not forloop.counter|divisibleby:3%}
+        <div class="kc-empty-space"></div>
+    {% endif %}
+
 {% endfor %}
 
 {% endblock %}

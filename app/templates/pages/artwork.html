@@ -1,116 +1,227 @@
 {% extends "base.html" %}
+{% load static %}
+{% load i18n %}
 
 {% block title %}{{ data.title }}{% endblock %}
 
 {% block content %}
 
 <!-- 🛇 ↑↑↑ выше ничего не трогать -->
-
-    <spacer class="kc-wrapper-container-full-full id-artwork-spacer-150"></spacer>
     
     {% if is_mobile %}
-        {% include "mobile_versions/artwork_mobile.html"%}
-    {% else %}
-        <!-- Основной контент для десктопа -->
 
-    <div class="kc-wrapper-container-span5-from1">
-        <img src="{{ data.main_image.url }}" alt="{{ data.title }}" class="td-artwork-main-image">
+        {% comment %} <spacer class="kc-wrapper-container-full-full" style="min-height: 20px;"></spacer>    {% endcomment %}
+
+        {% include "mobile_versions/artwork_mobile.html"%}
+
+    {% else %}
+
+    <spacer class="kc-wrapper-container-full-full kc-margin-top-100-40"></spacer>
+
+    <div class="kc-wrapper-container-half-full td-artwork-main-image-content">
+
+        <img
+            src="{{ data.main_image.url }}" alt="{{ data.title }}" class="td-artwork-main-image"
+            {% if data.artwork_images.all %}
+                onclick="openModal(
+                    [{% for p in data.artwork_images.all %}'{{ p.image.url }}'{% if not forloop.last %}, {% endif %}{% endfor %}], 
+                    0,
+                    true
+                )"
+            {% else%}
+                onclick="openModal(
+                    ['{{ data.main_image.url }}'], 
+                    0,
+                    true
+                )"
+            {% endif %}
+        >
+
+        <div class="td-artwork-main-video-container" style="display: none;">
+            <video class="td-artwork-main-video" style="width: 100%; height: auto;" controls></video>
+        </div>
+        
 
         <div class="kc-spacer-tiny"></div>
 
         <div class="td-gallery-wrapper">
             <div class="td-image-gallery">
-                {% for image in data.artwork_images.all %}
-                <div class="td-image-preview">
-                    <img src="{{ image.image.url }}" alt="Дополнительное изображение" class="thumbnail">
-                </div>
+                {% for media in data.artwork_images.all %}
+                    <div class="td-image-preview">
+                        {% if media.video %}
+                            <div class="video-thumbnail-wrapper">
+                                <video src="{{ media.video.url }}" class="thumbnail" muted preload="metadata" data-type="video"></video>
+                                <div class="play-icon-overlay">
+                                    <img 
+                                        src="{% static 'common/assets/video-overlay-icon.svg' %}" 
+                                        alt="▶" 
+                                    >
+                                </div>
+                            </div>
+                        {% else %}
+                            <img src="{{ media.image.url }}" alt="additionalImage" class="thumbnail" data-type="image">
+                        {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         </div>
     </div>
     
-    <div class="kc-wrapper-container-span7-from7">
-        <div class="kc-text-wrapper kc-text-53-15"><i>{{ data.title }}</i></div>
-        <div class="kc-text-wrapper kc-text-53-15">{{ data.series }}</div>
+    <div class="kc-wrapper-container-half-full">
 
-        <div class="kc-spacer-regular"></div>
+        <div class="kc-text-wrapper kc-text-53-15 td-artwork-info-title">
+            <div class="td-artwork-info-title-name"><i>{{ data.title }}</i></div> 
+            {% if neighboring_artworks_ids.previous or neighboring_artworks_ids.next %}
 
-        <div class="kc-text-regular">{{ data.description }}</div>
+                <div class="td-artwork-arrows-content" style="grid-column: span 1;">
+                    <!-- Предыдущее произведение -->
+                    <div class="id-artwork-arrow">
+                        {% if neighboring_artworks_ids.previous %}
+                            <a href="{% url 'artwork' neighboring_artworks_ids.previous %}">
+                                <img src="{% static 'common/assets/artwork-arrow-left.svg' %}" alt="Предыдущее произведение" class="id-artwork-arrow-img" />
+                            </a>
+                        {% else %}
+                            <img src="{% static 'common/assets/artwork-arrow-left.svg' %}" alt="Предыдущее произведение" class="id-artwork-arrow-img disabled" />
+                        {% endif %}
+                    </div>
 
-        <div class="kc-spacer-regular"></div><div class="kc-spacer-regular"></div>
+                    <!-- Следующее произведение -->
+                    <div class="id-artwork-arrow">
+                        {% if neighboring_artworks_ids.next %}
+                            <a href="{% url 'artwork' neighboring_artworks_ids.next %}">
+                                <img src="{% static 'common/assets/artwork-arrow-right.svg' %}" alt="Следующее произведение" class="id-artwork-arrow-img" />
+                            </a>
+                        {% else %}
+                            <img src="{% static 'common/assets/artwork-arrow-right.svg' %}" alt="Следующее произведение" class="id-artwork-arrow-img disabled" />
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+        {% if data.series %}
+            <div class="kc-text-wrapper kc-text-53-15">{{ data.series }}</div>
+        {% endif %}
+
+
+        <div class="kc-text-21-15 kc-margin-top-100-40 kc-margin-bottom-100-40">{{ data.description|safe }}</div>
+
     
         <div class="td-artwork-info">
-            <div class="td-artwork-info-name kc-text-regular"><strong>АВТОР:</strong></div> 
-            <div class="td-artwork-info-value kc-text-regular">
-                <a href="{% url 'artist_detail' data.artist.id %}">{{ data.artist.name }}</a>
+            <div class="td-artwork-info-name kc-text-21-15 kc-text-primary kc-letter-spacing-5">{% trans 'msg.artwork.author' %}</div> 
+            <div class="td-artwork-info-value kc-text-21-15">
+                <a href="{% url 'artist_detail' data.artist.id %}" class = "kc-text-21-15 kc-link-decoration kc-text-uppercase">{{ data.artist.name }}</a>
             </div>
 
-            <div class="id-artwork-spacer-25"></div>
 
-            <div class="td-artwork-info-name kc-text-regular kc-text-21-15"><strong>ГОД:</strong></div>
-            <div class="td-artwork-info-value kc-text-regular kc-text-21-15">{{ data.year }}</div>
 
-            <div class="id-artwork-spacer-25"></div>
+            <div class="td-artwork-info-name kc-text-21-15 kc-text-primary kc-letter-spacing-5">{% trans 'msg.artwork.year' %}</div>
+            <div class="td-artwork-info-value kc-text-21-15 kc-text-uppercase">{{ data.year }}</div>
 
+
+
+            <div class="td-artwork-info-name kc-text-21-15 kc-text-primary kc-letter-spacing-5">{% trans 'msg.artwork.technique' %}</div>
+            <div class="td-artwork-info-value kc-text-21-15 kc-text-uppercase">{{ data.technique }}</div>
+
+
+
+            <div class="td-artwork-info-name kc-text-21-15 kc-text-primary kc-letter-spacing-5">{% trans 'msg.artwork.size' %}</div>
+            <div class="td-artwork-info-value kc-text-21-15 kc-text-uppercase">{{ data.get_safe_size }}</div>
+
+
+
+            <div class="td-artwork-info-name kc-text-21-15 kc-text-primary kc-letter-spacing-5">{% trans 'msg.artwork.cipher' %}</div>
+            <div class="td-artwork-info-value kc-text-21-15 kc-text-uppercase">{{ data.cipher }}</div>
+
+
+            {% if data.provenance %}
+
+            <div class="td-artwork-info-name kc-text-21-15 kc-text-primary kc-letter-spacing-5">{% trans 'msg.artwork.provenance' %}</div>
+            <div class="td-artwork-info-value kc-text-21-15 kc-text-uppercase kc-link-decoration-inline">{{ data.provenance|safe }}</div>
             
-            <div class="td-artwork-info-name kc-text-regular kc-text-21-15"><strong>ТЕХНИКА:</strong></div>
-            <div class="td-artwork-info-value kc-text-regular kc-text-21-15">{{ data.technique }}</div>
+            {% endif %}
 
-            <div class="id-artwork-spacer-25"></div>
+            {% if data.exhibitions %}
 
-            
-            <div class="td-artwork-info-name kc-text-regular kc-text-21-15"><strong>РАЗМЕР:</strong></div>
-            <div class="td-artwork-info-value kc-text-regular kc-text-21-15">{{ data.size }}</div>
+            <div class="td-artwork-info-name kc-text-21-15 kc-text-primary kc-letter-spacing-5">{% trans 'msg.artwork.exhibitions' %}</div>
+            <div class="td-artwork-info-value kc-text-21-15 kc-text-uppercase kc-link-decoration-inline">{{ data.exhibitions|safe }}</div>
 
-            <div class="id-artwork-spacer-25"></div>
+            {% endif %}
 
-            
-            <div class="td-artwork-info-name kc-text-regular kc-text-21-15"><strong>ШИФР:</strong></div>
-            <div class="td-artwork-info-value kc-text-regular kc-text-21-15">{{ data.cipher }}</div>
+            {% if data.publications %}
 
-            <div class="id-artwork-spacer-25"></div>
+            <div class="td-artwork-info-name kc-text-21-15 kc-text-primary kc-letter-spacing-5">{% trans 'msg.artwork.publications' %}</div>
+            <div class="td-artwork-info-value kc-text-21-15 kc-text-uppercase kc-link-decoration-inline">{{ data.publications|safe }}</div>
 
-            
-            <div class="td-artwork-info-name kc-text-regular kc-text-21-15"><strong>ПРОВЕНАНС:</strong></div>
-            <div class="td-artwork-info-value kc-text-regular kc-text-21-15">{{ data.provenance }}</div>
-
-            <div class="id-artwork-spacer-25"></div>
-
-            
-            <div class="td-artwork-info-name kc-text-regular kc-text-21-15"><strong>ВЫСТАВКИ:</strong></div>
-            <div class="td-artwork-info-value kc-text-regular kc-text-21-15">{{ data.exhibitions }}</div>
-
-            <div class="id-artwork-spacer-25"></div>
-
-            
-            <div class="td-artwork-info-name kc-text-regular kc-text-21-15"><strong>ПУБЛИКАЦИИ:</strong></div>
-            <div class="td-artwork-info-value kc-text-regular kc-text-21-15">{{ data.publications }}</div>
-
-            <div class="id-artwork-spacer-500"></div>
+            {% endif %}
 
         </div>
     </div>
 
-    <spacer class="kc-align-full kc-spacer-main"></spacer>
+    <div class="kc-margin-bottom-100-40"></div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const mainImage = document.querySelector(".td-artwork-main-image");
+            const mainVideo = document.querySelector(".td-artwork-main-video");
+            const videoContainer = document.querySelector(".td-artwork-main-video-container");
             const thumbnails = document.querySelectorAll(".thumbnail");
         
             thumbnails.forEach(thumbnail => {
                 thumbnail.addEventListener("click", function () {
-                    mainImage.style.opacity = "0"; // Сначала скрываем изображение
-                    
-                    setTimeout(() => {
-                        mainImage.src = this.src;
-                        mainImage.alt = this.alt;
-                        mainImage.style.opacity = "1"; // Потом показываем плавно
-                    }, 200); // Даем время на исчезновение перед заменой
+                    thumbnails.forEach(thumb => thumb.classList.remove("active-thumbnail"));
+                    this.classList.add("active-thumbnail");
+        
+                    if (this.dataset.type === "image") {
+                        // Показать изображение
+                        mainVideo.pause();
+                        videoContainer.style.display = "none";
+                        mainImage.style.display = "block";
+                        
+                        mainImage.style.opacity = "0";
+                        setTimeout(() => {
+                            mainImage.src = this.src;
+                            mainImage.alt = this.alt;
+                            mainImage.style.opacity = "1";
+                        }, 200);
+                    } else if (this.dataset.type === "video") {
+                        // Показать видео
+                        mainImage.style.display = "none";
+                        videoContainer.style.display = "block";
+                        
+                        mainVideo.src = this.src;
+                        mainVideo.load();
+                        mainVideo.play();
+                    }
                 });
             });
         });
         </script>
+        
+
+        <style>
+            .video-thumbnail-wrapper {
+                position: relative;
+                display: inline-block;
+                height: 100%;
+            }
+            .play-icon-overlay {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 2rem;
+                color: white;
+                pointer-events: none;
+                text-shadow: 0 0 10px black;
+            }
+            .thumbnail {
+                cursor: pointer;
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+            </style>
 
     {% endif %}
 

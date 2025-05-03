@@ -1,0 +1,256 @@
+@font-face {
+    font-family: 'с_FranklinGothicBookITC';
+    src: url("/static/common/fonts/FranklinGothicBookITC-Italic.4e5b379ff62a.woff2") format('woff2'),
+        url("/static/common/fonts/FranklinGothicBookITC-Italic.c6c5ee3e40ac.woff") format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'с_FranklinGothicDemiITC';
+    src: url("/static/common/fonts/FranklinGothicDemiITC-Regular.ccf1ecae7452.woff2") format('woff2'),
+        url("/static/common/fonts/FranklinGothicDemiITC-Regular.fb31b184a9c1.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'с_FranklinGothicBookITC';
+    src: url("/static/common/fonts/FranklinGothicBookITC-Regular.fc1ef5477b47.woff2") format('woff2'),
+        url("/static/common/fonts/FranklinGothicBookITC-Regular.e94effd723da.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+body {
+    /* font-family: 'Arial', sans-serif; */
+    font-family: 'с_FranklinGothicBookITC', sans-serif;
+    font-size: 16px; /* Базовый размер шрифта */
+    font-weight: 400;
+    color: var(--text-color-black);
+    line-height: 100%;
+}
+a {
+    color: black;
+    text-decoration: none;
+    transition: color 0s ease;
+}
+a:hover {
+    color: black;
+}
+/* Утилиты (управление текстом) */
+.kc-text-color-remove a {
+    color: #000 !important;
+    text-decoration: none !important; /* Убирает подчеркивание */
+}
+.kc-text-left {
+    text-align: left;
+}
+.kc-text-center {
+    text-align: center;
+}
+.kc-text-right {
+    text-align: right;
+}
+/* Размеры*/
+.kc-text-24 {
+    font-size: 24px;
+}
+.kc-text-15 {
+    font-size: 15px;
+}
+.kc-text-27-15 {
+    font-size: 27px;
+    line-height: 120%
+}
+.kc-text-17-10 {
+    font-size: 17px;
+}
+.kc-text-17-15 {
+    font-size: 17px;
+    line-height: 135%;
+}
+.kc-text-21-15 {
+    font-size: 21px !important;
+    line-height: 120%;
+}
+.kc-text-33-20 {
+    font-size: 33px !important;
+    font-style: normal !important;
+    line-height: 110%;
+    margin-top: -6px;
+}
+.kc-text-33-24 {
+    font-size: 33px !important;
+    font-style: normal !important;
+    line-height: 110%;
+    margin-top: -6px;
+}
+.kc-text-33-15 {
+    font-size: 33px !important;
+    font-style: normal !important;
+    line-height: 110%;
+    margin-top: -6px;
+}
+.kc-text-41-15{
+    font-size: 41px;
+    line-height: 110%;
+    margin-top: -9px;
+}
+.kc-text-53-24 {
+    font-size: 53px;
+    font-style: normal;
+    line-height: 100%;
+    margin-top: -9px;
+
+}
+.kc-text-53-15 {
+    font-size: 53px;
+    font-style: normal;
+    line-height: 100%;
+    margin-top: -9px;
+
+}
+.kc-text-17-9{
+    font-size: 17px;
+}
+.kc-text-21-18{
+    font-size: 21px;
+    margin-top: -8px;
+    line-height: 120%;
+}
+
+.kc-text-black {
+    color: var(--text-color-black);
+}
+.kc-text-gray {
+    color: var(--text-color-gray);
+}
+.kc-text-white {
+    color: var(--text-color-white);
+}
+.kc-text-primary {
+    color: var(--primary-color);
+}
+/* Заглавные буквы */
+.kc-text-uppercase {
+    text-transform: uppercase !important;
+}
+.kc-text-lowercase {
+    text-transform: lowercase !important;
+}
+.kc-text-capitalize {
+    text-transform: capitalize !important;
+}
+
+.kc-line-height-135 {
+    line-height: 135% !important;
+}
+/* Межстрочный интервал */
+/* .kc-line-height-big {
+    line-height: 110% !important;
+}
+.kc-line-height-full {
+    line-height: 100% !important;
+}
+.kc-line-height-135 {
+    line-height: 135% !important;
+}
+.kc-line-height-110 {
+    line-height: 110% !important;
+} */
+.kc-letter-spacing-5{
+    letter-spacing: 5%;
+}
+.kc-link-decoration{
+    text-decoration: underline;  /* Подчеркивание */
+    text-decoration-style: solid;  /* Сплошная линия */
+    text-decoration-thickness: 7%;  /* Толщина 7% от высоты шрифта */
+    text-underline-offset: 25%;  /* Смещение подчеркивания вниз на 25% */
+    text-decoration-color: var(--primary-color); /* Красное подчеркивание */
+}
+
+
+
+.kc-link-decoration-inline{
+    text-decoration: none;
+    text-decoration-style: solid;  /* Сплошная линия */
+    text-decoration-thickness: 7%;  /* Толщина 7% от высоты шрифта */
+    text-underline-offset: 25%;  /* Смещение подчеркивания вниз на 25% */
+    text-decoration-color: var(--primary-color); /* Красное подчеркивание */
+}
+.kc-link-decoration-inline a{
+    text-decoration: underline;  /* Подчеркивание */
+    text-decoration-style: solid;  /* Сплошная линия */
+    text-decoration-thickness: 7%;  /* Толщина 7% от высоты шрифта */
+    text-underline-offset: 25%;  /* Смещение подчеркивания вниз на 25% */
+    text-decoration-color: var(--primary-color); /* Красное подчеркивание */
+}
+.kc-link-decoration-inline br{
+    margin-bottom: 15px; 
+}
+.kc-italic-text {
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .kc-text-17-10 {
+        font-size: 10px !important;
+        margin-top: -2px;
+    }
+    .kc-text-21-15 {
+        font-size: 15px !important;
+        margin-top: -4px;
+        line-height: 130%;
+    }
+    .kc-text-27-15 {
+        font-size: 15px !important;
+        margin-top: -4px;
+    }
+    .kc-text-33-20 {
+        font-size: 20px !important;
+        margin-top: -4px;
+    }
+    .kc-text-33-24 {
+        font-size: 24px !important;
+        font-style: normal !important;
+        margin-top: -4px;
+    }
+    .kc-text-33-15 {
+        font-size: 15px !important;
+        font-style: normal !important;
+        margin-top: -4px;
+    }
+    .kc-text-53-24 {
+        font-size: 24px !important;
+        margin-top: -6px;
+    }
+    .kc-text-17-15 {
+        font-size: 15px;
+    }
+    .kc-text-53-15 {
+        font-size: 15px;
+        font-style: normal;
+        margin-top: -3px;
+    }
+    .kc-text-17-9{
+        font-size: 12px;
+    }
+    .kc-text-41-15{
+        font-size: 15px;
+    }
+    .kc-text-21-18{
+        font-size: 18px;
+    }
+    .kc-line-height-big {
+        line-height: 120% !important;
+    }
+
+    .kc-link-decoration-inline{
+        line-height: 120%;
+    }
+}

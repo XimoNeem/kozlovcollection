@@ -1,14 +1,11 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Коллекция Антона Козлова, RU, 2025
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-18 06:01+0300\n"
+"POT-Creation-Date: 2025-04-28 06:55+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,16 +32,459 @@ msgstr ""
 msgid "Django administration"
 msgstr ""
 
-#: .\app\templates\pages\flow.html:14
-msgid "Суета"
-msgstr "Flow"
+#: .\app\templates\items\bottom_navigator.html:4
+#: .\app\templates\items\navigator.html:4
+msgid "msg.bottomNavigator.routesButton"
+msgstr "М.1 — М.10"
 
-#: .\kozlovcollection\settings.py:151
-msgid "Русский"
+#: .\app\templates\items\bottom_navigator.html:5
+msgid "msg.bottomNavigator.routesText"
+msgstr "НЕЛИНЕЙНЫЕ ОБЪЕДИНЕНИЯ ПРОИЗВЕДЕНИЙ В МАРШРУТЫ ПО ИСТОРИИ ИСКУССТВА"
+
+#: .\app\templates\items\bottom_navigator.html:9
+#: .\app\templates\items\navigator.html:5
+msgid "msg.bottomNavigator.artistListButton"
+msgstr "А — Я"
+
+#: .\app\templates\items\bottom_navigator.html:10
+msgid "msg.bottomNavigator.artistListText"
+msgstr "СПИСОК ХУДОЖНИКОВ КОЛЛЕКЦИИ В АЛФАВИТНОМ ПОРЯДКЕ"
+
+#: .\app\templates\items\bottom_navigator.html:14
+#: .\app\templates\items\navigator.html:6
+msgid "msg.bottomNavigator.yearsButton"
+msgstr "1957 — 2057"
+
+#: .\app\templates\items\bottom_navigator.html:15
+msgid "msg.bottomNavigator.yearsText"
+msgstr "ПРОИЗВЕДЕНИЯ ИСКУССТВА, ПРЕДСТАВЛЕННЫЕ В ХРОНОЛОГИЧЕСКОМ ПОРЯДКЕ"
+
+#: .\app\templates\items\bottom_navigator.html:19
+#: .\app\templates\items\navigator.html:7
+msgid "msg.bottomNavigator.videoButton"
+msgstr "ВИДЕО"
+
+#: .\app\templates\items\bottom_navigator.html:20
+msgid "msg.bottomNavigator.videoText"
+msgstr "YOUTUBE-КАНАЛ «ПОКА ВСЕ ДОМА У АНТОНА» О РАБОТАХ ИЗ КОЛЛЕКЦИИ"
+
+#: .\app\templates\items\footer.html:10 .\app\templates\items\footer.html:29
+msgid "msg.footer.logoAlt"
+msgstr "Коллекция Антона Козлова"
+
+#: .\app\templates\items\footer.html:13 .\app\templates\items\footer.html:32
+msgid "msg.footer.orgInfo"
+msgstr "© АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ<br>«КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА»"
+
+#: .\app\templates\items\footer.html:14 .\app\templates\items\footer.html:33
+msgid "msg.footer.contactEmail"
+msgstr "INFO@KOZLOVCOLLECTION.COM"
+
+#: .\app\templates\items\footer.html:15 .\app\templates\items\footer.html:34
+msgid "msg.footer.telegram"
+msgstr "TELEGRAM"
+
+#: .\app\templates\items\footer.html:15 .\app\templates\items\footer.html:34
+msgid "msg.footer.youtube"
+msgstr "YOUTUBE"
+
+#: .\app\templates\items\footer.html:15 .\app\templates\items\footer.html:34
+msgid "msg.footer.vk"
+msgstr "VK"
+
+#: .\app\templates\items\footer.html:15 .\app\templates\items\footer.html:34
+msgid "msg.footer.inst"
+msgstr "INST"
+
+#: .\app\templates\items\footer.html:16 .\app\templates\items\footer.html:35
+msgid "msg.footer.privacyPolicy"
+msgstr "ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ"
+
+#: .\app\templates\items\header.html:12 .\app\templates\items\header.html:39
+msgid "msg.header.title"
+msgstr "Коллекция Антона Козлова"
+
+#: .\app\templates\items\menu.html:12 .\app\templates\items\menu.html:128
+msgid "msg.menu.collection"
+msgstr "КОЛЛЕКЦИЯ"
+
+#: .\app\templates\items\menu.html:22 .\app\templates\items\menu.html:138
+msgid "msg.menu.routes"
+msgstr "М.1 — М.10"
+
+#: .\app\templates\items\menu.html:28 .\app\templates\items\menu.html:144
+msgid "msg.menu.collectionAZ"
+msgstr "А — Я"
+
+#: .\app\templates\items\menu.html:34 .\app\templates\items\menu.html:150
+msgid "msg.menu.collectionByYears"
+msgstr "1957 — 2057"
+
+#: .\app\templates\items\menu.html:40 .\app\templates\items\menu.html:156
+msgid "msg.menu.homeAnton"
+msgstr "ПОКА ВСЕ ДОМА У АНТОНА"
+
+#: .\app\templates\items\menu.html:46 .\app\templates\items\menu.html:162
+msgid "msg.menu.team"
+msgstr "КОМАНДА"
+
+#: .\app\templates\items\menu.html:52 .\app\templates\items\menu.html:168
+msgid "msg.menu.exhibitions"
+msgstr "ВЫСТАВКИ"
+
+#: .\app\templates\items\menu.html:58 .\app\templates\items\menu.html:174
+msgid "msg.menu.exhibitionsParticipation"
+msgstr "УЧАСТИЕ В ПРОЕКТАХ"
+
+#: .\app\templates\items\menu.html:64 .\app\templates\items\menu.html:180
+msgid "msg.menu.ownExhibitions"
+msgstr "СОБСТВЕННАЯ ВЫСТАВОЧНАЯ ПРОГРАММА"
+
+#: .\app\templates\items\menu.html:70 .\app\templates\items\menu.html:186
+msgid "msg.menu.publications"
+msgstr "ИЗДАНИЯ"
+
+#: .\app\templates\items\menu.html:76 .\app\templates\items\menu.html:192
+msgid "msg.menu.cooperation"
+msgstr "СОТРУДНИЧЕСТВО"
+
+#: .\app\templates\items\menu.html:82 .\app\templates\items\menu.html:198
+msgid "msg.menu.press"
+msgstr "ПРЕССА"
+
+#: .\app\templates\items\menu.html:88 .\app\templates\items\menu.html:204
+msgid "msg.menu.flow"
+msgstr "СУЕТА"
+
+#: .\app\templates\items\null_period.html:9
+msgid "msg.null_period.hidden"
+msgstr "зайдите<br>попозже"
+
+#: .\app\templates\items\pdf_cut.html:10
+#: .\app\templates\items\video_cut.html:11
+#: .\app\templates\items\video_cut.html:46
+#: .\app\templates\items\video_cut_artist.html:11
+#: .\app\templates\items\video_cut_artist.html:44
+msgid "msg.pdf_cut.youtube"
+msgstr "Youtube канал пока все дома у Антона"
+
+#: .\app\templates\items\pdf_cut.html:34
+msgid "msg.pdf_cut.exhibition_catalog"
+msgstr "Каталог выставки"
+
+#: .\app\templates\items\pdf_cut.html:37
+msgid "msg.pdf_cut.full_pdf"
+msgstr "ПОЛНАЯ ВЕРСИЯ В PDF"
+
+#: .\app\templates\items\periods_item.html:9
+msgid "msg.mobile_header.collection_years"
+msgstr "коллекция: 1957 — 2057"
+
+#: .\app\templates\items\periods_item.html:23
+#: .\app\templates\items\periods_item.html:27
+#: .\app\templates\items\periods_item.html:35
+#: .\app\templates\items\periods_item.html:43
+#: .\app\templates\items\periods_item.html:47
+#: .\app\templates\items\periods_item.html:55
+#: .\app\templates\items\periods_item.html:63
+#: .\app\templates\items\periods_item.html:67
+#: .\app\templates\items\periods_item.html:75
+#: .\app\templates\items\periods_item.html:83
+#: .\app\templates\items\periods_item.html:87
+#: .\app\templates\items\periods_item.html:101
+#: .\app\templates\items\periods_item.html:105
+#: .\app\templates\items\periods_item.html:109
+#: .\app\templates\items\periods_item.html:113
+#: .\app\templates\items\periods_item.html:121
+#: .\app\templates\items\periods_item.html:125
+#: .\app\templates\items\periods_item.html:129
+#: .\app\templates\items\periods_item.html:137
+#: .\app\templates\items\periods_item.html:141
+#: .\app\templates\items\periods_item.html:145
+#: .\app\templates\items\periods_item.html:149
+msgid "msg.period_item.ending"
+msgstr "-е"
+
+#: .\app\templates\mobile_versions\artwork_mobile.html:77
+#: .\app\templates\pages\artwork.html:95
+msgid "msg.artwork.author"
+msgstr "АВТОР"
+
+#: .\app\templates\mobile_versions\artwork_mobile.html:82
+#: .\app\templates\pages\artwork.html:102
+msgid "msg.artwork.year"
+msgstr "ГОД"
+
+#: .\app\templates\mobile_versions\artwork_mobile.html:85
+#: .\app\templates\pages\artwork.html:107
+msgid "msg.artwork.technique"
+msgstr "ТЕХНИКА"
+
+#: .\app\templates\mobile_versions\artwork_mobile.html:88
+#: .\app\templates\pages\artwork.html:112
+msgid "msg.artwork.size"
+msgstr "РАЗМЕР"
+
+#: .\app\templates\mobile_versions\artwork_mobile.html:91
+#: .\app\templates\pages\artwork.html:117
+msgid "msg.artwork.cipher"
+msgstr "ШИФР"
+
+#: .\app\templates\mobile_versions\artwork_mobile.html:95
+#: .\app\templates\pages\artwork.html:123
+msgid "msg.artwork.provenance"
+msgstr "ПРОВЕНАНС"
+
+#: .\app\templates\mobile_versions\artwork_mobile.html:100
+#: .\app\templates\pages\artwork.html:130
+msgid "msg.artwork.exhibitions"
+msgstr "ВЫСТАВКИ"
+
+#: .\app\templates\mobile_versions\artwork_mobile.html:105
+#: .\app\templates\pages\artwork.html:137
+msgid "msg.artwork.publications"
+msgstr "ПУБЛИКАЦИИ"
+
+#: .\app\templates\pages\artist.html:17
+msgid "msg.mobile_header.collection_az"
+msgstr "коллекция: а — Я"
+
+#: .\app\templates\pages\artist.html:33 .\app\templates\pages\artist.html:70
+msgid "msg.artist.born_prefix"
+msgstr "р. "
+
+#: .\app\templates\pages\artist.html:41 .\app\templates\pages\artist.html:79
+msgid "msg.artist.photo"
+msgstr "Фото: "
+
+#: .\app\templates\pages\artist.html:42 .\app\templates\pages\artist.html:80
+msgid "msg.artist.text"
+msgstr "Текст: "
+
+#: .\app\templates\pages\artist.html:57 .\app\templates\pages\artist.html:95
+msgid "msg.artist.in_collection"
+msgstr "РАБОТЫ В КОЛЛЕКЦИИ"
+
+#: .\app\templates\pages\artist_list.html:3
+msgid "msg.artist_list.title"
+msgstr "Авторы"
+
+#: .\app\templates\pages\collection\collection.html:3
+msgid "msg.collection.title"
+msgstr "Коллекция"
+
+#: .\app\templates\pages\collection\collection.html:12
+#: .\app\templates\pages\collection\collection.html:32
+msgid "msg.collection.section1Text1"
+msgstr ""
+"КУЛЬТУРА — ПРАВО КАЖДОГО. МЫ ИМЕЕМ В ВИДУ&nbsp;НЕ ТОЛЬКО ДОСТУПНОСТЬ "
+"КУЛЬТУРЫ ДЛЯ ШИРОКОГО КРУГА ЗРИТЕЛЕЙ, НО И ВОЗМОЖНОСТЬ КАЖДОГО УЧАСТВОВАТЬ В "
+"ЕЕ ФОРМИРОВАНИИ."
+
+#: .\app\templates\pages\collection\collection.html:13
+#: .\app\templates\pages\collection\collection.html:33
+msgid "msg.collection.section1Text2"
+msgstr ""
+"УЧАСТИЕ — НЕ ПРОСТО ВЫБОР ГОТОВЫХ ВАРИАНТОВ, КОТОРЫЕ ПРЕДЛАГАЮТ КУЛЬТУРНЫЕ "
+"ИНСТИТУЦИИ, НО И СОЗДАНИЕ СВОИХ."
+
+#: .\app\templates\pages\collection\collection.html:14
+#: .\app\templates\pages\collection\collection.html:34
+msgid "msg.collection.section1Text3"
+msgstr ""
+"КОЛЛЕКЦИЯ И СВЯЗАННАЯ С НЕЙ ВЫСТАВОЧНАЯ ДЕЯТЕЛЬНОСТЬ — НЕ ТОЛЬКО "
+"ПРОСВЕТИТЕЛЬСКИЙ ПРОЕКТ, НО СПОСОБ ПОДДЕРЖКИ РАЗНООБРАЗНЫХ ИНИЦИАТИВ, "
+"ПОМОГАЮЩИХ ОБРЕСТИ ГОЛОС ХУДОЖНИКАМ, ЗРИТЕЛЯМ И ВСЕМ ИНТЕРЕСУЮЩИМСЯ "
+"ИСКУССТВОМ."
+
+#: .\app\templates\pages\collection\collection.html:15
+#: .\app\templates\pages\collection\collection.html:35
+msgid "msg.collection.section1Text4"
+msgstr ""
+"В ОСНОВЕ КОЛЛЕКЦИИ ЛЕЖАТ ДРУЖЕСКИЕ ОТНОШЕНИЯ С ХУДОЖНИКАМИ И ПРОФЕССИОНАЛАМИ "
+"В ОБЛАСТИ ИСКУССТВА. ДРУЗЬЯ — ТЕ, КОМУ ТЫ ПОЗВОЛЯЕШЬ ВЛИЯТЬ НА СЕБЯ."
+
+#: .\app\templates\pages\collection\collection.html:19
+#: .\app\templates\pages\collection\collection.html:41
+msgid "msg.collection.section2Text1"
+msgstr ""
+"ДРУЖЕСКИЙ ДИАЛОГ ВОЗМОЖЕН ТОЛЬКО ВНЕ ТОТАЛЬНОЙ ИДЕОЛОГИИ, САМОЕ УГРОЖАЮЩЕЕ "
+"СВИДЕТЕЛЬСТВО КОТОРОЙ — ПРИЗНАНИЕ ЕДИНСТВЕННО ВОЗМОЖНОЙ ХУДОЖЕСТВЕННОЙ "
+"ДОКТРИНЫ И БЕЗАЛЬТЕРНАТИВНОЕ ПОНИМАНИЕ СОВРЕМЕННОСТИ."
+
+#: .\app\templates\pages\collection\collection.html:20
+#: .\app\templates\pages\collection\collection.html:42
+msgid "msg.collection.section2Text2"
+msgstr ""
+"МЫ ОТКАЗЫВАЕМСЯ ОТ ЭТИХ КАТЕГОРИЙ В ПОЛЬЗУ МНОГООБРАЗИЯ. МЫ ВЕРИМ, ЧТО "
+"ИСКУССТВО — НЕОТЪЕМЛЕМАЯ ЧАСТЬ ЖИЗНИ КАЖДОГО СОВРЕМЕННОГО ЧЕЛОВЕКА."
+
+#: .\app\templates\pages\collection\collection.html:21
+#: .\app\templates\pages\collection\collection.html:43
+msgid "msg.collection.section2Text3"
+msgstr ""
+"НАШИ ПРИНЦИПЫ: ОТНОШЕНИЯ НА РАВНЫХ СО ВСЕМИ УЧАСТНИКАМИ ХУДОЖЕСТВЕННОГО "
+"ПРОЦЕССА, ДИАЛОГ, ВЫСТРАИВАНИЕ ДЕЯТЕЛЬНОСТИ В СООТВЕТСТВИИ С ПРЕДСТАВЛЕНИЯМИ "
+"ОБ ИСТОРИИ ИСКУССТВА КАК О ЖИВОМ И МНОГООБРАЗНОМ ПРОЦЕССЕ."
+
+#: .\app\templates\pages\collection\collection.html:53
+msgid "msg.collection.exploreCollection"
+msgstr "ИССЛЕДУЙТЕ КОЛЛЕКЦИЮ"
+
+#: .\app\templates\pages\cooperation.html:9
+msgid "msg.cooperation.header"
+msgstr "СОТРУДНИЧЕСТВО"
+
+#: .\app\templates\pages\exhibition.html:99
+msgid "msg.exhibition.download_press_kit"
+msgstr "скачать пресс-кит"
+
+#: .\app\templates\pages\exhibition.html:105
+msgid "msg.exhibition.download_catalog"
+msgstr "скачать каталог"
+
+#: .\app\templates\pages\exhibition.html:152
+msgid "msg.exhibition.in_collection"
+msgstr "работы из коллекции, представленные в экспозиции"
+
+#: .\app\templates\pages\exhibition_switch.html:10
+msgid "msg.exhibitionSwitch.exhibitions"
+msgstr "Выставки"
+
+#: .\app\templates\pages\exhibition_switch.html:17
+#: .\app\templates\pages\exhibition_switch.html:54
+msgid "msg.exhibitionSwitch.participationInProjects"
+msgstr "участие в проектах"
+
+#: .\app\templates\pages\exhibition_switch.html:23
+#: .\app\templates\pages\exhibition_switch.html:57
+msgid "msg.exhibitionSwitch.exhibitionProjectsDescription"
+msgstr ""
+"Выставочные проекты, на которых экспонировались произведения из Коллекции "
+"Антона Козлова"
+
+#: .\app\templates\pages\exhibition_switch.html:32
+#: .\app\templates\pages\exhibition_switch.html:72
+msgid "msg.exhibitionSwitch.ownExhibitionProgram"
+msgstr "собственная выставочная программa"
+
+#: .\app\templates\pages\exhibition_switch.html:40
+#: .\app\templates\pages\exhibition_switch.html:75
+msgid "msg.exhibitionSwitch.ownExhibitionProjectsDescription"
+msgstr ""
+"Выставочные проекты, организованные Автономной некоммерческой организацией "
+"'Коллекция Антона Козлова' в сотрудничестве с государственными музеями и "
+"частными учреждениями культуры"
+
+#: .\app\templates\pages\exhibitions.html:10
+msgid "msg.exhibitions.own"
+msgstr "Собственная выставочная программа"
+
+#: .\app\templates\pages\exhibitions.html:12
+msgid "msg.exhibitions.part"
+msgstr "Участие в проектах"
+
+#: .\app\templates\pages\flow.html:10
+msgid "msg.flow.flow"
+msgstr "СУЕТА"
+
+#: .\app\templates\pages\main.html:36
+msgid "msg.main.description"
+msgstr ""
+"КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА, ФОРМИРОВАНИЕ КОТОРОЙ НАЧАЛОСЬ ВЕСНОЙ 2019 ГОДА, "
+"ПРЕДСТАВЛЯЕТ ИСТОРИЮ РАЗВИТИЯ СОВЕТСКОГО НОНКОНФОРМИЗМА И СОВРЕМЕННОГО "
+"РОССИЙСКОГО ИСКУССТВА, ОХВАТЫВАЯ ПЕРИОД С 1957 ГОДА ПО НАСТОЯЩЕЕ ВРЕМЯ."
+"<br><br>На сегодняшний день коллекция насчитывает БОЛЕЕ ТЫСЯЧи ПРОИЗВЕДЕНИЙ "
+"ПОРЯДКА СТА авторов, среди которых есть как признанные во всем мире "
+"художники, так и находящиеся в начале творческого пути. Определяющим "
+"фактором в выборе художников, принадлежащих разным поколениям и историческим "
+"эпохам, стала их способность чутко улавливать течение мирового "
+"художественного процесса, одновременно откликаясь на своеобразие российского "
+"контекста.<br><br>Структура коллекции соответствует ключевым направлениям "
+"искусства послевоенного периода: абстракция, кинетическое искусство и оп-"
+"арт, метафизическое искусство, московский концептуализм, соц-арт и другие. "
+"Особое место в коллекции занимает искусство 2010−2020-х годов, "
+"демонстрирующее противоречивый характер времени и множество вариантов его "
+"осмысления."
+
+#: .\app\templates\pages\main.html:52
+msgid "msg.main.exploreCollection"
+msgstr "Исследуйте коллекцию"
+
+#: .\app\templates\pages\period.html:40 .\app\templates\pages\period.html:50
+msgid "msg.artwork.locations"
+msgstr "МЕСТА ДЕЙСТВИЯ:"
+
+#: .\app\templates\pages\period.html:68
+msgid "msg.period.works"
+msgstr "Работы в коллекции"
+
+#: .\app\templates\pages\press.html:9
+msgid "msg.press.press"
+msgstr "ПРЕССА"
+
+#: .\app\templates\pages\publications.html:10
+msgid "msg.publications.header"
+msgstr "Издания"
+
+#: .\app\templates\pages\route.html:23 .\app\templates\pages\routes.html:16
+msgid "msg.mobile_header.collection_routes"
+msgstr "коллекция: м.1 — М.10"
+
+#: .\app\templates\pages\route.html:65 .\app\templates\pages\route.html:98
+msgid "msg.route.read_more"
+msgstr "Читать больше"
+
+#: .\app\templates\pages\route.html:126
+msgid "msg.route.in_collection"
+msgstr "работы в маршруте"
+
+#: .\app\templates\pages\team.html:23 .\app\templates\pages\team.html:62
+msgid "msg.team.text1"
+msgstr ""
+"Коллекция — это результат тщательного отбора произведений, каждое из которых "
+"отвечает нашим представлениям об истории русского искусства ХХ-XXI веков, "
+"как о непрерывном процессе, отражающем противоречивый характер этого периода "
+"и являющемся неотъемлемой частью мировой художественной культуры. "
+"Нонконформизм и современное российское искусство, наследующие открытия "
+"авангарда, демонстрируют непостижимую природу и силу творческого импульса, "
+"способного преодолевать официальные запреты и идеологические доктрины."
+
+#: .\app\templates\pages\team.html:32 .\app\templates\pages\team.html:71
+msgid "msg.team.text2"
+msgstr ""
+"Наша любовь к произведению начинается с любви к художнику и с интереса к его "
+"творческому методу. Нам важны не только работы, обладающие очевидной "
+"культурной, экспозиционной и материальной ценностью, но и артефакты "
+"индивидуальной траектории развития автора: эскизные материалы, архив "
+"художника, фото- и видео-документация. Осознавая ответственность, которую "
+"накладывает владение произведениями, мы видим свою задачу в обеспечении "
+"своевременной реставрации и поддержании музейных условий хранения. "
+"Мы привлекаем к сотрудничеству искусствоведов, кураторов и других "
+"специалистов для всестороннего изучения, описания и грамотного "
+"экспонирования произведений."
+
+#: .\app\templates\pages\team.html:43 .\app\templates\pages\team.html:82
+msgid "msg.team.text3"
+msgstr ""
+"Наша деятельность всегда направлена на утверждение ценности "
+"и неприкосновенности свободного творческого высказывания, выступающих "
+"залогом сохранения правдивой картины текущего исторического момента. "
+"Непременным условием существования независимого искусства является поддержка "
+"актуального художественного процесса, основывающаяся на личной "
+"вовлеченности, понимании проблематики современного искусства, а также "
+"развитии зрительского опыта и художественного вкуса."
+
+#: .\app\templates\pages\videos.html:15
+msgid "msg.mobile_header.collection_video"
+msgstr "коллекция: видео"
+
+#: .\kozlovcollection\settings.py:172
+msgid "English"
 msgstr ""
 
-#: .\kozlovcollection\settings.py:152
-msgid "English"
+#: .\kozlovcollection\settings.py:173
+msgid "Русский"
 msgstr ""
 
 #: .\venv\Lib\site-packages\click\_termui_impl.py:556
@@ -2394,3 +2834,15 @@ msgstr ""
 #: .\venv\Lib\site-packages\unfold\widgets.py:657
 msgid "Select currency"
 msgstr ""
+
+#~ msgid "msg.exhibitionSwitch.ownExhibitionDescription"
+#~ msgstr ""
+#~ "АВТОНОМНАЯ НЕКОММЕРЧЕСКАЯ ОРГАНИЗАЦИЯ 'КОЛЛЕКЦИЯ АНТОНА КОЗЛОВА' "
+#~ "НАХОДИТСЯ В ПОИСКЕ РАБОТ ДЛЯ ПОПОЛНЕНИЯ КОЛЛЕКЦИИ. МЫ БУДЕМ РАДЫ "
+#~ "РАССМОТРЕТЬ ВАШИ ПРЕДЛОЖЕНИЯ. ДЛЯ ЭТОГО ВЫ МОЖЕТЕ написать нам НА ПОЧТУ"
+
+#~ msgid "Суета"
+#~ msgstr "Flow"
+
+#~ msgid "msg.artwork.additionalImage"
+#~ msgstr "Дополнительное изображение"

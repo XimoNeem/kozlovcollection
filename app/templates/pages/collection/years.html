@@ -4,12 +4,16 @@
 
 {% block content %}
 
-{% include 'items/navigator.html' %}
+{% if not is_mobile %}
+    {% include 'items/navigator.html' %}
+{% endif %}
 
 <spacer class="kc-wrapper-container-full-full kc-margin-top-150-40"></spacer>
     
 <block class="kc-wrapper-container-full-full">
     {% include 'items/periods_item.html' with data=data %}
 </block>
+
+<spacer class="kc-wrapper-container-full-full kc-margin-bottom-150-40"></spacer>
 
 {% endblock %}

@@ -1,0 +1,8 @@
+<a href="{% url 'artwork' artwork.id %}" class="artwork-item">
+    <img src="{{ artwork.main_image.url }}" alt="{{ artwork.title }}" class="artwork-image">
+    <div class="artwork-item-text">
+        <div class="artwork-item-name kc-text-uppercase kc-text-21-15">{{ artwork.artist }}</div>
+        <div class="kc-text-uppercase kc-text-21-15"><i>{{ artwork.title }}</i></div>
+        <div class="artwork-item-description kc-text-17-9">{{ artwork.year }}&nbsp;/ {{ artwork.technique }}&nbsp;/ {{ artwork.get_safe_size }}</div>
+    </div>
+</a>

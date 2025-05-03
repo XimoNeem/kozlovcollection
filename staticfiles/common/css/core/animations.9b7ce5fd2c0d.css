@@ -1,0 +1,61 @@
+:root {
+    --animation-time-hover: 0.15s;
+}
+
+/* .animation-hover-zoom-rotate {
+    transition: transform var(--animation-time-hover) ease-out;
+  }
+  
+.animation-hover-zoom-rotate:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+
+.animation-hover-zoom {
+    transition: transform var(--animation-time-hover) ease-out;
+  }
+  
+.animation-hover-zoom:hover {
+    transform: scale(1.1);
+}
+
+.animation-hover-zoom-color {
+    transition: transform var(--animation-time-hover) ease-out, color var(--animation-time-hover) ease-out;
+}
+
+.animation-hover-zoom-color:hover {
+    transform: scale(1.1);
+    color: var(--primary-color);
+}
+
+.animation-hover-pulse {
+    transition: transform var(--animation-time-hover) ease-out;
+}
+
+.animation-hover-pulse:hover {
+    transform: scale(1.1);
+    animation: pulse 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1.1);
+    }
+    to {
+        transform: scale(1.15);
+    }
+}
+
+.animation-hover-bounce {
+    transition: transform 0.2s ease-out;
+}
+
+.animation-hover-bounce:hover {
+    animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+} */

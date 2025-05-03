@@ -1,0 +1,86 @@
+/* .hidden {
+    display: none !important;
+}
+
+.no-scroll {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+}
+
+#pdf_viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pdf_viewer_container {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.pdf_viewer_image {
+    max-width: 100%;
+    max-height: 100%;
+    display: none;
+}
+
+.pdf_viewer_image.active {
+    display: block;
+}
+
+.pdf_viewer_arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.pdf_viewer_arrow:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.pdf_viewer_left {
+    left: 10px;
+}
+
+.pdf_viewer_right {
+    right: 10px;
+}
+
+.pdf_viewer_close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 15;
+    transition: background 0.3s;
+}
+
+.pdf_viewer_close:hover {
+    background: rgba(255, 255, 255, 0.6);
+} */
