@@ -1,9 +1,0 @@
-{% load i18n %}
-
-<div class="kc-navigator kc-wrapper-container-full-full">
-    <a href="{% url 'routes' %}" class="animation-hover-zoom-rotate kc-navigator-item kc-text-33-15 kc-text-capitalize">{% trans "msg.bottomNavigator.routesButton" %}</a>
-    <a href="{% url 'collection_a_z' %}" class="animation-hover-zoom-rotate kc-navigator-item kc-text-33-15 kc-text-capitalize">{% trans "msg.bottomNavigator.artistListButton" %}</a>
-    <a href="{% url 'collection_by_years' %}" class="animation-hover-zoom-rotate kc-navigator-item kc-text-33-15 kc-text-capitalize ">{% trans "msg.bottomNavigator.yearsButton" %}</a>
-    <a href="{% url 'home_anton' %}" class="animation-hover-zoom-rotate kc-navigator-item kc-text-33-15 kc-text-capitalize">{% trans "msg.bottomNavigator.videoButton" %} {% include "items/video_icon.html" %}</a>
-</div>
-<div class="kc-separator-wide kc-wrapper-container-full-full kc-utils-hide-on-mobile"></div>
